@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Галерея работ стоматологической клиники Estetic Smile в Тайге: фото улыбок до и после лечения.">
+  <meta name="theme-color" content="#2C2C2C">
+
+  <title>Галерея работ Estetic Smile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <header id="header" class="site-header">
+    <div class="container header__container">
+      <a class="header__logo" href="../index.html" aria-label="Estetic Smile — на главную">
+        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="44" height="44">
+        <span>Estetic Smile</span>
+      </a>
+
+      <nav class="header__nav" aria-label="Основная навигация">
+        <ul class="header__menu">
+          <li class="header__menu-item header__menu-item--dropdown">
+            <button class="header__dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+              Услуги
+              <span aria-hidden="true"></span>
+            </button>
+            <ul class="header__dropdown" aria-label="Услуги клиники">
+              <li><a href="services.html#implant">Имплантация</a></li>
+              <li><a href="services.html#whitening">Отбеливание</a></li>
+              <li><a href="services.html#braces">Брекеты</a></li>
+              <li><a href="services.html#veneers">Виниры</a></li>
+              <li><a href="services.html#caries">Лечение кариеса</a></li>
+              <li><a href="services.html#prosthetics">Протезирование</a></li>
+            </ul>
+          </li>
+          <li><a href="gallery.html" aria-current="page">Галерея</a></li>
+          <li><a href="../index.html#promo">Акции</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <div class="header__socials" aria-label="Социальные сети">
+          <a class="header__social-link" href="#" aria-label="ВКонтакте">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.2 17.2c-5.4 0-8.6-3.7-8.8-9.8h2.7c.1 4.5 2.1 6.4 3.7 6.8V7.4h2.6v3.9c1.6-.2 3.2-1.9 3.8-3.9h2.6c-.5 2.5-2.4 4.2-3.7 4.9 1.3.6 3.4 2.1 4.2 4.9h-2.9c-.6-1.9-2.1-3.3-4-3.6v3.6h-.2Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="header__social-link" href="#" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 4.2a7.6 7.6 0 0 0-6.5 11.5l-.8 3 3.1-.8A7.6 7.6 0 1 0 12 4.2Zm0 13.8c-1.3 0-2.5-.4-3.5-1.1l-.2-.1-1.8.5.5-1.8-.1-.2A6.2 6.2 0 1 1 12 18Zm3.4-4.6c-.2-.1-1.1-.5-1.2-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1a5 5 0 0 1-2.5-2.2c-.1-.3 0-.4.1-.5l.4-.4c.1-.1.1-.2.2-.3v-.4c-.1-.1-.5-1.1-.7-1.5-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.7-.8 1.8s.8 2.1.9 2.2c.1.2 1.6 2.5 3.9 3.4.6.2 1 .4 1.3.4.6.2 1.1.1 1.5.1.5-.1 1.1-.5 1.3-.9.2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <a class="header__phone" href="tel:+73844900000">+7 (38449) 0-00-00</a>
+        <a class="btn btn-primary header__cta" href="../index.html#booking-form">Записаться</a>
+      </div>
+
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="inner-hero" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <ol class="breadcrumbs__list">
+            <li><a href="../index.html">Главная</a></li>
+            <li aria-current="page">Галерея</li>
+          </ol>
+        </nav>
+
+        <div class="inner-hero__content">
+          <p class="inner-hero__label">До и после</p>
+          <h1 id="page-title">Галерея работ Estetic Smile</h1>
+          <p>Примеры клинических результатов: эстетика, восстановление формы зубов и аккуратная работа с улыбкой.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery gallery--page" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="gallery__header">
+          <p class="section-label">Галерея</p>
+          <h2 id="gallery-title">Результаты лечения в деталях</h2>
+          <p>Нажмите на фото, чтобы открыть его в полноэкранном просмотре.</p>
+        </div>
+
+        <div class="gallery__grid">
+          <button class="gallery-card" type="button" data-gallery-index="0" aria-label="Открыть фото до лечения, работа 1">
+            <img src="../images/gallery/before-1.jpg" alt="Фото до лечения, работа 1" loading="lazy">
+            <span class="gallery-card__tag">До</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="1" aria-label="Открыть фото после лечения, работа 1">
+            <img src="../images/gallery/after-1.jpg" alt="Фото после лечения, работа 1" loading="lazy">
+            <span class="gallery-card__tag">После</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="2" aria-label="Открыть фото до лечения, работа 2">
+            <img src="../images/gallery/before-2.jpg" alt="Фото до лечения, работа 2" loading="lazy">
+            <span class="gallery-card__tag">До</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="3" aria-label="Открыть фото после лечения, работа 2">
+            <img src="../images/gallery/after-2.jpg" alt="Фото после лечения, работа 2" loading="lazy">
+            <span class="gallery-card__tag">После</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="4" aria-label="Открыть фото до лечения, работа 3">
+            <img src="../images/gallery/before-3.jpg" alt="Фото до лечения, работа 3" loading="lazy">
+            <span class="gallery-card__tag">До</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="5" aria-label="Открыть фото после лечения, работа 3">
+            <img src="../images/gallery/after-3.jpg" alt="Фото после лечения, работа 3" loading="lazy">
+            <span class="gallery-card__tag">После</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="6" aria-label="Открыть фото до лечения, работа 4">
+            <img src="../images/gallery/before-4.jpg" alt="Фото до лечения, работа 4" loading="lazy">
+            <span class="gallery-card__tag">До</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="7" aria-label="Открыть фото после лечения, работа 4">
+            <img src="../images/gallery/after-4.jpg" alt="Фото после лечения, работа 4" loading="lazy">
+            <span class="gallery-card__tag">После</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="8" aria-label="Открыть фото до лечения, работа 5">
+            <img src="../images/gallery/before-5.jpg" alt="Фото до лечения, работа 5" loading="lazy">
+            <span class="gallery-card__tag">До</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+          <button class="gallery-card" type="button" data-gallery-index="9" aria-label="Открыть фото после лечения, работа 5">
+            <img src="../images/gallery/after-5.jpg" alt="Фото после лечения, работа 5" loading="lazy">
+            <span class="gallery-card__tag">После</span>
+            <span class="gallery-card__zoom" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container footer__container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a class="footer__logo" href="../index.html" aria-label="Estetic Smile — на главную">
+            <img src="../images/logo.png" alt="Логотип Estetic Smile" width="48" height="48">
+            <span>Estetic Smile</span>
+          </a>
+          <p>Современная стоматология в Тайге: бережное лечение, эстетика улыбки и понятный план заботы о зубах.</p>
+          <div class="footer__socials" aria-label="Социальные сети">
+            <a class="footer__social-link" href="#" aria-label="ВКонтакте">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.2 17.2c-5.4 0-8.6-3.7-8.8-9.8h2.7c.1 4.5 2.1 6.4 3.7 6.8V7.4h2.6v3.9c1.6-.2 3.2-1.9 3.8-3.9h2.6c-.5 2.5-2.4 4.2-3.7 4.9 1.3.6 3.4 2.1 4.2 4.9h-2.9c-.6-1.9-2.1-3.3-4-3.6v3.6h-.2Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a class="footer__social-link" href="#" aria-label="WhatsApp">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4.2a7.6 7.6 0 0 0-6.5 11.5l-.8 3 3.1-.8A7.6 7.6 0 1 0 12 4.2Zm0 13.8c-1.3 0-2.5-.4-3.5-1.1l-.2-.1-1.8.5.5-1.8-.1-.2A6.2 6.2 0 1 1 12 18Zm3.4-4.6c-.2-.1-1.1-.5-1.2-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1a5 5 0 0 1-2.5-2.2c-.1-.3 0-.4.1-.5l.4-.4c.1-.1.1-.2.2-.3v-.4c-.1-.1-.5-1.1-.7-1.5-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.7-.8 1.8s.8 2.1.9 2.2c.1.2 1.6 2.5 3.9 3.4.6.2 1 .4 1.3.4.6.2 1.1.1 1.5.1.5-.1 1.1-.5 1.3-.9.2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Услуги">
+          <h2>Услуги</h2>
+          <ul>
+            <li><a href="services.html#implant">Имплантация</a></li>
+            <li><a href="services.html#whitening">Отбеливание</a></li>
+            <li><a href="services.html#braces">Брекеты</a></li>
+            <li><a href="services.html#veneers">Виниры</a></li>
+            <li><a href="services.html#caries">Лечение кариеса</a></li>
+            <li><a href="services.html#prosthetics">Протезирование</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__nav" aria-label="Документы">
+          <h2>Документы</h2>
+          <ul>
+            <li><a href="#">Политика конфиденциальности</a></li>
+            <li><a href="#">Оферта</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <a href="tel:+73844900000">+7 (38449) 0-00-00</a>
+        <p>© 2024 Estetic Smile. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="cookie-notice" class="cookie-notice" role="dialog" aria-live="polite" aria-label="Уведомление о cookie">
+    <p>Мы используем cookie, чтобы сайт работал лучше.</p>
+    <button type="button" class="btn btn-primary" data-cookie-accept>Принять</button>
+  </div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Просмотр изображения">
+    <button type="button" class="lightbox__close" aria-label="Закрыть просмотр">&times;</button>
+    <button type="button" class="lightbox__prev" aria-label="Предыдущее изображение">&#10094;</button>
+    <img class="lightbox__image" src="" alt="">
+    <button type="button" class="lightbox__next" aria-label="Следующее изображение">&#10095;</button>
+    <div class="lightbox__counter" aria-live="polite"></div>
+  </div>
+
+  <script defer src="../js/header.js"></script>
+  <script defer src="../js/gallery.js"></script>
+  <script defer src="../js/slider.js"></script>
+  <script defer src="../js/accordion.js"></script>
+  <script defer src="../js/form.js"></script>
+  <script defer src="../js/animations.js"></script>
+  <script defer src="../js/cookie.js"></script>
+  <script defer src="../js/main.js"></script>
+</body>
+</html>

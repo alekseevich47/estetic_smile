@@ -1,0 +1,200 @@
+---
+description: Архитектура сайта Estetic Smile — читать при генерации любого кода сайта
+alwaysApply: true
+---
+
+# Архитектура сайта Estetic Smile
+
+## Стек
+
+| Слой       | Технология                                 |
+|------------|--------------------------------------------|
+| Разметка   | HTML5 (семантическая: header, main, section, footer, nav) |
+| Стили      | CSS3: Flexbox, Grid, Custom Properties     |
+| Скрипты    | Vanilla JS (ES6+), без фреймворков         |
+| Шрифт      | Inter (Google Fonts)                       |
+| Карты      | Яндекс Карты (iframe embed)                |
+| Локальный запуск | Live Server / `python -m http.server` |
+
+---
+
+## Цветовая схема
+
+```css
+--color-accent:        #4A7FC1   /* Синий акцент: кнопки CTA, иконки, hover */
+--color-accent-hover:  #3A6EAF   /* Hover синего (темнее на 10%) */
+--color-accent-shadow: rgba(74, 127, 193, 0.4)
+--color-dark:          #2C2C2C   /* Шапка, футер, тёмные секции */
+--color-white:         #FFFFFF
+--color-bg-light:      #F5F5F5   /* Альтернативный фон секций */
+--color-text-gray:     #666666   /* Основной второстепенный текст */
+--color-text-muted:    #999999   /* Мелкий текст */
+```
+
+Паттерн чередования фонов по секциям:
+```
+hero       → #2C2C2C (dark)
+advantages → #F5F5F5
+services   → #FFFFFF
+cta-1      → #2C2C2C
+promo      → #4A7FC1 (accent blue)
+about      → #FFFFFF
+booking    → #2C2C2C
+steps      → #F5F5F5
+cta-2      → #2C2C2C
+gallery    → #2C2C2C
+reviews    → #FFFFFF
+faq        → #FFFFFF
+contacts   → #2C2C2C
+footer     → #2C2C2C
+```
+
+---
+
+## Структура файлов
+
+```
+estetic_smile/
+├── index.html                   # Главная страница
+├── pages/
+│   ├── services.html            # Все услуги
+│   ├── gallery.html             # Галерея до/после
+│   ├── contacts.html            # Контакты
+│   └── about.html               # О клинике
+├── css/
+│   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
+│   ├── layout.css               # Все секции: header, hero, #advantages, #services, #cta-1, #promo,
+│   │                            # #about, #booking-form, #steps, #cta-2, #gallery, #reviews, #faq,
+│   │                            # #contacts, footer; sticky floating btn; cookie notice
+│   └── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
+├── js/
+│   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
+│   ├── header.js                # Sticky header (.scrolled), бургер-меню, dropdown «Услуги»
+│   ├── gallery.js               # Lightbox (overlay, стрелки, счётчик, ESC, swipe)
+│   ├── slider.js                # Карусель отзывов (translateX, dots, autoplay, swipe)
+│   ├── accordion.js             # FAQ: max-height анимация, rotate стрелки
+│   ├── form.js                  # Маска телефона, валидация, спиннер, уведомления
+│   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
+│   └── cookie.js                # Cookie-notice + floating CTA btn (показ после 300px скролла)
+└── images/
+    ├── logo.png
+    ├── hero.jpg
+    ├── about.jpg
+    ├── promo.jpg
+    ├── form-collage.jpg
+    ├── services/                # implant.jpg, whitening.jpg, braces.jpg, veneers.jpg,
+    │                            # caries.jpg, prosthetics.jpg
+    ├── steps/                   # step-1.jpg … step-4.jpg
+    └── gallery/                 # before-1.jpg … before-6.jpg, after-1.jpg … after-6.jpg
+```
+
+---
+
+## Разделы главной страницы (index.html)
+
+| ID секции       | Описание                                      | Фон         |
+|-----------------|-----------------------------------------------|-------------|
+| `#hero`         | Split-screen 50/50: H1 + 2 кнопки / hero.jpg | dark        |
+| `#advantages`   | 4 карточки преимуществ (иконки SVG)           | light-gray  |
+| `#services`     | 6 карточек услуг, сетка 3 кол.               | white       |
+| `#cta-1`        | CTA-полоса: бесплатная консультация           | dark        |
+| `#promo`        | Акция: split-screen, синий фон               | accent-blue |
+| `#about`        | О клинике: split-screen + счётчики           | white       |
+| `#booking-form` | Форма записи: split-screen + form-collage    | dark        |
+| `#steps`        | 4 этапа лечения, сетка 4 кол.               | light-gray  |
+| `#cta-2`        | CTA-полоса: «Записаться сегодня»             | dark        |
+| `#gallery`      | 12 фото до/после, lightbox                   | dark        |
+| `#reviews`      | Карусель 5 отзывов                           | white       |
+| `#faq`          | Аккордеон 8 вопросов                         | white       |
+| `#contacts`     | Карта Яндекс + контактные данные             | dark        |
+
+---
+
+## Компоненты CSS (в style.css)
+
+### Кнопки
+```css
+.btn-primary   /* синий фон #4A7FC1, белый текст, pill border-radius: 30px */
+.btn-secondary /* прозрачный, белая обводка, hover → белый фон */
+.btn-dark      /* тёмный фон #2C2C2C */
+/* Иконка внутри: margin-left: 10px; hover: translateX(3px) */
+```
+
+### Карточки
+```css
+.card          /* border-radius: 15px, box-shadow, overflow: hidden */
+.card:hover    /* translateY(-5px), усиленная тень, transition: 0.3s ease */
+.card__badge   /* pill overlay (бейдж «от N₽» / «ШАГ №X») */
+.card__img     /* object-fit: cover, aspect-ratio: 16/9 */
+```
+
+### Типографика
+```css
+h1  /* 40–50px desktop / 28–32px mobile, font-weight: 700 */
+h2  /* 32–40px desktop / 24–28px mobile, font-weight: 700 */
+h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
+/* H2 декор: .underline-wavy → text-decoration: underline wavy #4A7FC1 */
+```
+
+### Секции-лейблы
+```css
+.section-label /* pill, синий фон/обводка, uppercase, small text, над H2 */
+```
+
+### Поля форм
+```css
+/* height: 50px, border-radius: 8px, border: 1px solid #DDD */
+/* :focus → border-color: #4A7FC1; box-shadow: 0 0 0 3px rgba(74,127,193,0.15) */
+```
+
+---
+
+## JS-модули (ключевые API)
+
+| Файл            | Экспортирует / делает                                             |
+|-----------------|-------------------------------------------------------------------|
+| `header.js`     | `initHeader()` — scroll listener, burger toggle, dropdown hover  |
+| `gallery.js`    | `initGallery()` — клик по фото → lightbox, стрелки, ESC, swipe  |
+| `slider.js`     | `initSlider()` — карусель отзывов, dots, autoplay                |
+| `accordion.js`  | `initAccordion()` — FAQ toggle max-height                        |
+| `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
+| `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
+| `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility          |
+| `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
+
+---
+
+## Адаптивность (брейкпоинты)
+
+```css
+/* Desktop  */ @media (min-width: 1200px)
+/* Laptop   */ @media (max-width: 1200px)
+/* Tablet   */ @media (max-width: 992px)  /* бургер-меню, 2-кол. сетки */
+/* Mobile L */ @media (max-width: 768px)  /* hero вертикально */
+/* Mobile S */ @media (max-width: 480px)
+```
+
+---
+
+## SEO / мета (index.html)
+
+- Schema.org `MedicalBusiness` (JSON-LD) в `<head>`
+- Open Graph: `og:title`, `og:description`, `og:image`
+- `loading="lazy"` на все `<img>` ниже fold
+- Alt-тексты у всех изображений
+- Семантика: `<header>`, `<main>`, `<section aria-label="...">`, `<footer>`, `<nav>`
+
+---
+
+## Контент (текстовые данные)
+
+| Данные              | Значение                                    |
+|---------------------|---------------------------------------------|
+| Название            | Estetic Smile                               |
+| Город               | г. Тайга                                    |
+| Акцентный цвет      | `#4A7FC1` (синий, не яркий)                |
+| Услуг               | 6 (имплантация, отбеливание, брекеты, виниры, кариес, протезирование) |
+| Этапов лечения      | 4 (консультация → диагностика → лечение → результат) |
+| Фото галереи        | 12 (6 пар до/после)                        |
+| Отзывов             | 5                                           |
+| Вопросов FAQ        | 8                                           |

@@ -1,5 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof window.initLoader === "function") {
+    window.initLoader();
+  }
+
   if (typeof window.initHeader === "function") {
     window.initHeader();
   }
@@ -14,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (typeof window.initSlider === "function") {
     window.initSlider();
+  }
+
+  if (typeof window.initHeroSlideshow === "function") {
+    window.initHeroSlideshow();
   }
 
   if (typeof window.initAccordion === "function") {

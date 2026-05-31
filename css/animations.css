@@ -159,6 +159,22 @@
   animation: smiley-glasses 5s ease-in-out infinite;
 }
 
+.btn-tablet-icon__bar {
+  animation: bar-blink 1.4s ease-in-out infinite;
+}
+
+.btn-tablet-icon__bar--1 {
+  animation-delay: 0s;
+}
+
+.btn-tablet-icon__bar--2 {
+  animation-delay: 0.2s;
+}
+
+.btn-tablet-icon__bar--3 {
+  animation-delay: 0.4s;
+}
+
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
@@ -166,6 +182,17 @@
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes bar-blink {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 1;
   }
 }
 
@@ -242,7 +269,12 @@
   .marquee-item--smile .smiley,
   .marquee-item--smile .smiley__mouth,
   .marquee-item--heart .smiley__eye,
-  .marquee-item--cool .smiley__glasses {
+  .marquee-item--cool .smiley__glasses,
+  .btn-tablet-icon__bar {
     animation: none;
+  }
+
+  .btn-tablet-icon__bar {
+    opacity: 1;
   }
 }

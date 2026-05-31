@@ -77,6 +77,7 @@ ol {
   font-size: 15px;
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
   transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
@@ -92,6 +93,22 @@ ol {
 .btn:hover span,
 .btn:focus-visible span {
   transform: translateX(3px);
+}
+
+.btn-tablet-icon {
+  flex: 0 0 auto;
+  width: 1.25em;
+  height: 1.25em;
+  min-width: 14px;
+  min-height: 14px;
+}
+
+.btn-tablet-icon__case {
+  opacity: 0.82;
+}
+
+.btn-tablet-icon__bar {
+  opacity: 0.15;
 }
 
 .btn-primary {

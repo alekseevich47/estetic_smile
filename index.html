@@ -78,14 +78,13 @@
       <path id="l-10" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" d="M 354.785 51.221 L 352.686 54.102 Q 343.506 66.846 338.672 66.846 Q 336.377 66.846 334.839 65.21 Q 333.301 63.574 333.301 61.133 Q 333.301 58.301 336.67 52.539 L 344.287 39.6 Q 345.801 39.942 346.68 39.942 Q 347.998 39.942 350.391 39.6 L 339.307 57.813 Q 336.914 61.768 336.914 63.916 Q 336.914 66.114 339.209 66.114 Q 343.555 66.114 354.492 50.635 Q 354.736 50.147 354.98 50.147 Q 355.273 50.147 355.273 50.44 Q 355.225 50.586 354.785 51.221 Z M 354.59 30.225 Q 354.59 31.934 353.149 33.423 Q 351.709 34.912 350 34.912 Q 347.803 34.912 347.803 32.715 Q 347.803 31.104 349.316 29.614 Q 350.83 28.125 352.49 28.125 Q 354.59 28.125 354.59 30.225 Z"/>
       <path id="l-11" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" d="M 370.898 51.221 L 368.799 54.102 Q 359.57 66.846 355.176 66.846 Q 353.076 66.846 351.733 65.259 Q 350.391 63.672 350.391 61.231 Q 350.391 58.545 351.636 56.03 Q 352.881 53.516 360.107 41.504 Q 368.945 26.807 375 16.016 Q 376.465 16.406 377.588 16.406 Q 379.443 16.406 381.006 15.821 Q 360.498 49.951 357.105 55.957 Q 353.711 61.963 353.711 63.916 Q 353.711 66.114 355.566 66.114 Q 359.668 66.114 370.605 50.635 Q 370.85 50.147 371.191 50.147 Q 371.387 50.196 371.387 50.44 Q 371.387 50.733 370.898 51.221 Z"/>
       <path id="l-12" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" d="M 395.117 51.709 L 393.018 54.346 Q 382.91 66.846 375.684 66.846 Q 372.266 66.846 369.946 64.38 Q 367.627 61.914 367.627 58.203 Q 367.627 49.414 379.883 42.725 Q 386.328 39.209 390.381 39.209 Q 392.139 39.209 393.384 40.259 Q 394.629 41.309 394.629 42.822 Q 394.629 46.338 390.039 48.804 Q 385.449 51.27 374.707 53.418 Q 371.387 58.447 371.387 61.817 Q 371.387 66.016 375.928 66.016 Q 383.643 66.016 394.824 50.928 Q 395.41 50.147 395.801 50.147 Q 395.996 50.196 395.996 50.44 Q 395.996 50.586 395.117 51.709 Z M 391.895 41.406 Q 391.895 44.336 387.012 47.632 Q 382.129 50.928 375.098 52.735 Q 379.15 47.022 383.374 43.433 Q 387.598 39.844 390.186 39.844 Q 391.895 39.844 391.895 41.406 Z"/>
-      <path id="ornament" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" d="M 88 92 C 124 104 164 102 193 94 C 210 89 219 89 236 94 C 265 102 307 104 342 92 M 193 94 C 181 86 169 91 173 99 C 178 108 194 104 201 95 M 236 94 C 248 86 260 91 256 99 C 251 108 235 104 228 95 M 214 94 C 209 100 209 106 214 108 C 219 106 219 100 214 94"/>
     </svg>
   </div>
 
   <header id="header" class="site-header">
     <div class="container header__container">
       <a class="header__logo" href="/" aria-label="Estetic Smile — на главную">
-        <img src="images/logo.png" alt="Логотип Estetic Smile" width="44" height="44">
+        <img src="images/logo.png" alt="Логотип Estetic Smile" width="60" height="60">
         <span>Estetic Smile</span>
       </a>
 
@@ -126,7 +125,15 @@
           </a>
         </div>
         <a class="header__phone" href="tel:+79999999999">+7 (999) 999-99-99</a>
-        <a class="btn btn-primary header__cta" href="#booking-form">Записаться</a>
+        <a class="btn btn-primary header__cta" href="#booking-form">
+          Записаться
+          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+          </svg>
+        </a>
       </div>
 
       <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
@@ -148,6 +155,12 @@
         <div class="hero__actions">
           <a class="btn btn-primary" href="#booking-form">
             Записаться на консультацию
+            <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+              <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+              <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+            </svg>
             <span aria-hidden="true">&rarr;</span>
           </a>
           <a class="btn btn-secondary" href="#services">Посмотреть услуги</a>
@@ -485,6 +498,12 @@
         <p>Запишитесь сейчас — первая консультация бесплатно</p>
         <a class="btn btn-primary" href="#booking-form">
           Записаться
+          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+          </svg>
           <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -503,6 +522,12 @@
           <div class="promo__actions">
             <a class="btn promo__btn-light" href="#booking-form">
               Записаться по акции
+              <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+              </svg>
               <span aria-hidden="true">&rarr;</span>
             </a>
             <a class="btn btn-secondary" href="pages/services.html">Подробнее об отбеливании</a>
@@ -683,6 +708,12 @@
               <p>Выслушиваем жалобы, отвечаем на вопросы и подбираем ближайшее удобное время для диагностики.</p>
               <a class="btn btn-primary" href="#booking-form">
                 Записаться
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
                 <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
@@ -729,6 +760,12 @@
         <p>Администратор подберет удобное время и расскажет, с чего начать лечение.</p>
         <a class="btn btn-primary" href="#booking-form">
           Записаться
+          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+          </svg>
           <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -1005,7 +1042,9 @@
               </div>
             </article>
 
-            <article class="contact-card">
+            <button class="contact-card contact-card--address" id="address-card"
+                    type="button" aria-haspopup="listbox" aria-expanded="false"
+                    aria-controls="maps-dropdown">
               <span class="contact-card__icon" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
                   <path d="M12 2.5A7.5 7.5 0 0 0 4.5 10c0 5.3 6.2 10.5 7 11.1.3.2.7.2 1 0 .8-.6 7-5.8 7-11.1A7.5 7.5 0 0 0 12 2.5Zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4Z" fill="currentColor"/>
@@ -1014,8 +1053,25 @@
               <div>
                 <h3>Адрес</h3>
                 <p>г. Тайга, ул. Лермонтова, 10</p>
+                <span class="contact-card__hint">Нажмите, чтобы открыть на карте</span>
               </div>
-            </article>
+            </button>
+
+            <div id="maps-dropdown" class="maps-dropdown" role="listbox"
+                 aria-label="Выберите карту" hidden>
+              <button class="maps-dropdown__item" data-app="yandexmaps://maps.yandex.ru/?text=%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0+%D1%83%D0%BB+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+10" data-web="https://yandex.ru/maps/?text=%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0%2C+%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2C+10" type="button" role="option">
+                <img src="images/maps/yandex.png" width="32" height="32" alt="" aria-hidden="true" loading="lazy">
+                Яндекс Карты
+              </button>
+              <button class="maps-dropdown__item" data-app="dgis://2gis.ru/search?query=%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+10" data-web="https://2gis.ru/search/%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0%2C+%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2C+10" type="button" role="option">
+                <img src="images/maps/2gis.png" width="32" height="32" alt="" aria-hidden="true" loading="lazy">
+                2GIS
+              </button>
+              <button class="maps-dropdown__item" data-app="geo:55.939,85.604?q=%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0+10" data-web="https://maps.google.com/?q=%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0%2C+%D1%83%D0%BB.+%D0%9B%D0%B5%D1%80%D0%BC%D0%BE%D0%BD%D1%82%D0%BE%D0%B2%D0%B0%2C+10" type="button" role="option">
+                <img src="images/maps/google.png" width="32" height="32" alt="" aria-hidden="true" loading="lazy">
+                Google Maps
+              </button>
+            </div>
 
             <article class="contact-card">
               <span class="contact-card__icon" aria-hidden="true">
@@ -1121,6 +1177,8 @@
     <div class="lightbox__counter" aria-live="polite"></div>
   </div>
 
+  <div id="maps-overlay" class="maps-overlay" aria-hidden="true"></div>
+
   <script type="module" defer src="js/loader.js"></script>
   <script defer src="js/header.js"></script>
   <script defer src="js/gallery.js"></script>
@@ -1130,5 +1188,6 @@
   <script defer src="js/animations.js"></script>
   <script defer src="js/cookie.js"></script>
   <script defer src="js/main.js"></script>
+  <script defer src="js/maps.js"></script>
 </body>
 </html>

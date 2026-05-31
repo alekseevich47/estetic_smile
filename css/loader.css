@@ -20,81 +20,18 @@
 #page-loader svg {
   width: min(420px, 85vw);
   height: auto;
+  opacity: 0;
+  animation: loader-fade-in 1s ease both;
+  animation-duration: 1s;
 }
 
-#page-loader path {
-  animation: draw-stroke var(--loader-duration, 0.25s) ease both;
-  animation-delay: var(--loader-delay, 0s);
-}
+@keyframes loader-fade-in {
+  from {
+    opacity: 0;
+  }
 
-#page-loader #l-1 {
-  --loader-duration: 0.34s;
-  --loader-delay: 0s;
-}
-
-#page-loader #l-2 {
-  --loader-duration: 0.27s;
-  --loader-delay: 0.28s;
-}
-
-#page-loader #l-3 {
-  --loader-duration: 0.22s;
-  --loader-delay: 0.53s;
-}
-
-#page-loader #l-4 {
-  --loader-duration: 0.25s;
-  --loader-delay: 0.74s;
-}
-
-#page-loader #l-5 {
-  --loader-duration: 0.22s;
-  --loader-delay: 0.98s;
-}
-
-#page-loader #l-6 {
-  --loader-duration: 0.22s;
-  --loader-delay: 1.18s;
-}
-
-#page-loader #l-7 {
-  --loader-duration: 0.24s;
-  --loader-delay: 1.38s;
-}
-
-#page-loader #l-8 {
-  --loader-duration: 0.4s;
-  --loader-delay: 1.63s;
-}
-
-#page-loader #l-9 {
-  --loader-duration: 0.32s;
-  --loader-delay: 1.98s;
-}
-
-#page-loader #l-10 {
-  --loader-duration: 0.22s;
-  --loader-delay: 2.28s;
-}
-
-#page-loader #l-11 {
-  --loader-duration: 0.22s;
-  --loader-delay: 2.48s;
-}
-
-#page-loader #l-12 {
-  --loader-duration: 0.25s;
-  --loader-delay: 2.68s;
-}
-
-#page-loader #ornament {
-  --loader-duration: 0.58s;
-  --loader-delay: 3.02s;
-}
-
-@keyframes draw-stroke {
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
   }
 }
 
@@ -104,8 +41,7 @@
     transition-duration: 0.01ms;
   }
 
-  #page-loader path {
+  #page-loader svg {
     animation-duration: 0.01ms;
-    animation-delay: 0s;
   }
 }

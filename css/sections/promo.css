@@ -1,0 +1,242 @@
+/* Promo */
+.promo {
+  position: relative;
+  padding: var(--section-padding);
+  background: var(--color-accent);
+  color: var(--color-white);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.promo::before,
+.promo::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.promo::before {
+  top: -180px;
+  right: 8%;
+  width: 420px;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.14);
+  filter: blur(6px);
+}
+
+.promo::after {
+  left: -150px;
+  bottom: -210px;
+  width: 440px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 68%);
+}
+
+.promo__container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  align-items: center;
+  gap: clamp(36px, 7vw, 90px);
+}
+
+.promo__content {
+  max-width: 650px;
+}
+
+.promo__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  margin-bottom: 18px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: var(--border-radius-pill);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.promo h2 {
+  max-width: 680px;
+  font-size: clamp(32px, 4.6vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.promo__text {
+  max-width: 600px;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(17px, 1.5vw, 20px);
+}
+
+.promo__deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 11px 16px;
+  border-radius: var(--border-radius-pill);
+  background: rgba(44, 44, 44, 0.18);
+  font-weight: 700;
+}
+
+.promo__deadline::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.16);
+}
+
+.promo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.promo__btn-light {
+  background: var(--color-white);
+  color: var(--color-accent);
+  box-shadow: 0 16px 34px rgba(44, 44, 44, 0.18);
+}
+
+.promo__btn-light:hover,
+.promo__btn-light:focus-visible {
+  color: var(--color-accent-hover);
+  box-shadow: 0 20px 42px rgba(44, 44, 44, 0.24);
+}
+
+.promo__media {
+  position: relative;
+  min-height: 520px;
+}
+
+.promo__media::before {
+  content: "";
+  position: absolute;
+  inset: 14% 8% 10% 10%;
+  border-radius: 42px;
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(-3deg);
+}
+
+.promo__photo {
+  position: absolute;
+  border: 10px solid rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+  background: var(--color-white);
+  box-shadow: 0 28px 70px rgba(44, 44, 44, 0.24);
+  overflow: hidden;
+}
+
+.promo__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promo__photo--back {
+  top: 28px;
+  left: 0;
+  width: 64%;
+  height: 62%;
+  opacity: 0.86;
+  transform: rotate(-3deg);
+}
+
+.promo__photo--front {
+  right: 0;
+  bottom: 26px;
+  width: 72%;
+  height: 72%;
+  transform: rotate(3deg);
+}
+
+.promo__note {
+  position: absolute;
+  left: 18px;
+  bottom: 34px;
+  max-width: 190px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: var(--color-dark);
+  box-shadow: 0 18px 44px rgba(44, 44, 44, 0.24);
+  transform: rotate(-2deg);
+}
+
+.promo__note strong {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.promo__note span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+@media (max-width: 992px) {
+  .promo__container {
+    grid-template-columns: 1fr;
+  }
+
+  .promo__content {
+    max-width: 760px;
+  }
+
+  .promo__media {
+    width: min(100%, 640px);
+    min-height: 430px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo {
+    padding: 64px 0;
+  }
+
+  .promo__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .promo__media {
+    min-height: 360px;
+  }
+
+  .promo__photo {
+    border-width: 8px;
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo__deadline {
+    align-items: flex-start;
+    border-radius: 18px;
+  }
+
+  .promo__media {
+    min-height: 300px;
+  }
+
+  .promo__note {
+    left: 6px;
+    bottom: 14px;
+    max-width: 170px;
+    padding: 14px;
+  }
+}
+

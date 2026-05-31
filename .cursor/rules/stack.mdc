@@ -63,10 +63,24 @@ estetic_smile/
 │   └── about.html               # О клинике
 ├── css/
 │   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
-│   ├── layout.css               # Все секции: header, hero, #advantages, #services, #cta-1, #promo,
-│   │                            # #about, #booking-form, #steps, #cta-2, #gallery, #reviews, #faq,
-│   │                            # #contacts, footer; sticky floating btn; cookie notice
-│   └── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
+│   ├── layout.css               # Хаб: .container + @import всех sections/
+│   ├── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
+│   ├── loader.css               # Страничный лоадер
+│   └── sections/                # Стили секций (подключаются через layout.css)
+│       ├── header.css           # .site-header, nav, burger, slide-in panel, dropdown, .scrolled
+│       ├── hero.css             # .hero, split-screen
+│       ├── advantages.css       # #advantages, .marquee-strip
+│       ├── services.css         # #services, .service-card
+│       ├── cta.css              # .section-cta, .floating-btn, .scroll-top-btn, cookie notice
+│       ├── promo.css            # #promo
+│       ├── about.css            # #about, счётчики
+│       ├── booking.css          # #booking-form
+│       ├── steps.css            # #steps, .step-card
+│       ├── gallery.css          # #gallery, lightbox
+│       ├── reviews.css          # #reviews, карусель
+│       ├── faq.css              # #faq, аккордеон
+│       ├── contacts.css         # #contacts, footer (.footer__top / __middle / __bottom)
+│       └── pages.css            # .page-hero, .page-cta, .service-detail-card (inner pages)
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, dropdown «Услуги»
@@ -147,19 +161,43 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 /* :focus → border-color: #4A7FC1; box-shadow: 0 0 0 3px rgba(74,127,193,0.15) */
 ```
 
+### Мобильное меню (≤992px)
+```
+.header__nav — панель, position: fixed, right: 0, transform: translateX(100%) → translateX(0)
+.nav__logo   — логотип + название клиники (сверху по центру)
+.nav__close  — кнопка × (position: absolute, top/right)
+.nav__cta    — кнопка «Записаться» (margin-top: auto, width: 100%)
+#nav-overlay — затемняющий overlay (клик → закрыть панель)
+body.menu-open → overflow: hidden
+```
+
+### Footer (новая структура)
+```
+.footer__top    — лого + nav-ссылки + кнопка CTA (flex, border-bottom)
+.footer__middle — 4 колонки: Услуги | Документы | Соцсети | Контакт
+.footer__bottom — копирайт + ссылка «Разработка сайта»
+На ≤768px: footer__top-nav скрыт; footer__middle → 2 колонки
+```
+
+### Кнопка «наверх»
+```css
+.scroll-top-btn /* position: fixed, bottom/right, circle 44px, opacity: 0 по умолчанию */
+.scroll-top-btn.is-visible /* opacity: 1, pointer-events: auto — показывается при scrollY > 300 */
+```
+
 ---
 
 ## JS-модули (ключевые API)
 
 | Файл            | Экспортирует / делает                                             |
 |-----------------|-------------------------------------------------------------------|
-| `header.js`     | `initHeader()` — scroll listener, burger toggle, dropdown hover  |
+| `header.js`     | `initHeader()` — scroll listener, burger toggle, slide-in panel (translateX), nav__close, overlay, dropdown  |
 | `gallery.js`    | `initGallery()` — клик по фото → lightbox, стрелки, ESC, swipe  |
 | `slider.js`     | `initSlider()` — карусель отзывов, dots, autoplay                |
 | `accordion.js`  | `initAccordion()` — FAQ toggle max-height                        |
 | `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
-| `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility          |
+| `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
 
 ---

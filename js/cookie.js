@@ -48,25 +48,24 @@
     });
   }
 
-  function initFloatingButton() {
-    const floatingButton = document.getElementById("floating-btn");
-    const bookingSection = document.getElementById("booking-form");
+  function initScrollTopButton() {
+    const scrollTopButton = document.getElementById("scroll-top-btn");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (!floatingButton || !bookingSection) {
+    if (!scrollTopButton) {
       return;
     }
 
-    const setFloatingButtonState = () => {
-      floatingButton.classList.toggle("is-visible", window.scrollY > SCROLL_THRESHOLD);
+    const setScrollTopButtonState = () => {
+      scrollTopButton.classList.toggle("is-visible", window.scrollY > SCROLL_THRESHOLD);
     };
 
-    floatingButton.addEventListener("click", () => {
-      bookingSection.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    scrollTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
     });
 
-    setFloatingButtonState();
-    window.addEventListener("scroll", setFloatingButtonState, { passive: true });
+    setScrollTopButtonState();
+    window.addEventListener("scroll", setScrollTopButtonState, { passive: true });
   }
 
   function initCookie() {
@@ -76,7 +75,7 @@
 
     document.body.dataset.cookieInitialized = "true";
     initCookieNotice();
-    initFloatingButton();
+    initScrollTopButton();
   }
 
   window.initCookie = initCookie;

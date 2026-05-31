@@ -17,8 +17,9 @@
     ".faq__item",
     ".contacts__map",
     ".contact-card",
-    ".footer__brand",
-    ".footer__nav"
+    ".footer__top",
+    ".footer__col",
+    ".footer__bottom"
   ].join(",");
 
   const STAGGER_GROUP_SELECTOR = [
@@ -31,7 +32,7 @@
     ".reviews__track",
     ".faq__list",
     ".contacts__list",
-    ".footer__main"
+    ".footer__middle"
   ].join(",");
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -4,6 +4,8 @@
     const header = document.getElementById("header");
     const burger = document.querySelector(".header__burger");
     const nav = document.querySelector(".header__nav");
+    const navClose = document.querySelector(".nav__close");
+    const navOverlay = document.getElementById("nav-overlay");
     const dropdownItem = document.querySelector(".header__menu-item--dropdown");
     const dropdownToggle = document.querySelector(".header__dropdown-toggle");
 
@@ -13,9 +15,10 @@
 
     header.dataset.initialized = "true";
 
-    const HEADER_HIDE_THRESHOLD = 80;
+    const SCROLL_DIRECTION_THRESHOLD = 4;
     const SCROLL_IDLE_DELAY = 180;
     let lastScrollY = window.scrollY;
+    let lastScrollDirection = null;
     let ticking = false;
     let scrollIdleTimer = null;
 
@@ -27,24 +30,55 @@
       header.classList.remove("header--hidden");
     };
 
+    const hideHeader = () => {
+      header.classList.add("header--hidden");
+    };
+
+    const isHeaderPinned = () => (
+      window.scrollY <= 8 ||
+      document.body.classList.contains("menu-open")
+    );
+
+    const hasHeaderInteraction = () => (
+      header.matches(":hover, :focus-within") ||
+      (dropdownItem && dropdownItem.classList.contains("is-open"))
+    );
+
+    const shouldKeepHeaderVisible = () => (
+      isHeaderPinned() ||
+      hasHeaderInteraction()
+    );
+
     const updateHeaderVisibility = () => {
       const currentScrollY = window.scrollY;
       const scrollDelta = currentScrollY - lastScrollY;
 
       setScrolledState();
 
-      if (currentScrollY <= 8 || scrollDelta < 0 || document.body.classList.contains("menu-open")) {
+      if (isHeaderPinned()) {
         showHeader();
+        lastScrollDirection = null;
         lastScrollY = currentScrollY;
-      } else if (scrollDelta > HEADER_HIDE_THRESHOLD) {
-        header.classList.add("header--hidden");
+      } else if (Math.abs(scrollDelta) >= SCROLL_DIRECTION_THRESHOLD) {
+        if (scrollDelta < 0) {
+          lastScrollDirection = "up";
+          showHeader();
+        } else {
+          lastScrollDirection = "down";
+          hideHeader();
+        }
+
         lastScrollY = currentScrollY;
+      } else if (hasHeaderInteraction()) {
+        showHeader();
       }
 
       ticking = false;
     };
 
     const handleScroll = () => {
+      closeDropdown({ resetFocus: true });
+
       if (!ticking) {
         window.requestAnimationFrame(updateHeaderVisibility);
         ticking = true;
@@ -52,7 +86,16 @@
 
       window.clearTimeout(scrollIdleTimer);
       scrollIdleTimer = window.setTimeout(() => {
-        showHeader();
+        if (isHeaderPinned()) {
+          showHeader();
+        } else if (lastScrollDirection === "down") {
+          hideHeader();
+        } else if (lastScrollDirection === "up") {
+          showHeader();
+        } else if (hasHeaderInteraction()) {
+          showHeader();
+        }
+
         lastScrollY = window.scrollY;
       }, SCROLL_IDLE_DELAY);
     };
@@ -67,16 +110,22 @@
 
       if (isOpen) {
         showHeader();
+      } else if (!shouldKeepHeaderVisible()) {
+        hideHeader();
       }
     };
 
-    const closeDropdown = () => {
+    const closeDropdown = ({ resetFocus = false } = {}) => {
       if (!dropdownItem || !dropdownToggle) {
         return;
       }
 
       dropdownItem.classList.remove("is-open");
       dropdownToggle.setAttribute("aria-expanded", "false");
+
+      if (resetFocus && dropdownItem.contains(document.activeElement)) {
+        document.activeElement.blur();
+      }
     };
 
     const toggleDropdown = () => {
@@ -90,12 +139,25 @@
 
     setScrolledState();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("scroll", closeDropdown, { passive: true });
 
     if (burger) {
       burger.addEventListener("click", () => {
         const isOpen = !document.body.classList.contains("menu-open");
         setMenuState(isOpen);
+      });
+    }
+
+    if (navClose) {
+      navClose.addEventListener("click", () => {
+        setMenuState(false);
+        closeDropdown({ resetFocus: true });
+      });
+    }
+
+    if (navOverlay) {
+      navOverlay.addEventListener("click", () => {
+        setMenuState(false);
+        closeDropdown({ resetFocus: true });
       });
     }
 
@@ -120,8 +182,6 @@
     });
 
     if (nav) {
-      nav.addEventListener("scroll", closeDropdown, { passive: true });
-
       nav.addEventListener("click", (event) => {
         const link = event.target.closest("a");
 

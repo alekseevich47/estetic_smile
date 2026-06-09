@@ -8,7 +8,7 @@
 
     const viewport = slider.querySelector(".reviews__viewport");
     const track = slider.querySelector(".reviews__track");
-    const slides = Array.from(slider.querySelectorAll(".review-card"));
+    let slides = Array.from(slider.querySelectorAll(".review-card"));
     const prevButton = slider.querySelector("[data-slider-prev]");
     const nextButton = slider.querySelector("[data-slider-next]");
     const dotsContainer = slider.querySelector("[data-slider-dots]");
@@ -26,6 +26,10 @@
     let touchStartX = 0;
     let touchCurrentX = 0;
     let resizeFrame = null;
+
+    const refreshSlides = () => {
+      slides = Array.from(slider.querySelectorAll(".review-card"));
+    };
 
     const getSlidesPerView = () => {
       if (window.innerWidth >= 993) {
@@ -138,6 +142,14 @@
     nextButton.addEventListener("click", () => {
       stopAutoplay();
       goToNextSlide();
+      startAutoplay();
+    });
+
+    track.addEventListener("reviews:updated", () => {
+      stopAutoplay();
+      refreshSlides();
+      recalculateSlider();
+      goToSlide(maxIndex);
       startAutoplay();
     });
 

@@ -37,7 +37,7 @@
       "url": "/",
       "logo": "images/logo.png",
       "image": "images/hero.jpg",
-      "telephone": "+7 (999) 999-99-99",
+      "telephone": "+7 (923) 492-14-44",
       "priceRange": "₽₽",
       "address": {
         "@type": "PostalAddress",
@@ -100,20 +100,23 @@
               <span aria-hidden="true"></span>
             </button>
             <ul class="header__dropdown" aria-label="Услуги клиники">
-              <li><a href="#services">Имплантация</a></li>
-              <li><a href="#services">Отбеливание</a></li>
-              <li><a href="#services">Брекеты</a></li>
-              <li><a href="#services">Виниры</a></li>
-              <li><a href="#services">Лечение кариеса</a></li>
-              <li><a href="#services">Протезирование</a></li>
+              <li><a href="therapy/">Лечение кариеса</a></li>
+              <li><a href="therapy/">Лечение пульпита</a></li>
+              <li><a href="therapy/">Лечение периодонтита</a></li>
+              <li><a href="surgery/">Удаление зуба</a></li>
+              <li><a href="surgery/">Имплантация</a></li>
+              <li><a href="ortopediy/">Протезирование</a></li>
+              <li><a href="ortopediy/">Виниры</a></li>
+              <li><a href="prevention/">Отбеливание</a></li>
+              <li><a href="prevention/">Гигиена</a></li>
             </ul>
           </li>
-          <li><a href="#gallery">Галерея</a></li>
-          <li><a href="#promo">Акции</a></li>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="gallery/">Галерея</a></li>
+          <li><a href="promo/">Акции</a></li>
+          <li><a href="about/">О нас</a></li>
+          <li><a href="contacts/">Контакты</a></li>
         </ul>
-        <a class="nav__cta btn btn-primary" href="#booking-form">
+        <a class="nav__cta btn btn-primary" href="#" data-open-booking>
           Записаться
           <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -137,7 +140,7 @@
             </svg>
           </a>
         </div>
-        <a class="btn btn-primary header__cta" href="#booking-form">
+        <a class="btn btn-primary header__cta" href="#" data-open-booking>
           Записаться
           <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -165,7 +168,7 @@
           Комплексное лечение, бережная диагностика и эстетическая стоматология для уверенной улыбки каждый день.
         </p>
         <div class="hero__actions">
-          <a class="btn btn-primary" href="#booking-form">
+          <a class="btn btn-primary" href="#" data-open-booking>
             Записаться на консультацию
             <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -191,182 +194,66 @@
     <div class="marquee-strip" aria-label="Ключевые преимущества">
       <div class="marquee-strip__track">
         <div class="marquee-item marquee-item--wink">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Без боли и страха — вы расслабитесь</span>
         </div>
 
         <div class="marquee-item marquee-item--smile">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M14 26c3.5 5 12.5 5 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Результат за 1 визит — красивая улыбка</span>
         </div>
 
         <div class="marquee-item marquee-item--heart">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path class="smiley__eye smiley__eye-left" d="M14.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__eye smiley__eye-right" d="M23.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Команда с душой — заботимся о каждом</span>
         </div>
 
         <div class="marquee-item marquee-item--cool">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <g class="smiley__glasses" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="12" y="15" width="9" height="6" rx="2"/>
-              <rect x="23" y="15" width="9" height="6" rx="2"/>
-              <path d="M21 18h2"/>
-            </g>
-            <path class="smiley__mouth" d="M16 27c3 3 9 3 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Комфорт на каждом шаге лечения</span>
         </div>
 
         <div class="marquee-item marquee-item--wink" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Без боли и страха — вы расслабитесь</span>
         </div>
 
         <div class="marquee-item marquee-item--smile" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M14 26c3.5 5 12.5 5 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Результат за 1 визит — красивая улыбка</span>
         </div>
 
         <div class="marquee-item marquee-item--heart" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path class="smiley__eye smiley__eye-left" d="M14.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__eye smiley__eye-right" d="M23.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Команда с душой — заботимся о каждом</span>
         </div>
 
         <div class="marquee-item marquee-item--cool" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <g class="smiley__glasses" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="12" y="15" width="9" height="6" rx="2"/>
-              <rect x="23" y="15" width="9" height="6" rx="2"/>
-              <path d="M21 18h2"/>
-            </g>
-            <path class="smiley__mouth" d="M16 27c3 3 9 3 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Комфорт на каждом шаге лечения</span>
         </div>
 
         <div class="marquee-item marquee-item--wink" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Без боли и страха — вы расслабитесь</span>
         </div>
 
         <div class="marquee-item marquee-item--smile" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M14 26c3.5 5 12.5 5 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Результат за 1 визит — красивая улыбка</span>
         </div>
 
         <div class="marquee-item marquee-item--heart" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path class="smiley__eye smiley__eye-left" d="M14.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__eye smiley__eye-right" d="M23.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Команда с душой — заботимся о каждом</span>
         </div>
 
         <div class="marquee-item marquee-item--cool" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <g class="smiley__glasses" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="12" y="15" width="9" height="6" rx="2"/>
-              <rect x="23" y="15" width="9" height="6" rx="2"/>
-              <path d="M21 18h2"/>
-            </g>
-            <path class="smiley__mouth" d="M16 27c3 3 9 3 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Комфорт на каждом шаге лечения</span>
         </div>
 
         <div class="marquee-item marquee-item--wink" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Без боли и страха — вы расслабитесь</span>
         </div>
 
         <div class="marquee-item marquee-item--smile" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <path class="smiley__mouth" d="M14 26c3.5 5 12.5 5 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Результат за 1 визит — красивая улыбка</span>
         </div>
 
         <div class="marquee-item marquee-item--heart" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path class="smiley__eye smiley__eye-left" d="M14.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__eye smiley__eye-right" d="M23.5 15.8c0-1.4 1.8-2.2 3-0.9 1.2-1.3 3-0.5 3 0.9 0 2-3 3.9-3 3.9s-3-1.9-3-3.9Z" fill="currentColor"/>
-            <path class="smiley__mouth" d="M15 27c3 4 11 4 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Команда с душой — заботимся о каждом</span>
         </div>
 
         <div class="marquee-item marquee-item--cool" aria-hidden="true">
-          <svg class="marquee-item__icon smiley" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
-            <circle class="smiley__face" cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle class="smiley__eye smiley__eye-left" cx="16" cy="18" r="1.8" fill="currentColor"/>
-            <circle class="smiley__eye smiley__eye-right" cx="28" cy="18" r="1.8" fill="currentColor"/>
-            <g class="smiley__glasses" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="12" y="15" width="9" height="6" rx="2"/>
-              <rect x="23" y="15" width="9" height="6" rx="2"/>
-              <path d="M21 18h2"/>
-            </g>
-            <path class="smiley__mouth" d="M16 27c3 3 9 3 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
           <span class="marquee-item__text">Комфорт на каждом шаге лечения</span>
         </div>
       </div>
@@ -432,107 +319,63 @@
         <div class="services__grid">
           <article class="service-card">
             <div class="service-card__media">
-              <img src="images/services/implant.jpg" alt="Имплантация зубов в клинике Estetic Smile" loading="lazy">
-              <span class="service-card__badge">от 25 000 ₽</span>
+              <img src="images/services/caries.jpg" alt="Терапевтическое лечение зубов" loading="lazy">
             </div>
             <div class="service-card__content">
-              <h3>Имплантация</h3>
-              <p>Восстанавливаем зубы с точным планированием и естественным результатом.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
+              <h3>Терапевтическое лечение</h3>
+              <p>Лечение кариеса, пульпита, периодонтита — сохраняем здоровье зубов без боли.</p>
+              <a class="btn btn-primary" href="therapy/">Подробнее</a>
             </div>
           </article>
 
           <article class="service-card">
             <div class="service-card__media">
-              <img src="images/services/whitening.jpg" alt="Профессиональное отбеливание зубов" loading="lazy">
-              <span class="service-card__badge">1 визит</span>
+              <img src="images/services/prosthetics.jpg" alt="Ортопедическое лечение зубов" loading="lazy">
             </div>
             <div class="service-card__content">
-              <h3>Отбеливание</h3>
-              <p>Осветляем эмаль бережно, под контролем врача и с заметным эффектом.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
+              <h3>Ортопедическое лечение</h3>
+              <p>Протезирование, виниры, коронки — восстанавливаем форму и функцию зубов.</p>
+              <a class="btn btn-primary" href="ortopediy/">Подробнее</a>
             </div>
           </article>
 
           <article class="service-card">
             <div class="service-card__media">
-              <img src="images/services/braces.jpg" alt="Ортодонтическое лечение на брекетах" loading="lazy">
-              <span class="service-card__badge">от 35 000 ₽</span>
+              <img src="images/services/implant.jpg" alt="Хирургическое лечение зубов" loading="lazy">
             </div>
             <div class="service-card__content">
-              <h3>Брекеты</h3>
-              <p>Исправляем прикус и выравниваем зубы с понятным планом лечения.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
+              <h3>Хирургическое лечение</h3>
+              <p>Удаление зубов любой сложности и имплантация с точным планированием.</p>
+              <a class="btn btn-primary" href="surgery/">Подробнее</a>
             </div>
           </article>
 
           <article class="service-card">
             <div class="service-card__media">
-              <img src="images/services/veneers.jpg" alt="Установка виниров для эстетики улыбки" loading="lazy">
-              <span class="service-card__badge">6 шт. за визит</span>
+              <img src="images/services/whitening.jpg" alt="Профилактическое лечение зубов" loading="lazy">
             </div>
             <div class="service-card__content">
-              <h3>Виниры</h3>
-              <p>Создаем гармоничную форму и оттенок зубов с учетом черт лица.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
-            </div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card__media">
-              <img src="images/services/caries.jpg" alt="Лечение кариеса с современной анестезией" loading="lazy">
-              <span class="service-card__badge">от 2 500 ₽</span>
-            </div>
-            <div class="service-card__content">
-              <h3>Лечение кариеса</h3>
-              <p>Сохраняем ткани зуба и подбираем пломбу под натуральный оттенок.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
-            </div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card__media">
-              <img src="images/services/prosthetics.jpg" alt="Протезирование зубов с гарантией" loading="lazy">
-              <span class="service-card__badge">гарантия 5 лет</span>
-            </div>
-            <div class="service-card__content">
-              <h3>Протезирование</h3>
-              <p>Возвращаем удобство жевания и эстетику с надежными конструкциями.</p>
-              <a class="btn btn-primary" href="pages/services.html">Подробнее</a>
+              <h3>Профилактическое лечение</h3>
+              <p>Профессиональная гигиена, отбеливание и профилактические осмотры.</p>
+              <a class="btn btn-primary" href="prevention/">Подробнее</a>
             </div>
           </article>
         </div>
-      </div>
-    </section>
-    <section id="cta-1" class="cta cta--dark" aria-labelledby="cta-1-title">
-      <div class="container cta__container">
-        <h2 id="cta-1-title">Не откладывайте здоровье зубов</h2>
-        <p>Запишитесь сейчас — первая консультация бесплатно</p>
-        <a class="btn btn-primary" href="#booking-form">
-          Записаться
-          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
-          </svg>
-          <span aria-hidden="true">&rarr;</span>
-        </a>
       </div>
     </section>
     <section id="promo" class="promo" aria-labelledby="promo-title">
       <div class="container promo__container">
         <div class="promo__content">
           <p class="promo__label">Специальное предложение</p>
-          <h2 id="promo-title">Акция: Отбеливание + консультация за 3 900 ₽</h2>
+          <h2 id="promo-title">Акция: –15% на идеальную улыбку!</h2>
           <p class="promo__text">
             Освежите улыбку перед важным событием: врач оценит состояние эмали, подберет бережный режим и проведет процедуру за один визит.
           </p>
           <p class="promo__deadline">
-            Действует до 30 июня при записи через сайт
+            Действует 5 дней до и после Дня Вашего Рождения
           </p>
           <div class="promo__actions">
-            <a class="btn promo__btn-light" href="#booking-form">
+            <a class="btn promo__btn-light" href="#" data-open-booking>
               Записаться по акции
               <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -542,20 +385,7 @@
               </svg>
               <span aria-hidden="true">&rarr;</span>
             </a>
-            <a class="btn btn-secondary" href="pages/services.html">Подробнее об отбеливании</a>
-          </div>
-        </div>
-
-        <div class="promo__media" aria-hidden="true">
-          <div class="promo__photo promo__photo--back">
-            <img src="images/promo.jpg" alt="" loading="lazy">
-          </div>
-          <div class="promo__photo promo__photo--front">
-            <img src="images/promo.jpg" alt="" loading="lazy">
-          </div>
-          <div class="promo__note">
-            <strong>-35%</strong>
-            <span>на консультацию в составе акции</span>
+            <a class="btn btn-secondary" href="promo/">Другие акции</a>
           </div>
         </div>
       </div>
@@ -565,8 +395,8 @@
         <div class="about__media">
           <img src="images/about.jpg" alt="Интерьер стоматологической клиники Estetic Smile" loading="lazy">
           <div class="about__experience" aria-label="15 лет опыта">
-            <strong>15</strong>
-            <span>лет заботимся об улыбках</span>
+            <strong>3</strong>
+            <span>года заботимся об улыбках</span>
           </div>
         </div>
 
@@ -620,166 +450,19 @@
 
           <div class="about__stats" aria-label="Ключевые показатели клиники">
             <div class="about-stat">
-              <strong data-counter="500" data-suffix="+">500+</strong>
+              <strong data-counter="2000" data-suffix="+">2000+</strong>
               <span>довольных пациентов</span>
             </div>
             <div class="about-stat">
-              <strong data-counter="15">15</strong>
-              <span>лет на рынке</span>
+              <strong data-counter="700">700+</strong>
+              <span>спасенных зубов</span>
             </div>
             <div class="about-stat">
-              <strong data-counter="12">12</strong>
-              <span>специалистов</span>
+              <strong data-counter="500">500+</strong>
+              <span>эстетических реставраций</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="booking-form" class="booking" aria-labelledby="booking-title">
-      <div class="container booking__container">
-        <div class="booking__content">
-          <p class="booking__label">Запись на прием</p>
-          <h2 id="booking-title">Подберем удобное время и врача под вашу задачу</h2>
-          <p class="booking__text">
-            Оставьте контакты, администратор перезвонит, уточнит услугу и предложит ближайшее свободное окно.
-          </p>
-
-          <form class="booking-form" action="#" method="post" novalidate data-booking-form>
-            <div class="booking-form__field">
-              <label for="booking-name">Имя</label>
-              <input id="booking-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required>
-              <span class="booking-form__error" data-error-for="booking-name"></span>
-            </div>
-
-            <div class="booking-form__field">
-              <label for="booking-phone">Телефон</label>
-              <input id="booking-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
-              <span class="booking-form__error" data-error-for="booking-phone"></span>
-            </div>
-
-            <div class="booking-form__field">
-              <label for="booking-service">Услуга</label>
-              <select id="booking-service" name="service" required>
-                <option value="">Выберите услугу</option>
-                <option value="implant">Имплантация</option>
-                <option value="whitening">Отбеливание</option>
-                <option value="braces">Брекеты</option>
-                <option value="veneers">Виниры</option>
-                <option value="caries">Лечение кариеса</option>
-                <option value="prosthetics">Протезирование</option>
-              </select>
-              <span class="booking-form__error" data-error-for="booking-service"></span>
-            </div>
-
-            <label class="booking-form__consent" for="booking-consent">
-              <input id="booking-consent" name="consent" type="checkbox" required>
-              <span>Согласен на обработку персональных данных и с политикой конфиденциальности</span>
-            </label>
-            <span class="booking-form__error" data-error-for="booking-consent"></span>
-
-            <button class="btn btn-primary booking-form__submit" type="submit">
-              <span class="booking-form__submit-text">Записаться</span>
-              <span class="booking-form__spinner" aria-hidden="true"></span>
-            </button>
-
-            <div class="booking-form__status" role="status" aria-live="polite"></div>
-          </form>
-
-          <div class="booking__messengers" aria-label="Быстрая связь">
-            <span>Или напишите нам:</span>
-            <a href="#" class="booking__messenger-link">ВКонтакте</a>
-            <a href="#" class="booking__messenger-link">WhatsApp</a>
-          </div>
-        </div>
-
-        <div class="booking__media">
-          <img src="images/form-collage.jpg" alt="Врачи и кабинет стоматологии Estetic Smile" loading="lazy">
-          <div class="booking__note">
-            <strong>15 минут</strong>
-            <span>обычно занимает первичная консультация</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="steps" class="steps" aria-labelledby="steps-title">
-      <div class="container">
-        <div class="steps__header">
-          <p class="section-label">Этапы лечения</p>
-          <h2 id="steps-title">Понятный путь к здоровой улыбке</h2>
-          <p>Каждый визит проходит по плану: от первичной консультации до контроля результата после лечения.</p>
-        </div>
-
-        <div class="steps__grid">
-          <article class="step-card">
-            <div class="step-card__media">
-              <img src="images/steps/step-1.jpg" alt="Консультация стоматолога Estetic Smile" loading="lazy">
-              <span class="step-card__badge">ШАГ №1</span>
-            </div>
-            <div class="step-card__content">
-              <h3>Консультация</h3>
-              <p>Выслушиваем жалобы, отвечаем на вопросы и подбираем ближайшее удобное время для диагностики.</p>
-              <a class="btn btn-primary" href="#booking-form">
-                Записаться
-                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
-                </svg>
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="step-card">
-            <div class="step-card__media">
-              <img src="images/steps/step-2.jpg" alt="Диагностика зубов перед лечением" loading="lazy">
-              <span class="step-card__badge">ШАГ №2</span>
-            </div>
-            <div class="step-card__content">
-              <h3>Диагностика</h3>
-              <p>Проводим осмотр и снимки, чтобы точно понять состояние зубов и составить план лечения.</p>
-            </div>
-          </article>
-
-          <article class="step-card">
-            <div class="step-card__media">
-              <img src="images/steps/step-3.jpg" alt="Лечение зубов в стоматологической клинике" loading="lazy">
-              <span class="step-card__badge">ШАГ №3</span>
-            </div>
-            <div class="step-card__content">
-              <h3>Лечение</h3>
-              <p>Работаем бережно, с современной анестезией и понятными рекомендациями после приема.</p>
-            </div>
-          </article>
-
-          <article class="step-card">
-            <div class="step-card__media">
-              <img src="images/steps/step-4.jpg" alt="Результат стоматологического лечения и здоровая улыбка" loading="lazy">
-              <span class="step-card__badge">ШАГ №4</span>
-            </div>
-            <div class="step-card__content">
-              <h3>Результат</h3>
-              <p>Проверяем комфорт, фиксируем итог и даем рекомендации, чтобы сохранить улыбку надолго.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section id="cta-2" class="cta cta--dark" aria-labelledby="cta-2-title">
-      <div class="container cta__container">
-        <h2 id="cta-2-title">Готовы к идеальной улыбке? Запишитесь сегодня</h2>
-        <p>Администратор подберет удобное время и расскажет, с чего начать лечение.</p>
-        <a class="btn btn-primary" href="#booking-form">
-          Записаться
-          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
-          </svg>
-          <span aria-hidden="true">&rarr;</span>
-        </a>
       </div>
     </section>
     <section id="gallery" class="gallery" aria-labelledby="gallery-title">
@@ -912,6 +595,8 @@
             <div class="reviews__dots" data-slider-dots></div>
             <button class="reviews__arrow reviews__arrow--next" type="button" data-slider-next aria-label="Следующие отзывы">&#10095;</button>
           </div>
+
+          <button class="btn btn-primary" type="button" data-open-review>Оставить отзыв</button>
         </div>
       </div>
     </section>
@@ -924,14 +609,14 @@
         </div>
 
         <div class="faq__list" data-accordion>
-          <article class="faq__item is-open">
+          <article class="faq__item">
             <h3>
-              <button class="faq__question" type="button" aria-expanded="true" aria-controls="faq-answer-1">
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
                 <span>Больно ли ставить имплант?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div id="faq-answer-1" class="faq__answer" aria-hidden="false">
+            <div id="faq-answer-1" class="faq__answer" aria-hidden="true">
               <p>Процедура проходит под современной анестезией. Во время установки пациент обычно чувствует давление, но не боль, а после приема врач дает понятные рекомендации по восстановлению.</p>
             </div>
           </article>
@@ -974,18 +659,6 @@
 
           <article class="faq__item">
             <h3>
-              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-5">
-                <span>Как долго идет лечение брекетами?</span>
-                <span class="faq__icon" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div id="faq-answer-5" class="faq__answer" aria-hidden="true">
-              <p>Срок зависит от прикуса и целей лечения. В среднем ортодонтическое лечение занимает от 12 до 24 месяцев, точный прогноз врач дает после диагностики.</p>
-            </div>
-          </article>
-
-          <article class="faq__item">
-            <h3>
               <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-6">
                 <span>Делаете ли вы отбеливание за один визит?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
@@ -998,13 +671,13 @@
 
           <article class="faq__item">
             <h3>
-              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-7">
-                <span>Есть ли детский прием?</span>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-veneers">
+                <span>Как происходит процедура установки виниров?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div id="faq-answer-7" class="faq__answer" aria-hidden="true">
-              <p>Да, принимаем детей и стараемся сделать визит спокойным: знакомим с кабинетом, объясняем действия простыми словами и не торопим ребенка.</p>
+            <div id="faq-answer-veneers" class="faq__answer" aria-hidden="true">
+              <p>Сначала проводится диагностика и подбор цвета. Затем врач минимально подготавливает поверхность зуба, снимает слепки и фиксирует временные накладки. Через несколько дней готовые виниры фиксируются на постоянный цемент — процедура безболезненна и занимает 1–2 визита.</p>
             </div>
           </article>
 
@@ -1050,7 +723,7 @@
               </span>
               <div>
                 <h3>Телефон</h3>
-                <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+                <a href="tel:+79234921444">+7 (923) 492-14-44</a>
               </div>
             </article>
 
@@ -1093,7 +766,7 @@
               </span>
               <div>
                 <h3>Режим работы</h3>
-                <p>Пн–Сб - 10:00–19:00<br>Вс - Выходной</p>
+                <p>Пн–Сб - 09:30–19:00<br>Вс - Выходной</p>
               </div>
             </article>
           </div>
@@ -1109,14 +782,14 @@
       </a>
 
       <nav class="footer__top-nav" aria-label="Навигация в футере">
-        <a href="#gallery">Галерея</a>
-        <a href="#promo">Акции</a>
-        <a href="#about">О нас</a>
+        <a href="gallery/">Галерея</a>
+        <a href="promo/">Акции</a>
+        <a href="about/">О нас</a>
         <a href="#reviews">Отзывы</a>
-        <a href="#contacts">Контакты</a>
+        <a href="contacts/">Контакты</a>
       </nav>
 
-      <a class="btn btn-secondary footer__top-cta" href="#booking-form">
+      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>
         Записаться
         <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -1131,12 +804,10 @@
       <nav class="footer__col footer__col--services" aria-labelledby="footer-services-title">
         <h3 id="footer-services-title">Наши услуги</h3>
         <ul>
-          <li><a href="pages/services.html#implant">Имплантация</a></li>
-          <li><a href="pages/services.html#whitening">Отбеливание</a></li>
-          <li><a href="pages/services.html#braces">Брекеты</a></li>
-          <li><a href="pages/services.html#veneers">Виниры</a></li>
-          <li><a href="pages/services.html#caries">Лечение кариеса</a></li>
-          <li><a href="pages/services.html#prosthetics">Протезирование</a></li>
+          <li><a href="therapy/">Терапевтическое лечение</a></li>
+          <li><a href="ortopediy/">Ортопедическое лечение</a></li>
+          <li><a href="surgery/">Хирургическое лечение</a></li>
+          <li><a href="prevention/">Профилактическое лечение</a></li>
         </ul>
       </nav>
 
@@ -1169,7 +840,7 @@
 
       <div class="footer__col footer__col--contact">
         <h3>Как с нами связаться</h3>
-        <a class="footer__phone" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="footer__phone" href="tel:+79234921444">+7 (923) 492-14-44</a>
       </div>
     </div>
 
@@ -1199,12 +870,55 @@
 
   <div id="maps-overlay" class="maps-overlay" aria-hidden="true"></div>
 
+  <dialog class="review-dialog" id="review-dialog" aria-label="Форма отзыва">
+    <div class="review-dialog__content">
+      <button class="review-dialog__close" type="button" aria-label="Закрыть">&times;</button>
+      <h3>Как вам наш сервис?</h3>
+      <p class="review-dialog__subtitle">Пожалуйста, оцените вашу работу по шкале от 1 до 5</p>
+      <form class="review-form" data-review-form novalidate>
+        <div class="review-form__rating" aria-label="Оценка отзыва">
+          <label>
+            <input type="radio" name="rating" value="1" required>
+            <span class="review-form__emoji">😢</span>
+          </label>
+          <label>
+            <input type="radio" name="rating" value="2">
+            <span class="review-form__emoji">🙁</span>
+          </label>
+          <label>
+            <input type="radio" name="rating" value="3">
+            <span class="review-form__emoji">😐</span>
+          </label>
+          <label>
+            <input type="radio" name="rating" value="4">
+            <span class="review-form__emoji">🙂</span>
+          </label>
+          <label>
+            <input type="radio" name="rating" value="5">
+            <span class="review-form__emoji">😁</span>
+          </label>
+        </div>
+        <div class="review-form__field">
+          <input name="name" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="review-form__field">
+          <textarea name="text" placeholder="Расскажите нам подробнее..." required rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary review-form__submit">
+          <span>Отправить отзыв</span>
+        </button>
+      </form>
+    </div>
+  </dialog>
+
   <script type="module" defer src="js/loader.js"></script>
   <script defer src="js/header.js"></script>
   <script defer src="js/gallery.js"></script>
   <script defer src="js/slider.js"></script>
   <script defer src="js/accordion.js"></script>
+  <script defer src="js/modal.js"></script>
   <script defer src="js/form.js"></script>
+  <script defer src="js/review-form.js"></script>
   <script defer src="js/animations.js"></script>
   <script defer src="js/cookie.js"></script>
   <script defer src="js/main.js"></script>

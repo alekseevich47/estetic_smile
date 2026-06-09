@@ -5,8 +5,9 @@
 @import "sections/cta.css";
 @import "sections/promo.css";
 @import "sections/about.css";
-@import "sections/booking.css";
-@import "sections/steps.css";
+/* @import "sections/booking.css"; deprecated: booking form moved to modal.css */
+@import "sections/modal.css";
+/* @import "sections/steps.css"; archived in pages/steps.html */
 @import "sections/gallery.css";
 @import "sections/reviews.css";
 @import "sections/faq.css";

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Акции и специальные предложения стоматологической клиники Estetic Smile в Тайге.">
+  <meta name="theme-color" content="#2C2C2C">
+
+  <title>Акции Estetic Smile</title>
+
+  <link rel="icon" href="../images/icon.png" type="image/png" sizes="48x48">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <header id="header" class="site-header">
+    <div class="container header__container">
+      <a class="header__logo" href="../" aria-label="Estetic Smile — на главную">
+        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80">
+      </a>
+
+      <nav class="header__nav" aria-label="Основная навигация">
+        <button class="nav__close" type="button" aria-label="Закрыть меню">&times;</button>
+        <a class="nav__logo" href="../" aria-label="Estetic Smile — на главную">
+          <img src="../images/logo.png" alt="Логотип Estetic Smile" width="48" height="48">
+        </a>
+        <ul class="header__menu">
+          <li class="header__menu-item header__menu-item--dropdown">
+            <button class="header__dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+              Услуги
+              <span aria-hidden="true"></span>
+            </button>
+            <ul class="header__dropdown" aria-label="Услуги клиники">
+              <li><a href="../therapy/">Лечение кариеса</a></li>
+              <li><a href="../therapy/">Лечение пульпита</a></li>
+              <li><a href="../therapy/">Лечение периодонтита</a></li>
+              <li><a href="../surgery/">Удаление зуба</a></li>
+              <li><a href="../surgery/">Имплантация</a></li>
+              <li><a href="../ortopediy/">Протезирование</a></li>
+              <li><a href="../ortopediy/">Виниры</a></li>
+              <li><a href="../prevention/">Отбеливание</a></li>
+              <li><a href="../prevention/">Гигиена</a></li>
+            </ul>
+          </li>
+          <li><a href="../gallery/">Галерея</a></li>
+          <li><a href="../promo/" aria-current="page">Акции</a></li>
+          <li><a href="../about/">О нас</a></li>
+          <li><a href="../contacts/">Контакты</a></li>
+        </ul>
+        <a class="nav__cta btn btn-primary" href="#" data-open-booking>Записаться</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn-primary header__cta" href="#" data-open-booking>Записаться</a>
+      </div>
+
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <div id="nav-overlay" aria-hidden="true"></div>
+
+  <main>
+    <section class="inner-hero" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <ol class="breadcrumbs__list">
+            <li><a href="../">Главная</a></li>
+            <li aria-current="page">Акции</li>
+          </ol>
+        </nav>
+
+        <div class="inner-hero__content">
+          <h1 id="page-title">Акции и специальные предложения Estetic Smile</h1>
+          <p>Следите за актуальными предложениями клиники и записывайтесь на консультацию в удобное время.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" aria-labelledby="birthday-promo-title">
+      <div class="container">
+        <div class="page-section__header">
+          <p class="section-label">Специальное предложение</p>
+          <h2 id="birthday-promo-title">–15% на идеальную улыбку</h2>
+          <p>Акция из главной страницы клиники: бережное преображение улыбки к важной дате.</p>
+        </div>
+
+        <article class="service-detail-card">
+          <img src="../images/promo.jpg" alt="Акция на эстетическую стоматологию Estetic Smile" loading="lazy">
+          <div class="service-detail-card__content">
+            <span class="service-detail-card__badge">День рождения</span>
+            <h3>Скидка 15% на улыбку</h3>
+            <p>Освежите улыбку перед важным событием: врач оценит состояние эмали, подберет бережный режим и проведет процедуру за один визит.</p>
+            <ul>
+              <li>действует 5 дней до и после Дня Вашего Рождения</li>
+              <li>подходит для эстетических процедур по показаниям врача</li>
+              <li>условия и итоговую стоимость уточняем на консультации</li>
+            </ul>
+            <a class="btn btn-primary" href="#" data-open-booking>Записаться по акции</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section" aria-labelledby="pension-promo-title">
+      <div class="container">
+        <div class="page-section__header">
+          <p class="section-label">Постоянная акция</p>
+          <h2 id="pension-promo-title">Пенсионерам скидка 10% на протезирование</h2>
+          <p>Специальные условия для пациентов пенсионного возраста.</p>
+        </div>
+
+        <article class="service-detail-card">
+          <img src="../images/services/prosthetics.jpg" alt="Скидка пенсионерам на протезирование зубов" loading="lazy">
+          <div class="service-detail-card__content">
+            <span class="service-detail-card__badge">Протезирование</span>
+            <h3>Восстановление улыбки на выгодных условиях</h3>
+            <p>Для пациентов пенсионного возраста действует специальная цена на все виды протезирования. Восстановите комфорт жевания и эстетику улыбки на выгодных условиях. Акция действует постоянно при предъявлении пенсионного удостоверения.</p>
+            <ul>
+              <li>скидка 10% на протезирование</li>
+              <li>индивидуальный план восстановления зубного ряда</li>
+              <li>постоянное предложение при предъявлении удостоверения</li>
+            </ul>
+            <a class="btn btn-primary" href="#" data-open-booking>Записаться на консультацию</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-cta page-cta--light" aria-label="Запись на консультацию по акции">
+      <div class="container page-cta__container">
+        <div>
+          <p class="section-label">Консультация</p>
+          <h2>Подберем подходящее предложение на приеме</h2>
+          <p>Врач оценит ситуацию, расскажет об условиях акции и заранее согласует план лечения.</p>
+        </div>
+        <a class="btn btn-primary" href="#" data-open-booking>Записаться <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="footer__top container">
+      <a class="footer__logo" href="../" aria-label="Estetic Smile — на главную">
+        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80" loading="lazy">
+      </a>
+
+      <nav class="footer__top-nav" aria-label="Навигация в футере">
+        <a href="../gallery/">Галерея</a>
+        <a href="../promo/">Акции</a>
+        <a href="../about/">О нас</a>
+        <a href="../#reviews">Отзывы</a>
+        <a href="../contacts/">Контакты</a>
+      </nav>
+
+      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>Записаться</a>
+    </div>
+
+    <div class="footer__middle container">
+      <nav class="footer__col footer__col--services" aria-labelledby="footer-services-title">
+        <h3 id="footer-services-title">Наши услуги</h3>
+        <ul>
+          <li><a href="../therapy/">Терапевтическое лечение</a></li>
+          <li><a href="../ortopediy/">Ортопедическое лечение</a></li>
+          <li><a href="../surgery/">Хирургическое лечение</a></li>
+          <li><a href="../prevention/">Профилактическое лечение</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col footer__col--contact">
+        <h3>Как с нами связаться</h3>
+        <a class="footer__phone" href="tel:+79234921444">+7 (923) 492-14-44</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom container">
+      <span>© 2026 Estetic Smile</span>
+    </div>
+  </footer>
+
+  <button id="scroll-top-btn" class="scroll-top-btn" type="button" aria-label="Наверх">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 5 5.5 11.5l1.4 1.4L11 8.8V20h2V8.8l4.1 4.1 1.4-1.4L12 5Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <div id="cookie-notice" class="cookie-notice" role="dialog" aria-live="polite" aria-label="Уведомление о cookie">
+    <p>Мы используем cookie, чтобы сайт работал лучше.</p>
+    <button type="button" class="btn btn-primary" data-cookie-accept>Принять</button>
+  </div>
+
+  <script defer src="../js/header.js"></script>
+  <script defer src="../js/gallery.js"></script>
+  <script defer src="../js/slider.js"></script>
+  <script defer src="../js/accordion.js"></script>
+  <script defer src="../js/modal.js"></script>
+  <script defer src="../js/form.js"></script>
+  <script defer src="../js/animations.js"></script>
+  <script defer src="../js/cookie.js"></script>
+  <script defer src="../js/main.js"></script>
+</body>
+</html>

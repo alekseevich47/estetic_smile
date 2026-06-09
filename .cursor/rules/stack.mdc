@@ -36,12 +36,8 @@ alwaysApply: true
 hero       → #2C2C2C (dark)
 advantages → #F5F5F5
 services   → #FFFFFF
-cta-1      → #2C2C2C
 promo      → #4A7FC1 (accent blue)
 about      → #FFFFFF
-booking    → #2C2C2C
-steps      → #F5F5F5
-cta-2      → #2C2C2C
 gallery    → #2C2C2C
 reviews    → #FFFFFF
 faq        → #FFFFFF
@@ -51,16 +47,23 @@ footer     → #2C2C2C
 
 ---
 
-## Структура файлов
+## Структура файлов (clean URLs — без .html)
 
 ```
 estetic_smile/
 ├── index.html                   # Главная страница
+├── Tasks/
+│   └── TASKS_super.md           # План реструктуризации
+├── about/index.html             # → /about/
+├── promo/index.html             # → /promo/
+├── gallery/index.html           # → /gallery/ (заглушка: inner-hero + «скоро»)
+├── contacts/index.html          # → /contacts/
+├── therapy/index.html           # → /therapy/
+├── ortopediy/index.html         # → /ortopediy/
+├── surgery/index.html           # → /surgery/
+├── prevention/index.html        # → /prevention/
 ├── pages/
-│   ├── services.html            # Все услуги
-│   ├── gallery.html             # Галерея до/после
-│   ├── contacts.html            # Контакты
-│   └── about.html               # О клинике
+│   └── steps.html               # [архив] Секция этапов лечения
 ├── css/
 │   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
 │   ├── layout.css               # Хаб: .container + @import всех sections/
@@ -74,33 +77,42 @@ estetic_smile/
 │       ├── cta.css              # .section-cta, .floating-btn, .scroll-top-btn, cookie notice
 │       ├── promo.css            # #promo
 │       ├── about.css            # #about, счётчики
-│       ├── booking.css          # #booking-form
-│       ├── steps.css            # #steps, .step-card
+│       ├── booking.css          # [deprecated] Стили формы — заменены modal.css
+│       ├── steps.css            # [deprecated] Закомментирован в layout.css
+│       ├── modal.css            # Модальное окно с формой записи
 │       ├── gallery.css          # #gallery, lightbox
-│       ├── reviews.css          # #reviews, карусель
+│       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (.footer__top / __middle / __bottom)
-│       └── pages.css            # .page-hero, .page-cta, .service-detail-card (inner pages)
+│       └── pages.css            # .inner-hero, .page-cta, .service-detail-card (inner pages)
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, dropdown «Услуги»
 │   ├── gallery.js               # Lightbox (overlay, стрелки, счётчик, ESC, swipe)
 │   ├── slider.js                # Карусель отзывов (translateX, dots, autoplay, swipe)
 │   ├── accordion.js             # FAQ: max-height анимация, rotate стрелки
-│   ├── form.js                  # Маска телефона, валидация, спиннер, уведомления
+│   ├── form.js                  # Маска телефона, валидация, fetch/submit, спиннер
+│   ├── modal.js                 # Модальное окно с формой записи (по кнопкам «Записаться»)
+│   ├── review-form.js           # Модалка отзыва: dialog с эмодзи-рейтингом, валидация, отправка
 │   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
-│   └── cookie.js                # Cookie-notice + floating CTA btn (показ после 300px скролла)
+│   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
+│   ├── loader.js                # Страничный лоадер (module)
+│   └── maps.js                  # Выпадающий список карт (Яндекс / 2GIS / Google)
 └── images/
-    ├── logo.png
-    ├── hero.jpg
-    ├── about.jpg
-    ├── promo.jpg
-    ├── form-collage.jpg
-    ├── services/                # implant.jpg, whitening.jpg, braces.jpg, veneers.jpg,
-    │                            # caries.jpg, prosthetics.jpg
+    ├── logo.png, hero.jpg, hero-2.jpg, hero-3.jpg, hero-4.jpg
+    ├── about.jpg, promo.jpg, form-collage.jpg
+    ├── icon.png
+    ├── services/                # caries.jpg, prosthetics.jpg, whitening.jpg, implant.jpg
+    │                            # (переиспользованы для 4 категорий услуг)
     ├── steps/                   # step-1.jpg … step-4.jpg
-    └── gallery/                 # before-1.jpg … before-6.jpg, after-1.jpg … after-6.jpg
+    └── gallery/                 # before-1.jpg … before-5.jpg, after-1.jpg … after-5.jpg
 ```
+
+**Правило путей для страниц в `xxx/index.html`:**
+- CSS/JS: `../css/...`, `../js/...`
+- Изображения: `../images/...`
+- Ссылки на другие страницы: `../therapy/`, `../about/`, `../gallery/`
+- Ссылка на главную: `../`
 
 ---
 
@@ -109,17 +121,13 @@ estetic_smile/
 | ID секции       | Описание                                      | Фон         |
 |-----------------|-----------------------------------------------|-------------|
 | `#hero`         | Split-screen 50/50: H1 + 2 кнопки / hero.jpg | dark        |
-| `#advantages`   | 4 карточки преимуществ (иконки SVG)           | light-gray  |
-| `#services`     | 6 карточек услуг, сетка 3 кол.               | white       |
-| `#cta-1`        | CTA-полоса: бесплатная консультация           | dark        |
-| `#promo`        | Акция: split-screen, синий фон               | accent-blue |
+| `#advantages`   | 4 карточки преимуществ (иконки SVG) + marquee-полоса (без смайлов) | light-gray |
+| `#services`     | 4 карточки услуг: терапия, ортопедия, хирургия, профилактика | white |
+| `#promo`        | Акция: «–15% на улыбку», одна колонка (без media), синий фон | accent-blue |
 | `#about`        | О клинике: split-screen + счётчики           | white       |
-| `#booking-form` | Форма записи: split-screen + form-collage    | dark        |
-| `#steps`        | 4 этапа лечения, сетка 4 кол.               | light-gray  |
-| `#cta-2`        | CTA-полоса: «Записаться сегодня»             | dark        |
 | `#gallery`      | 12 фото до/после, lightbox                   | dark        |
-| `#reviews`      | Карусель 5 отзывов                           | white       |
-| `#faq`          | Аккордеон 8 вопросов                         | white       |
+| `#reviews`      | Карусель 5 отзывов + кнопка «Оставить отзыв»  | white       |
+| `#faq`          | Аккордеон 7 вопросов (все закрыты по умолчанию) | white     |
 | `#contacts`     | Карта Яндекс + контактные данные             | dark        |
 
 ---
@@ -171,6 +179,24 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 body.menu-open → overflow: hidden
 ```
 
+### Модальное окно записи
+```
+.modal-overlay — position: fixed, inset: 0, z-index: 1000, background: rgba(0,0,0,0.6)
+.modal-overlay.is-open — opacity: 1, pointer-events: auto
+.modal — background: #fff, border-radius: 26px, max-width: 560px, width: 90%
+.modal__close — кнопка × (position: absolute, top/right)
+body.modal-open → overflow: hidden
+Закрытие: крестик, клик по оверлею, Escape
+```
+
+### Модальное окно отзыва (dialog)
+```
+.review-dialog — нативный <dialog>, border-radius: 16px, max-width: 420px
+.review-dialog[open] — opacity: 1, transform: scale(1)
+::backdrop — rgba(28,29,33,0.4), backdrop-filter: blur(4px)
+.review-form__emoji — эмодзи-рейтинг: фильтр grayscale, scale при hover/checked
+```
+
 ### Footer (новая структура)
 ```
 .footer__top    — лого + nav-ссылки + кнопка CTA (flex, border-bottom)
@@ -196,6 +222,8 @@ body.menu-open → overflow: hidden
 | `slider.js`     | `initSlider()` — карусель отзывов, dots, autoplay                |
 | `accordion.js`  | `initAccordion()` — FAQ toggle max-height                        |
 | `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
+| `modal.js`      | `initModal()` — модальное окно с формой записи (открытие/закрытие) |
+| `review-form.js`| `initReviewForm()` — модалка отзыва на <dialog>, эмодзи-рейтинг, валидация |
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
@@ -231,8 +259,59 @@ body.menu-open → overflow: hidden
 | Название            | Estetic Smile                               |
 | Город               | г. Тайга                                    |
 | Акцентный цвет      | `#4A7FC1` (синий, не яркий)                |
-| Услуг               | 6 (имплантация, отбеливание, брекеты, виниры, кариес, протезирование) |
+| Телефон             | `+7 (923) 492-14-44`                        |
+| Адрес               | ул. Лермонтова, 10                          |
+| Часы работы         | Пн–Сб 09:30–19:00, Вс — выходной            |
+| Услуг (категорий)   | 4 (терапия, ортопедия, хирургия, профилактика) |
 | Этапов лечения      | 4 (консультация → диагностика → лечение → результат) |
 | Фото галереи        | 12 (6 пар до/после)                        |
-| Отзывов             | 5                                           |
-| Вопросов FAQ        | 8                                           |
+| Отзывов             | 5 + форма оставления нового                 |
+| Вопросов FAQ        | 7                                           |
+
+---
+
+## Меню и навигация (clean URLs)
+
+### Главное меню (desktop + mobile)
+```
+Услуги ▼
+  Лечение кариеса       → therapy/
+  Лечение пульпита      → therapy/
+  Лечение периодонтита  → therapy/
+  Удаление зуба         → surgery/
+  Имплантация           → surgery/
+  Протезирование        → ortopediy/
+  Виниры                → ortopediy/
+  Отбеливание           → prevention/
+  Гигиена               → prevention/
+Галерея                 → gallery/
+Акции                   → promo/
+О нас                   → about/
+Контакты                → contacts/
+```
+
+### Footer — колонка «Наши услуги»
+```
+Терапевтическое лечение  → therapy/
+Ортопедическое лечение   → ortopediy/
+Хирургическое лечение    → surgery/
+Профилактическое лечение → prevention/
+```
+
+### Footer — top-nav
+```
+Галерея  → gallery/
+Акции    → promo/
+О нас    → about/
+Отзывы   → #reviews
+Контакты → contacts/
+```
+
+### Кнопки «Записаться»
+ВСЕ кнопки «Записаться» на всех страницах открывают модальное окно с формой записи (через `data-open-booking`).
+
+### Кнопка «Оставить отзыв»
+Открывает модальное окно на `<dialog>` с эмодзи-рейтингом (😢🙁😐🙂😁), полем имени, текстом отзыва и валидацией.
+
+### Ссылки на страницах `xxx/index.html`
+Все href к другим страницам используют формат `../page/` (трейлинг-слеш опционален для `python -m http.server`).

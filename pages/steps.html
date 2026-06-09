@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="О стоматологической клинике Estetic Smile в Тайге: команда, подход к лечению, опыт и ценности.">
+  <meta name="description" content="Архивная страница Estetic Smile с этапами лечения: консультация, диагностика, лечение и контроль результата.">
+  <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#2C2C2C">
 
-  <title>О клинике Estetic Smile</title>
+  <title>Этапы лечения | Estetic Smile</title>
 
   <link rel="icon" href="../images/icon.png" type="image/png" sizes="48x48">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,18 +15,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/sections/steps.css">
   <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/loader.css">
 </head>
 <body>
   <header id="header" class="site-header">
     <div class="container header__container">
-      <a class="header__logo" href="../index.html" aria-label="Estetic Smile — на главную">
+      <a class="header__logo" href="../" aria-label="Estetic Smile — на главную">
         <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80">
       </a>
 
       <nav class="header__nav" aria-label="Основная навигация">
         <button class="nav__close" type="button" aria-label="Закрыть меню">&times;</button>
-        <a class="nav__logo" href="../index.html" aria-label="Estetic Smile — на главную">
+        <a class="nav__logo" href="../" aria-label="Estetic Smile — на главную">
           <img src="../images/logo.png" alt="Логотип Estetic Smile" width="48" height="48">
         </a>
         <ul class="header__menu">
@@ -35,20 +38,23 @@
               <span aria-hidden="true"></span>
             </button>
             <ul class="header__dropdown" aria-label="Услуги клиники">
-              <li><a href="services.html#implant">Имплантация</a></li>
-              <li><a href="services.html#whitening">Отбеливание</a></li>
-              <li><a href="services.html#braces">Брекеты</a></li>
-              <li><a href="services.html#veneers">Виниры</a></li>
-              <li><a href="services.html#caries">Лечение кариеса</a></li>
-              <li><a href="services.html#prosthetics">Протезирование</a></li>
+              <li><a href="../therapy/">Лечение кариеса</a></li>
+              <li><a href="../therapy/">Лечение пульпита</a></li>
+              <li><a href="../therapy/">Лечение периодонтита</a></li>
+              <li><a href="../surgery/">Удаление зуба</a></li>
+              <li><a href="../surgery/">Имплантация</a></li>
+              <li><a href="../ortopediy/">Протезирование</a></li>
+              <li><a href="../ortopediy/">Виниры</a></li>
+              <li><a href="../prevention/">Отбеливание</a></li>
+              <li><a href="../prevention/">Гигиена</a></li>
             </ul>
           </li>
-          <li><a href="gallery.html">Галерея</a></li>
-          <li><a href="../index.html#promo">Акции</a></li>
-          <li><a href="about.html" aria-current="page">О нас</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="../gallery/">Галерея</a></li>
+          <li><a href="../promo/">Акции</a></li>
+          <li><a href="../about/">О нас</a></li>
+          <li><a href="../contacts/">Контакты</a></li>
         </ul>
-        <a class="nav__cta btn btn-primary" href="../index.html#booking-form">
+        <a class="nav__cta btn btn-primary" href="#" data-open-booking>
           Записаться
           <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -72,7 +78,7 @@
             </svg>
           </a>
         </div>
-        <a class="btn btn-primary header__cta" href="../index.html#booking-form">
+        <a class="btn btn-primary header__cta" href="#" data-open-booking>
           Записаться
           <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -93,134 +99,104 @@
   <div id="nav-overlay" aria-hidden="true"></div>
 
   <main>
-    <section class="inner-hero" aria-labelledby="page-title">
+    <section class="inner-hero" aria-labelledby="archive-title">
       <div class="container">
         <nav class="breadcrumbs" aria-label="Хлебные крошки">
           <ol class="breadcrumbs__list">
-            <li><a href="../index.html">Главная</a></li>
-            <li aria-current="page">О клинике</li>
+            <li><a href="../">Главная</a></li>
+            <li><span aria-current="page">Этапы лечения</span></li>
           </ol>
         </nav>
-
         <div class="inner-hero__content">
-          <h1 id="page-title">О клинике Estetic Smile</h1>
-          <p>Мы объединяем бережный подход, современную диагностику и понятную коммуникацию, чтобы лечение проходило спокойно.</p>
+          <p class="inner-hero__label">Архивная страница</p>
+          <h1 id="archive-title">Этапы лечения в Estetic Smile</h1>
+          <p>Сохраненная секция главной страницы с понятным маршрутом пациента от консультации до результата.</p>
         </div>
       </div>
     </section>
 
-    <section class="about about--page" aria-labelledby="about-title">
-      <div class="container about__container">
-        <div class="about__media">
-          <img src="../images/about.jpg" alt="Интерьер стоматологической клиники Estetic Smile" loading="lazy">
-          <div class="about__experience">
-            <strong>15 лет</strong>
-            <span>помогаем пациентам улыбаться увереннее</span>
-          </div>
+    <section id="steps" class="steps" aria-labelledby="steps-title">
+      <div class="container">
+        <div class="steps__header">
+          <p class="section-label">Этапы лечения</p>
+          <h2 id="steps-title">Понятный путь к здоровой улыбке</h2>
+          <p>Каждый визит проходит по плану: от первичной консультации до контроля результата после лечения.</p>
         </div>
 
-        <div class="about__content">
-          <p class="section-label">Наша философия</p>
-          <h2 id="about-title">Стоматология, где пациент понимает каждый этап</h2>
-          <p>
-            В Estetic Smile мы начинаем с диагностики и разговора: объясняем варианты лечения, сроки, стоимость и ожидаемый результат до старта процедур.
-          </p>
-          <p>
-            Команда работает с терапевтическими, ортодонтическими, эстетическими и восстановительными задачами. Для нас важны аккуратность, стерильность и спокойная атмосфера на приеме.
-          </p>
-
-          <div class="about__features">
-            <article class="about-feature">
-              <span class="about-feature__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
-                  <path d="m10 15.2 7.1-7.1 1.4 1.4L10 18 5.5 13.5l1.4-1.4 3.1 3.1Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Прозрачный план лечения</h3>
-                <p>Пациент заранее понимает этапы, сроки и стоимость.</p>
-              </div>
-            </article>
-
-            <article class="about-feature">
-              <span class="about-feature__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
-                  <path d="M12 2.5 4.5 5.8v5.5c0 5.1 3.1 9.5 7.5 10.9 4.4-1.4 7.5-5.8 7.5-10.9V5.8L12 2.5Zm0 2.2 5.5 2.4v4.2c0 4-2.2 7.5-5.5 8.8-3.3-1.3-5.5-4.8-5.5-8.8V7.1L12 4.7Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Безопасность и стерильность</h3>
-                <p>Соблюдаем протоколы обработки и используем одноразовые материалы.</p>
-              </div>
-            </article>
-
-            <article class="about-feature">
-              <span class="about-feature__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" focusable="false">
-                  <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v11c0 .3.2.5.5.5h11c.3 0 .5-.2.5-.5v-11a.5.5 0 0 0-.5-.5h-11Zm2 3h7v2h-7V9Zm0 4h5v2h-5v-2Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Документированные рекомендации</h3>
-                <p>После приема даем понятные назначения и советы по уходу.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="about__stats">
-            <div class="about-stat">
-              <strong data-counter="500" data-suffix="+">500+</strong>
-              <span>довольных пациентов</span>
+        <div class="steps__grid">
+          <article class="step-card">
+            <div class="step-card__media">
+              <img src="../images/steps/step-1.jpg" alt="Консультация стоматолога Estetic Smile" loading="lazy">
+              <span class="step-card__badge">ШАГ №1</span>
             </div>
-            <div class="about-stat">
-              <strong data-counter="15">15</strong>
-              <span>лет опыта</span>
+            <div class="step-card__content">
+              <h3>Консультация</h3>
+              <p>Выслушиваем жалобы, отвечаем на вопросы и подбираем ближайшее удобное время для диагностики.</p>
+              <a class="btn btn-primary" href="#" data-open-booking>
+                Записаться
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
             </div>
-            <div class="about-stat">
-              <strong data-counter="12">12</strong>
-              <span>специалистов</span>
+          </article>
+
+          <article class="step-card">
+            <div class="step-card__media">
+              <img src="../images/steps/step-2.jpg" alt="Диагностика зубов перед лечением" loading="lazy">
+              <span class="step-card__badge">ШАГ №2</span>
             </div>
-          </div>
+            <div class="step-card__content">
+              <h3>Диагностика</h3>
+              <p>Проводим осмотр и снимки, чтобы точно понять состояние зубов и составить план лечения.</p>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-card__media">
+              <img src="../images/steps/step-3.jpg" alt="Лечение зубов в стоматологической клинике" loading="lazy">
+              <span class="step-card__badge">ШАГ №3</span>
+            </div>
+            <div class="step-card__content">
+              <h3>Лечение</h3>
+              <p>Работаем бережно, с современной анестезией и понятными рекомендациями после приема.</p>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-card__media">
+              <img src="../images/steps/step-4.jpg" alt="Результат стоматологического лечения и здоровая улыбка" loading="lazy">
+              <span class="step-card__badge">ШАГ №4</span>
+            </div>
+            <div class="step-card__content">
+              <h3>Результат</h3>
+              <p>Проверяем комфорт, фиксируем итог и даем рекомендации, чтобы сохранить улыбку надолго.</p>
+            </div>
+          </article>
         </div>
-      </div>
-    </section>
-
-    <section class="page-cta page-cta--light" aria-label="Запись на консультацию">
-      <div class="container page-cta__container">
-        <div>
-          <p class="section-label">Первый визит</p>
-          <h2>Познакомьтесь с клиникой на консультации</h2>
-          <p>Врач оценит состояние зубов, ответит на вопросы и предложит индивидуальный план лечения.</p>
-        </div>
-        <a class="btn btn-primary" href="../index.html#booking-form">
-          Записаться
-          <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
-            <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
-          </svg>
-          <span aria-hidden="true">&rarr;</span>
-        </a>
       </div>
     </section>
   </main>
 
   <footer id="footer" class="footer">
     <div class="footer__top container">
-      <a class="footer__logo" href="../index.html" aria-label="Estetic Smile — на главную">
+      <a class="footer__logo" href="../" aria-label="Estetic Smile — на главную">
         <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80" loading="lazy">
       </a>
 
       <nav class="footer__top-nav" aria-label="Навигация в футере">
-        <a href="gallery.html">Галерея</a>
-        <a href="../index.html#promo">Акции</a>
-        <a href="about.html">О нас</a>
-        <a href="../index.html#reviews">Отзывы</a>
-        <a href="contacts.html">Контакты</a>
+        <a href="../gallery/">Галерея</a>
+        <a href="../promo/">Акции</a>
+        <a href="../about/">О нас</a>
+        <a href="../#reviews">Отзывы</a>
+        <a href="../contacts/">Контакты</a>
       </nav>
 
-      <a class="btn btn-secondary footer__top-cta" href="../index.html#booking-form">
+      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>
         Записаться
         <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -235,12 +211,10 @@
       <nav class="footer__col footer__col--services" aria-labelledby="footer-services-title">
         <h3 id="footer-services-title">Наши услуги</h3>
         <ul>
-          <li><a href="services.html#implant">Имплантация</a></li>
-          <li><a href="services.html#whitening">Отбеливание</a></li>
-          <li><a href="services.html#braces">Брекеты</a></li>
-          <li><a href="services.html#veneers">Виниры</a></li>
-          <li><a href="services.html#caries">Лечение кариеса</a></li>
-          <li><a href="services.html#prosthetics">Протезирование</a></li>
+          <li><a href="../therapy/">Терапевтическое лечение</a></li>
+          <li><a href="../ortopediy/">Ортопедическое лечение</a></li>
+          <li><a href="../surgery/">Хирургическое лечение</a></li>
+          <li><a href="../prevention/">Профилактическое лечение</a></li>
         </ul>
       </nav>
 
@@ -273,7 +247,7 @@
 
       <div class="footer__col footer__col--contact">
         <h3>Как с нами связаться</h3>
-        <a class="footer__phone" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="footer__phone" href="tel:+79234921444">+7 (923) 492-14-44</a>
       </div>
     </div>
 
@@ -294,9 +268,7 @@
   </div>
 
   <script defer src="../js/header.js"></script>
-  <script defer src="../js/gallery.js"></script>
-  <script defer src="../js/slider.js"></script>
-  <script defer src="../js/accordion.js"></script>
+  <script defer src="../js/modal.js"></script>
   <script defer src="../js/form.js"></script>
   <script defer src="../js/animations.js"></script>
   <script defer src="../js/cookie.js"></script>

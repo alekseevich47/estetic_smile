@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.initHeader();
   }
 
+  if (typeof window.initModal === "function") {
+    window.initModal();
+  }
+
   if (typeof window.initForm === "function") {
     window.initForm();
   }
@@ -18,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (typeof window.initSlider === "function") {
     window.initSlider();
+  }
+
+  if (typeof window.initReviewForm === "function") {
+    window.initReviewForm();
   }
 
   if (typeof window.initHeroSlideshow === "function") {

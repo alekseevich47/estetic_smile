@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Профилактическое лечение в Estetic Smile: профессиональная гигиена, отбеливание и профилактические осмотры.">
+  <meta name="theme-color" content="#2C2C2C">
+
+  <title>Профилактика — Estetic Smile</title>
+
+  <link rel="icon" href="../images/icon.png" type="image/png" sizes="48x48">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <header id="header" class="site-header">
+    <div class="container header__container">
+      <a class="header__logo" href="../" aria-label="Estetic Smile — на главную">
+        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80">
+      </a>
+
+      <nav class="header__nav" aria-label="Основная навигация">
+        <button class="nav__close" type="button" aria-label="Закрыть меню">&times;</button>
+        <a class="nav__logo" href="../" aria-label="Estetic Smile — на главную">
+          <img src="../images/logo.png" alt="Логотип Estetic Smile" width="48" height="48">
+        </a>
+        <ul class="header__menu">
+          <li class="header__menu-item header__menu-item--dropdown">
+            <button class="header__dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+              Услуги
+              <span aria-hidden="true"></span>
+            </button>
+            <ul class="header__dropdown" aria-label="Услуги клиники">
+              <li><a href="../therapy/">Лечение кариеса</a></li>
+              <li><a href="../therapy/">Лечение пульпита</a></li>
+              <li><a href="../therapy/">Лечение периодонтита</a></li>
+              <li><a href="../surgery/">Удаление зуба</a></li>
+              <li><a href="../surgery/">Имплантация</a></li>
+              <li><a href="../ortopediy/">Протезирование</a></li>
+              <li><a href="../ortopediy/">Виниры</a></li>
+              <li><a href="../prevention/">Отбеливание</a></li>
+              <li><a href="../prevention/">Гигиена</a></li>
+            </ul>
+          </li>
+          <li><a href="../gallery/">Галерея</a></li>
+          <li><a href="../promo/">Акции</a></li>
+          <li><a href="../about/">О нас</a></li>
+          <li><a href="../contacts/">Контакты</a></li>
+        </ul>
+        <a class="nav__cta btn btn-primary" href="#" data-open-booking>Записаться</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="header__socials" aria-label="Социальные сети">
+          <a class="header__social-link" href="#" aria-label="ВКонтакте">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.2 17.2c-5.4 0-8.6-3.7-8.8-9.8h2.7c.1 4.5 2.1 6.4 3.7 6.8V7.4h2.6v3.9c1.6-.2 3.2-1.9 3.8-3.9h2.6c-.5 2.5-2.4 4.2-3.7 4.9 1.3.6 3.4 2.1 4.2 4.9h-2.9c-.6-1.9-2.1-3.3-4-3.6v3.6h-.2Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a class="header__social-link" href="#" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 4.2a7.6 7.6 0 0 0-6.5 11.5l-.8 3 3.1-.8A7.6 7.6 0 1 0 12 4.2Zm0 13.8c-1.3 0-2.5-.4-3.5-1.1l-.2-.1-1.8.5.5-1.8-.1-.2A6.2 6.2 0 1 1 12 18Zm3.4-4.6c-.2-.1-1.1-.5-1.2-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1a5 5 0 0 1-2.5-2.2c-.1-.3 0-.4.1-.5l.4-.4c.1-.1.1-.2.2-.3v-.4c-.1-.1-.5-1.1-.7-1.5-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.7-.8 1.8s.8 2.1.9 2.2c.1.2 1.6 2.5 3.9 3.4.6.2 1 .4 1.3.4.6.2 1.1.1 1.5.1.5-.1 1.1-.5 1.3-.9.2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <a class="btn btn-primary header__cta" href="#" data-open-booking>Записаться</a>
+      </div>
+
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <div id="nav-overlay" aria-hidden="true"></div>
+
+  <main>
+    <section class="inner-hero" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <ol class="breadcrumbs__list">
+            <li><a href="../">Главная</a></li>
+            <li aria-current="page">Профилактика</li>
+          </ol>
+        </nav>
+
+        <div class="inner-hero__content">
+          <p class="inner-hero__label">Профилактика</p>
+          <h1 id="page-title">Профилактика — сохраните здоровье надолго</h1>
+          <p>Проводим профессиональную гигиену, отбеливание и регулярные осмотры, чтобы зубы оставались здоровыми и светлыми.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" aria-labelledby="prevention-title">
+      <div class="container">
+        <div class="page-section__header">
+          <p class="section-label">Уход и контроль</p>
+          <h2 id="prevention-title">Предупреждаем проблемы до лечения</h2>
+          <p>Профилактический прием помогает вовремя заметить изменения, убрать налет и подобрать домашний уход под ваши привычки.</p>
+        </div>
+
+        <div class="service-detail-grid">
+          <article class="service-detail-card">
+            <img src="../images/services/whitening.jpg" alt="Профессиональная гигиена и отбеливание зубов" loading="lazy">
+            <div class="service-detail-card__content">
+              <span class="service-detail-card__badge">Гигиена</span>
+              <h3>Чистота и свежесть</h3>
+              <p>Удаляем мягкий налет и зубной камень, полируем эмаль и объясняем, как поддерживать результат дома.</p>
+              <ul>
+                <li>профессиональная чистка</li>
+                <li>подбор щетки и средств ухода</li>
+                <li>контроль состояния десен</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-detail-card">
+            <img src="../images/services/caries.jpg" alt="Профилактический стоматологический осмотр" loading="lazy">
+            <div class="service-detail-card__content">
+              <span class="service-detail-card__badge">Осмотры</span>
+              <h3>Регулярная проверка</h3>
+              <p>Находим ранние признаки кариеса и воспаления, чтобы лечение было проще, быстрее и спокойнее.</p>
+              <ul>
+                <li>осмотр каждые 6 месяцев</li>
+                <li>отбеливание по показаниям</li>
+                <li>индивидуальный график профилактики</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-cta page-cta--light" aria-label="Запись на консультацию">
+      <div class="container page-cta__container">
+        <div>
+          <p class="section-label">Консультация</p>
+          <h2>Записаться на консультацию</h2>
+          <p>Подберем профилактический уход и расскажем, как сохранить здоровье зубов между приемами.</p>
+        </div>
+        <a class="btn btn-primary" href="#" data-open-booking>Записаться <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="footer__top container">
+      <a class="footer__logo" href="../" aria-label="Estetic Smile — на главную">
+        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80" loading="lazy">
+      </a>
+
+      <nav class="footer__top-nav" aria-label="Навигация в футере">
+        <a href="../gallery/">Галерея</a>
+        <a href="../promo/">Акции</a>
+        <a href="../about/">О нас</a>
+        <a href="../#reviews">Отзывы</a>
+        <a href="../contacts/">Контакты</a>
+      </nav>
+
+      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>Записаться</a>
+    </div>
+
+    <div class="footer__middle container">
+      <nav class="footer__col footer__col--services" aria-labelledby="footer-services-title">
+        <h3 id="footer-services-title">Наши услуги</h3>
+        <ul>
+          <li><a href="../therapy/">Терапевтическое лечение</a></li>
+          <li><a href="../ortopediy/">Ортопедическое лечение</a></li>
+          <li><a href="../surgery/">Хирургическое лечение</a></li>
+          <li><a href="../prevention/">Профилактическое лечение</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col footer__col--docs" aria-labelledby="footer-docs-title">
+        <h3 id="footer-docs-title">Документы</h3>
+        <ul>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Оферта</a></li>
+          <li><a href="#">Разработка сайта</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col footer__col--social">
+        <h3>Соцсети</h3>
+        <div class="footer__socials" aria-label="Социальные сети">
+          <a class="footer__social-link" href="#" aria-label="ВКонтакте">
+            <span class="footer__social-icon" aria-hidden="true">
+              <img src="../images/icons/vk_bw.png" alt="" loading="lazy">
+            </span>
+            <span>ВКонтакте</span>
+          </a>
+          <a class="footer__social-link" href="#" aria-label="WhatsApp">
+            <span class="footer__social-icon" aria-hidden="true">
+              <img src="../images/icons/whatsapp_bw.png" alt="" loading="lazy">
+            </span>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col footer__col--contact">
+        <h3>Как с нами связаться</h3>
+        <a class="footer__phone" href="tel:+79234921444">+7 (923) 492-14-44</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom container">
+      <span>© 2026 Estetic Smile</span>
+    </div>
+  </footer>
+
+  <button id="scroll-top-btn" class="scroll-top-btn" type="button" aria-label="Наверх">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 5 5.5 11.5l1.4 1.4L11 8.8V20h2V8.8l4.1 4.1 1.4-1.4L12 5Z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <div id="cookie-notice" class="cookie-notice" role="dialog" aria-live="polite" aria-label="Уведомление о cookie">
+    <p>Мы используем cookie, чтобы сайт работал лучше.</p>
+    <button type="button" class="btn btn-primary" data-cookie-accept>Принять</button>
+  </div>
+
+  <script defer src="../js/header.js"></script>
+  <script defer src="../js/gallery.js"></script>
+  <script defer src="../js/slider.js"></script>
+  <script defer src="../js/accordion.js"></script>
+  <script defer src="../js/modal.js"></script>
+  <script defer src="../js/form.js"></script>
+  <script defer src="../js/animations.js"></script>
+  <script defer src="../js/cookie.js"></script>
+  <script defer src="../js/main.js"></script>
+</body>
+</html>

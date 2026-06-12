@@ -289,6 +289,8 @@ body.menu-open → overflow: hidden
   · .nav__group.is-open .nav__group-body — margin: 2px 0 8px (было 4px 0 12px)
   · .nav__group-toggle становится синим только в .is-open, при :focus-visible и hover-capable hover;
     на touch-устройствах после закрытия аккордеона заголовок возвращается в белый цвет
+  · .nav__mobile a/button отключают нативную touch-подсветку (-webkit-tap-highlight-color),
+    сбрасывают outline только для :focus:not(:focus-visible) и не получают фон при :active
 ```
 
 ### Модальное окно записи

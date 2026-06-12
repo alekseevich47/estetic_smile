@@ -646,6 +646,21 @@ body.menu-open #nav-overlay {
     list-style: none;
   }
 
+  .nav__mobile a,
+  .nav__mobile button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav__mobile a:focus:not(:focus-visible),
+  .nav__mobile button:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .nav__mobile a:active,
+  .nav__mobile button:active {
+    background-color: transparent;
+  }
+
   .nav__mobile-item > a {
     display: flex;
     align-items: center;

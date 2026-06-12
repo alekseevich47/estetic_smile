@@ -8,6 +8,9 @@
     const navOverlay = document.getElementById("nav-overlay");
     const dropdownItem = document.querySelector(".header__menu-item--dropdown");
     const dropdownToggle = document.querySelector(".header__dropdown-toggle");
+    const megaDropdown = document.querySelector(".header__dropdown--mega");
+    const desktopMql = window.matchMedia("(min-width: 993px)");
+    let megaCloseTimer = null;
 
     if (!header || header.dataset.initialized === "true") {
       return;
@@ -115,17 +118,42 @@
       }
     };
 
+    const clearMegaCloseTimer = () => {
+      if (megaCloseTimer) {
+        window.clearTimeout(megaCloseTimer);
+        megaCloseTimer = null;
+      }
+    };
+
+    const openDropdown = () => {
+      if (!dropdownItem || !dropdownToggle) {
+        return;
+      }
+
+      clearMegaCloseTimer();
+      dropdownItem.classList.add("is-open");
+      dropdownToggle.setAttribute("aria-expanded", "true");
+    };
+
     const closeDropdown = ({ resetFocus = false } = {}) => {
       if (!dropdownItem || !dropdownToggle) {
         return;
       }
 
+      clearMegaCloseTimer();
       dropdownItem.classList.remove("is-open");
       dropdownToggle.setAttribute("aria-expanded", "false");
 
       if (resetFocus && dropdownItem.contains(document.activeElement)) {
         document.activeElement.blur();
       }
+    };
+
+    const scheduleMegaClose = () => {
+      clearMegaCloseTimer();
+      megaCloseTimer = window.setTimeout(() => {
+        closeDropdown();
+      }, 200);
     };
 
     const toggleDropdown = () => {
@@ -135,6 +163,38 @@
 
       const isOpen = dropdownItem.classList.toggle("is-open");
       dropdownToggle.setAttribute("aria-expanded", String(isOpen));
+    };
+
+    const initMegaDropdownHover = () => {
+      if (!dropdownItem || !dropdownToggle) {
+        return;
+      }
+
+      dropdownToggle.addEventListener("mouseenter", () => {
+        if (desktopMql.matches) {
+          openDropdown();
+        }
+      });
+
+      dropdownItem.addEventListener("mouseleave", () => {
+        if (desktopMql.matches) {
+          scheduleMegaClose();
+        }
+      });
+
+      if (megaDropdown) {
+        megaDropdown.addEventListener("mouseenter", () => {
+          if (desktopMql.matches) {
+            clearMegaCloseTimer();
+          }
+        });
+
+        megaDropdown.addEventListener("mouseleave", () => {
+          if (desktopMql.matches) {
+            scheduleMegaClose();
+          }
+        });
+      }
     };
 
     setScrolledState();
@@ -164,9 +224,14 @@
     if (dropdownToggle) {
       dropdownToggle.addEventListener("click", (event) => {
         event.stopPropagation();
-        toggleDropdown();
+
+        if (!desktopMql.matches) {
+          toggleDropdown();
+        }
       });
     }
+
+    initMegaDropdownHover();
 
     document.addEventListener("click", (event) => {
       if (dropdownItem && !dropdownItem.contains(event.target)) {
@@ -197,6 +262,8 @@
     window.addEventListener("resize", () => {
       if (window.innerWidth > 992) {
         setMenuState(false);
+      } else {
+        closeDropdown();
       }
     });
   }

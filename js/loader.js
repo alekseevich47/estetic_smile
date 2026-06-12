@@ -1,4 +1,4 @@
-const LOADER_ANIMATION_DURATION = 1000;
+const LOADER_ANIMATION_DURATION = 2200;
 const REDUCED_MOTION_DURATION = 100;
 
 function getAnimationDuration() {
@@ -17,7 +17,7 @@ export function initLoader() {
   loader.dataset.initialized = "true";
 
   let hideTimer = null;
-  const loaderLogo = loader.querySelector("svg");
+  const loaderLogo = loader.querySelector(".page-loader__text");
 
   const restartAnimation = () => {
     if (!loaderLogo) {

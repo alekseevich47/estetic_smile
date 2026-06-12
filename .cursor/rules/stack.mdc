@@ -275,9 +275,10 @@ body.menu-open → overflow: hidden
     .nav__contact — блок «Как с нами связаться» (как в footer):
       переиспользует .footer__contact-items (телефон tel:, адрес-кнопка #nav-address-card,
       часы работы) + .footer__social-icons (VK/MAX image-swap); контент центрирован
-  · #nav-address-card зарегистрирован в maps.js (3-й триггер выпадающего списка карт);
-    z-index .maps-dropdown=1100 / .maps-overlay=1090 (выше панели меню z-index 1002)
-  · остальные страницы (xxx/index.html) пока используют прежнюю мобильную разметку (мега в столбик)
+ · #nav-address-card зарегистрирован в maps.js (3-й триггер выпадающего списка карт); присутствует на ВСЕХ страницах;
+ z-index .maps-dropdown=1100 / .maps-overlay=1090 (выше панели меню z-index 1002);
+ #maps-dropdown + #maps-overlay + maps.js подключены на всех страницах (в т.ч. внутренних)
+  · все страницы (index.html + 13 внутренних xxx/index.html) используют единую мобильную разметку с `.nav__mobile` (аккордеоны + блок контактов)
 
 Актуальные CSS-параметры мобильной панели (после TASKS_menu_new133):
   · .nav__group-toggle и .nav__mobile-item > a — font-size: 15px (было 19px), min-height: 38px (было 48px)

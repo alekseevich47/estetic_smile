@@ -46,6 +46,43 @@
     });
   }
 
-  window.initAccordion = initAccordion;
+  function initFooterAccordion() {
+    const accordions = document.querySelectorAll("[data-footer-accordion]");
+
+    accordions.forEach((accordion) => {
+      if (accordion.dataset.initialized === "true") {
+        return;
+      }
+
+      const toggle = accordion.querySelector("[data-footer-accordion-toggle]");
+      const body = accordion.querySelector("[data-footer-accordion-body]");
+
+      if (!toggle || !body) {
+        return;
+      }
+
+      accordion.dataset.initialized = "true";
+
+      const syncHeight = () => {
+        if (accordion.classList.contains("is-open")) {
+          accordion.style.setProperty("--footer-accordion-height", `${body.scrollHeight}px`);
+        }
+      };
+
+      toggle.addEventListener("click", () => {
+        accordion.classList.toggle("is-open");
+        syncHeight();
+      });
+
+      window.addEventListener("resize", syncHeight);
+    });
+  }
+
+  function initAccordionAll() {
+    initAccordion();
+    initFooterAccordion();
+  }
+
+  window.initAccordion = initAccordionAll;
 })();
 

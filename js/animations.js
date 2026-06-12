@@ -18,8 +18,7 @@
     ".contacts__map",
     ".contact-card",
     ".footer__top",
-    ".footer__col",
-    ".footer__bottom"
+    ".footer__col"
   ].join(",");
 
   const STAGGER_GROUP_SELECTOR = [

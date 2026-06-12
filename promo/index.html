@@ -46,7 +46,7 @@
               <li><a href="../prevention/">Гигиена</a></li>
             </ul>
           </li>
-          <li><a href="../gallery/">Галерея</a></li>
+          <li><a href="../gallery/">Наши работы</a></li>
           <li><a href="../promo/" aria-current="page">Акции</a></li>
           <li><a href="../about/">О нас</a></li>
           <li><a href="../contacts/">Контакты</a></li>
@@ -78,7 +78,7 @@
         </nav>
 
         <div class="inner-hero__content">
-          <h1 id="page-title">Акции и специальные предложения Estetic Smile</h1>
+          <h1 id="page-title">Акции и специальные предложения</h1>
           <p>Следите за актуальными предложениями клиники и записывайтесь на консультацию в удобное время.</p>
         </div>
       </div>
@@ -89,7 +89,7 @@
         <div class="page-section__header">
           <p class="section-label">Специальное предложение</p>
           <h2 id="birthday-promo-title">–15% на идеальную улыбку</h2>
-          <p>Акция из главной страницы клиники: бережное преображение улыбки к важной дате.</p>
+          <p>Бережное преображение улыбки к важной дате.</p>
         </div>
 
         <article class="service-detail-card">
@@ -133,55 +133,138 @@
         </article>
       </div>
     </section>
-
-    <section class="page-cta page-cta--light" aria-label="Запись на консультацию по акции">
-      <div class="container page-cta__container">
-        <div>
-          <p class="section-label">Консультация</p>
-          <h2>Подберем подходящее предложение на приеме</h2>
-          <p>Врач оценит ситуацию, расскажет об условиях акции и заранее согласует план лечения.</p>
-        </div>
-        <a class="btn btn-primary" href="#" data-open-booking>Записаться <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </section>
   </main>
 
   <footer id="footer" class="footer">
     <div class="footer__top container">
       <a class="footer__logo" href="../" aria-label="Estetic Smile — на главную">
-        <img src="../images/logo.png" alt="Логотип Estetic Smile" width="250" height="80" loading="lazy">
+        <span style="display: inline-flex; align-items: center; width: var(--footer-logo-width); aspect-ratio: 250 / 80; color: #fff; font-family: 'Patefon Light', 'Patefon', serif; font-size: clamp(30px, 3.4vw, 46px); font-weight: 300; line-height: 1; white-space: nowrap;">Estetic Smile</span>
       </a>
 
-      <nav class="footer__top-nav" aria-label="Навигация в футере">
-        <a href="../gallery/">Галерея</a>
-        <a href="../promo/">Акции</a>
-        <a href="../about/">О нас</a>
-        <a href="../#reviews">Отзывы</a>
-        <a href="../contacts/">Контакты</a>
-      </nav>
-
-      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>Записаться</a>
+      <a class="btn btn-secondary footer__top-cta" href="#" data-open-booking>
+        Записаться
+        <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+          <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+          <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+        </svg>
+      </a>
     </div>
 
     <div class="footer__middle container">
-      <nav class="footer__col footer__col--services" aria-labelledby="footer-services-title">
-        <h3 id="footer-services-title">Наши услуги</h3>
-        <ul>
-          <li><a href="../therapy/">Терапевтическое лечение</a></li>
-          <li><a href="../ortopediy/">Ортопедическое лечение</a></li>
-          <li><a href="../surgery/">Хирургическое лечение</a></li>
-          <li><a href="../prevention/">Профилактическое лечение</a></li>
+      <div class="footer__col footer__col--services" data-footer-accordion>
+        <h3 class="footer__col-title" data-footer-accordion-toggle>
+          Наши услуги
+          <span class="footer__col-arrow" aria-hidden="true"></span>
+        </h3>
+        <ul class="footer__col-list" data-footer-accordion-body>
+          <li><a href="../therapy/">Лечение кариеса</a></li>
+          <li><a href="../therapy/">Лечение пульпита</a></li>
+          <li><a href="../therapy/">Лечение периодонтита</a></li>
+          <li><a href="../surgery/">Удаление зуба</a></li>
+          <li><a href="../surgery/">Имплантация</a></li>
+          <li><a href="../ortopediy/">Протезирование</a></li>
+          <li><a href="../ortopediy/">Виниры</a></li>
+          <li><a href="../prevention/">Отбеливание</a></li>
+          <li><a href="../prevention/">Гигиена</a></li>
         </ul>
-      </nav>
+      </div>
+
+      <div class="footer__col footer__col--company" data-footer-accordion>
+        <h3 class="footer__col-title" data-footer-accordion-toggle>
+          Компания
+          <span class="footer__col-arrow" aria-hidden="true"></span>
+        </h3>
+        <ul class="footer__col-list" data-footer-accordion-body>
+          <li><a href="../about/">О нас</a></li>
+          <li><a href="../licenses/">Лицензии</a></li>
+          <li><span class="footer__col-inactive">Отзывы</span></li>
+          <li><a href="../documents/">Документы</a></li>
+          <li class="footer__col-item--desktop-only"><span class="footer__col-inactive">Пользовательское соглашение</span></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--specialists" data-footer-accordion>
+        <h3 class="footer__col-title" data-footer-accordion-toggle>
+          Специалисты
+          <span class="footer__col-arrow" aria-hidden="true"></span>
+        </h3>
+        <ul class="footer__col-list" data-footer-accordion-body>
+          <li><a href="../doctors/">Врачи</a></li>
+          <li><a href="../assistants/">Ассистенты</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--specialists">
+        <h3 class="footer__col-title">
+          <a href="../gallery/">Наши работы</a>
+        </h3>
+        <h3 class="footer__col-title">
+          <a href="../prices/">Цены</a>
+        </h3>
+        <h3 class="footer__col-title">
+          <a href="../promo/" aria-current="page">Акции</a>
+        </h3>
+        <h3 class="footer__col-title">
+          <a href="../contacts/">Контакты</a>
+        </h3>
+        <ul class="footer__col-list">
+          <li class="footer__col-item--desktop-only"><a href="#">Версия для слабовидящих</a></li>
+        </ul>
+      </div>
 
       <div class="footer__col footer__col--contact">
-        <h3>Как с нами связаться</h3>
-        <a class="footer__phone" href="tel:+79234921444">+7 (923) 492-14-44</a>
+        <h3 class="footer__col-title">Как с нами связаться</h3>
+        <div class="footer__contact-items">
+          <a href="tel:+79234921444" class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M6.6 10.8a14.7 14.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <span>+7 (923) 492-14-44</span>
+          </a>
+          <button class="footer__contact-item footer__contact-item--address" id="footer-address-card" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="maps-dropdown">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2.5A7.5 7.5 0 0 0 4.5 10c0 5.3 6.2 10.5 7 11.1.3.2.7.2 1 0 .8-.6 7-5.8 7-11.1A7.5 7.5 0 0 0 12 2.5Zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <div>
+              <span>г. Тайга, ул. Лермонтова, 10</span>
+              <span class="footer__contact-hint">нажмите, чтобы открыть на карте</span>
+            </div>
+          </button>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm1 10V7h-2v6.3l4.4 2.6 1-1.7-3.4-1.7Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <div>
+              <span>Пн-Сб — 09:30 - 19:00</span><br>
+              <span>Вс — выходной</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer__social-icons">
+          <a class="footer__social-icon footer__social-icon--vk" href="#" aria-label="ВКонтакте">
+            <img class="footer__social-icon__img footer__social-icon__img--default" src="../images/icons/vk_bw.png" alt="" loading="lazy">
+            <img class="footer__social-icon__img footer__social-icon__img--hover" src="../images/icons/vk_color.png" alt="" loading="lazy" aria-hidden="true">
+          </a>
+          <a class="footer__social-icon footer__social-icon--max" href="#" aria-label="MAX">
+            <img class="footer__social-icon__img footer__social-icon__img--default" src="../images/icons/max_bw.png" alt="" loading="lazy">
+            <img class="footer__social-icon__img footer__social-icon__img--hover" src="../images/icons/max_color.png" alt="" loading="lazy" aria-hidden="true">
+          </a>
+        </div>
       </div>
     </div>
 
+    <div class="footer__legal-mobile">
+      <span>© 2026 ООО «Эстетик Смайл»</span>
+      <span class="footer__col-inactive">Пользовательское соглашение</span>
+      <span class="footer__col-inactive">Разработка сайта</span>
+      <span class="footer__col-inactive">Версия для слабовидящих</span>
+    </div>
+
     <div class="footer__bottom container">
-      <span>© 2026 Estetic Smile</span>
+      <span>© 2026 ООО «Эстетик Смайл»</span>
+      <span class="footer__bottom-dev">Разработка сайта</span>
     </div>
   </footer>
 

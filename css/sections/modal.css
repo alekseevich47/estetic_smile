@@ -32,8 +32,14 @@ body.modal-open {
   color: var(--color-dark);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   transform: translateY(20px);
   transition: transform 0.3s ease;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 .modal-overlay.is-open .modal {

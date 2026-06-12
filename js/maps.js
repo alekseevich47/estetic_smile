@@ -14,6 +14,7 @@
     const triggers = [
       document.getElementById("address-card"),
       document.getElementById("footer-address-card"),
+      document.getElementById("nav-address-card"),
     ].filter(Boolean);
 
     if (!triggers.length) {

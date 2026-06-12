@@ -102,7 +102,7 @@ estetic_smile/
 │   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
 │   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
 │   ├── loader.js                # Страничный лоадер (module)
-│   └── maps.js                  # Выпадающий список карт (Яндекс/2GIS/Google) для #address-card и #footer-address-card
+│   └── maps.js                  # Выпадающий список карт (Яндекс/2GIS/Google) для #address-card, #footer-address-card и #nav-address-card
 └── images/
     ├── logo.png, logo_new.png, hero.jpg, hero-2.jpg, hero-3.jpg, hero-4.jpg
     ├── about.jpg, promo.jpg, form-collage.jpg
@@ -253,11 +253,31 @@ Mobile (≤992px):
 ### Мобильное меню (≤992px)
 ```
 .header__nav — панель, position: fixed, right: 0, transform: translateX(100%) → translateX(0)
-.nav__logo   — логотип + название клиники (сверху по центру)
+.nav__logo   — текст «Estetic Smile» (.nav__logo-text, шрифт "Patefon Light", ≈30px), сверху по центру
 .nav__close  — кнопка × (position: absolute, top/right)
-.nav__cta    — кнопка «Записаться» (margin-top: auto, width: 100%)
+.nav__cta    — кнопка «Записаться» (margin-top: auto, width: 100%, внизу панели)
 #nav-overlay — затемняющий overlay (клик → закрыть панель)
 body.menu-open → overflow: hidden
+
+ВАЖНО — на ГЛАВНОЙ (index.html) мобильная панель использует отдельную разметку:
+  · десктопное меню .header__menu (мега-дропдаун) на ≤992px скрыто (display: none)
+  · .nav__mobile (display: none на десктопе, flex column на ≤992px) — содержит:
+    .nav__mobile-list:
+      — 3 группы-аккордеона .nav__group[data-footer-accordion] (тоггл .nav__group-toggle
+        [data-footer-accordion-toggle] + тело .nav__group-body[data-footer-accordion-body]):
+          «Наши услуги» — 9 услуг (как в footer),
+          «Компания» — О нас, Лицензии, Отзывы (неактив.), Документы,
+          «Специалисты» — Врачи, Ассистенты;
+        раскрытие через initFooterAccordion (is-open + --footer-accordion-height, max-height transition);
+        .nav__group-arrow ▼ поворот 180° при is-open
+      — простые пункты .nav__mobile-item: «Наши работы», «Цены», «Акции», «Контакты»
+    .nav__divider — полупрозрачная белая линия (rgba(255,255,255,0.2)) на всю ширину панели
+    .nav__contact — блок «Как с нами связаться» (как в footer):
+      переиспользует .footer__contact-items (телефон tel:, адрес-кнопка #nav-address-card,
+      часы работы) + .footer__social-icons (VK/MAX image-swap); контент центрирован
+  · #nav-address-card зарегистрирован в maps.js (3-й триггер выпадающего списка карт);
+    z-index .maps-dropdown=1100 / .maps-overlay=1090 (выше панели меню z-index 1002)
+  · остальные страницы (xxx/index.html) пока используют прежнюю мобильную разметку (мега в столбик)
 ```
 
 ### Модальное окно записи

@@ -178,7 +178,7 @@ button.contact-card {
 
 .maps-dropdown {
   position: fixed;
-  z-index: 200;
+  z-index: 1100;
   min-width: 220px;
   background: #ffffff;
   border: 1px solid #e0e0e0;
@@ -265,7 +265,7 @@ button.contact-card {
   .maps-overlay {
     position: fixed;
     inset: 0;
-    z-index: 190;
+    z-index: 1090;
     display: block;
     background: rgba(0, 0, 0, 0.45);
     opacity: 0;

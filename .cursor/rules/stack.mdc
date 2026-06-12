@@ -278,6 +278,17 @@ body.menu-open → overflow: hidden
   · #nav-address-card зарегистрирован в maps.js (3-й триггер выпадающего списка карт);
     z-index .maps-dropdown=1100 / .maps-overlay=1090 (выше панели меню z-index 1002)
   · остальные страницы (xxx/index.html) пока используют прежнюю мобильную разметку (мега в столбик)
+
+Актуальные CSS-параметры мобильной панели (после TASKS_menu_new133):
+  · .nav__group-toggle и .nav__mobile-item > a — font-size: 15px (было 19px), min-height: 38px (было 48px)
+  · .nav__logo — margin-top увеличен для отступа от края (~20px сверху)
+  · .header__nav — overflow-y убран с панели; панель = flex column без скролла
+  · .nav__mobile — overflow-y: auto; flex: 1; min-height: 0 (прокручивается только список)
+  · .nav__logo + кнопка × зафиксированы в верхней части (flex-shrink: 0), не уезжают при скролле
+  · .nav__cta — flex-shrink: 0; margin-top: auto (прибита внизу панели)
+  · .nav__group.is-open .nav__group-body — margin: 2px 0 8px (было 4px 0 12px)
+  · .nav__group-toggle становится синим только в .is-open, при :focus-visible и hover-capable hover;
+    на touch-устройствах после закрытия аккордеона заголовок возвращается в белый цвет
 ```
 
 ### Модальное окно записи

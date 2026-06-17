@@ -21,9 +21,10 @@ alwaysApply: true
 ## Цветовая схема
 
 ```css
---color-accent:        #4A7FC1   /* Синий акцент: кнопки CTA, иконки, hover */
---color-accent-hover:  #3A6EAF   /* Hover синего (темнее на 10%) */
---color-accent-shadow: rgba(74, 127, 193, 0.4)
+--color-accent:        #c4af82   /* Ореховый акцент: кнопки CTA, иконки, hover */
+--color-accent-hover:  #a89468   /* Hover акцента (темнее ~15%) */
+--color-accent-light:  #d9cab0   /* Светлый оттенок акцента */
+--color-accent-shadow: rgba(196, 175, 130, 0.4)
 --color-dark:          #2C2C2C   /* Шапка, футер, тёмные секции */
 --color-white:         #FFFFFF
 --color-bg-light:      #F5F5F5   /* Альтернативный фон секций */
@@ -31,12 +32,14 @@ alwaysApply: true
 --color-text-muted:    #999999   /* Мелкий текст */
 ```
 
+Полупрозрачные оттенки акцента (`--accent-a08` … `--accent-a82`) и override захардкоженных синих `rgba` — в `css/home-theme.css` (импорт через `layout.css` на всех страницах).
+
 Паттерн чередования фонов по секциям:
 ```
 hero       → #2C2C2C (dark)
 advantages → #F5F5F5
 services   → #FFFFFF
-promo      → #4A7FC1 (accent blue)
+promo      → #c4af82 (accent)
 about      → #FFFFFF
 gallery    → #2C2C2C
 reviews    → #FFFFFF
@@ -71,7 +74,8 @@ estetic_smile/
 │   └── steps.html               # [архив] Секция этапов лечения
 ├── css/
 │   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
-│   ├── layout.css               # Хаб: .container + @import всех sections/
+│   ├── layout.css               # Хаб: .container + @import всех sections/ + home-theme.css
+│   ├── home-theme.css           # Глобальная тема акцента (#c4af82): :root, --accent-a*, rgba-override
 │   ├── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
 │   ├── loader.css               # Страничный лоадер
 │   └── sections/                # Стили секций (подключаются через layout.css)
@@ -136,7 +140,7 @@ estetic_smile/
 | `#hero`         | Split-screen 50/50: H1 + 2 кнопки / hero.jpg | dark        |
 | `#advantages`   | 4 карточки преимуществ (иконки SVG) + marquee-полоса (без смайлов) | light-gray |
 | `#services`     | 4 карточки услуг: терапия, ортопедия, хирургия, профилактика | white |
-| `#promo`        | Акция: «–15% на улыбку», одна колонка (без media), синий фон | accent-blue |
+| `#promo`        | Акция: «–15% на улыбку», одна колонка (без media), ореховый фон | accent |
 | `#about`        | О клинике: split-screen + счётчики           | white       |
 | `#gallery`      | 12 фото до/после, lightbox                   | dark        |
 | `#reviews`      | Карусель 5 отзывов + кнопка «Оставить отзыв»  | white       |
@@ -149,7 +153,7 @@ estetic_smile/
 
 ### Кнопки
 ```css
-.btn-primary   /* синий фон #4A7FC1, белый текст, pill border-radius: 30px */
+.btn-primary   /* ореховый фон #c4af82, белый текст, pill border-radius: 30px */
 .btn-secondary /* прозрачный, белая обводка, hover → белый фон */
 .btn-dark      /* тёмный фон #2C2C2C */
 /* Иконка внутри: margin-left: 10px; hover: translateX(3px) */
@@ -168,18 +172,18 @@ estetic_smile/
 h1  /* 40–50px desktop / 28–32px mobile, font-weight: 700 */
 h2  /* 32–40px desktop / 24–28px mobile, font-weight: 700 */
 h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
-/* H2 декор: .underline-wavy → text-decoration: underline wavy #4A7FC1 */
+/* H2 декор: .underline-wavy → text-decoration: underline wavy #c4af82 */
 ```
 
 ### Секции-лейблы
 ```css
-.section-label /* pill, синий фон/обводка, uppercase, small text, над H2 */
+.section-label /* pill, ореховый фон/обводка, uppercase, small text, над H2 */
 ```
 
 ### Поля форм
 ```css
 /* height: 50px, border-radius: 8px, border: 1px solid #DDD */
-/* :focus → border-color: #4A7FC1; box-shadow: 0 0 0 3px rgba(74,127,193,0.15) */
+/* :focus → border-color: #c4af82; box-shadow: 0 0 0 3px rgba(196,175,130,0.15) */
 ```
 
 ### Header (desktop ≥993px)
@@ -269,6 +273,7 @@ body.menu-open → overflow: hidden
           «Компания» — О нас, Лицензии, Отзывы (неактив.), Документы,
           «Специалисты» — Врачи, Ассистенты;
         раскрытие через initFooterAccordion (is-open + --footer-accordion-height, max-height transition);
+        exclusive внутри .nav__mobile-list: при открытии нового — плавно закрывается предыдущий;
         .nav__group-arrow ▼ поворот 180° при is-open
       — простые пункты .nav__mobile-item: «Наши работы», «Цены», «Акции», «Контакты»
     .nav__divider — полупрозрачная белая линия (rgba(255,255,255,0.2)) на всю ширину панели
@@ -288,7 +293,7 @@ body.menu-open → overflow: hidden
   · .nav__logo + кнопка × зафиксированы в верхней части (flex-shrink: 0), не уезжают при скролле
   · .nav__cta — flex-shrink: 0; margin-top: auto (прибита внизу панели)
   · .nav__group.is-open .nav__group-body — margin: 2px 0 8px (было 4px 0 12px)
-  · .nav__group-toggle становится синим только в .is-open, при :focus-visible и hover-capable hover;
+  · .nav__group-toggle становится акцентным (орех) только в .is-open, при :focus-visible и hover-capable hover;
     на touch-устройствах после закрытия аккордеона заголовок возвращается в белый цвет
   · .nav__mobile a/button отключают нативную touch-подсветку (-webkit-tap-highlight-color),
     сбрасывают outline только для :focus:not(:focus-visible) и не получают фон при :active
@@ -321,6 +326,7 @@ body.modal-open → overflow: hidden
   1. Наши услуги — 9 ссылок (dropdown-пункты меню «Услуги»), на mobile — аккордеон (max-height toggle)
   2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Пользовательское соглашение (desktop-only); на mobile — аккордеон
   3. Специалисты — Врачи, Ассистенты; на mobile — аккордеон
+  mobile-аккордеоны (≤768px): exclusive внутри .footer__middle — при открытии нового плавно закрывается предыдущий
   4. Столбик — Наши работы, Цены, Акции, Контакты (отдельные h3.footer__col-title) + Версия для слабовидящих (desktop-only, в ul.footer__col-list)
   5. Как с нами связаться — телефон (tel:), адрес (кнопка с выпадающим списком карт), часы работы (два span + br), иконки VK + MAX
 .footer__legal-mobile (≤768px) — © 2026 ООО «Эстетик Смайл», Пользовательское соглашение, Разработка сайта, Версия для слабовидящих; разделены линией сверху
@@ -347,7 +353,7 @@ body.modal-open → overflow: hidden
 | `header.js`     | `initHeader()` — scroll listener, burger toggle, slide-in panel (translateX), nav__close, overlay, мега-дропдаун (hover open/close с таймером) |
 | `gallery.js`    | `initGallery()` — клик по фото → lightbox, стрелки, ESC, swipe  |
 | `slider.js`     | `initSlider()` — карусель отзывов, dots, autoplay                |
-| `accordion.js`  | `initAccordion()` — FAQ toggle max-height + `initFooterAccordion()` — footer mobile аккордеон (все колонки с data-footer-accordion) |
+| `accordion.js`  | `initAccordion()` — FAQ toggle max-height + `initFooterAccordion()` — mobile аккордеоны (footer + nav): is-open + --footer-accordion-height; exclusive внутри `.footer__middle` / `.nav__mobile-list` |
 | `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
 | `modal.js`      | `initModal()` — модальное окно с формой записи (открытие/закрытие) |
 | `review-form.js`| `initReviewForm()` — модалка отзыва на <dialog>, эмодзи-рейтинг, валидация |
@@ -385,7 +391,7 @@ body.modal-open → overflow: hidden
 |---------------------|---------------------------------------------|
 | Название            | Estetic Smile                               |
 | Город               | г. Тайга                                    |
-| Акцентный цвет      | `#4A7FC1` (синий, не яркий)                |
+| Акцентный цвет      | `#c4af82` (орех)                           |
 | Телефон             | `+7 (923) 492-14-44`                        |
 | Адрес               | ул. Лермонтова, 10                          |
 | Часы работы         | Пн–Сб 09:30–19:00, Вс — выходной            |

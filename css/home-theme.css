@@ -1,0 +1,264 @@
+/* Global accent theme — орех #c4af82 (подключается через layout.css) */
+
+:root {
+  --color-accent: #c4af82;
+  --color-accent-hover: #a89468;
+  --color-accent-light: #d9cab0;
+  --color-accent-shadow: rgba(196, 175, 130, 0.4);
+  --accent-a08: rgba(196, 175, 130, 0.08);
+  --accent-a10: rgba(196, 175, 130, 0.1);
+  --accent-a12: rgba(196, 175, 130, 0.12);
+  --accent-a14: rgba(196, 175, 130, 0.14);
+  --accent-a15: rgba(196, 175, 130, 0.15);
+  --accent-a16: rgba(196, 175, 130, 0.16);
+  --accent-a18: rgba(196, 175, 130, 0.18);
+  --accent-a20: rgba(196, 175, 130, 0.2);
+  --accent-a22: rgba(196, 175, 130, 0.22);
+  --accent-a24: rgba(196, 175, 130, 0.24);
+  --accent-a28: rgba(196, 175, 130, 0.28);
+  --accent-a32: rgba(196, 175, 130, 0.32);
+  --accent-a38: rgba(196, 175, 130, 0.38);
+  --accent-a45: rgba(196, 175, 130, 0.45);
+  --accent-a50: rgba(196, 175, 130, 0.5);
+  --accent-a55: rgba(196, 175, 130, 0.55);
+  --accent-a82: rgba(196, 175, 130, 0.82);
+}
+
+/* Global components (style.css) */
+.btn-primary {
+  box-shadow: 0 12px 28px var(--accent-a28);
+}
+
+.section-label {
+  border-color: var(--accent-a22);
+  background: var(--accent-a10);
+}
+
+/* Hero */
+.hero__content::before {
+  background: radial-gradient(circle, var(--accent-a28), transparent 68%);
+}
+
+.hero__label {
+  border-color: var(--accent-a55);
+  background: var(--accent-a16);
+}
+
+/* Advantages */
+.advantages::before {
+  background: var(--accent-a08);
+}
+
+.advantages__card:hover,
+.advantages__card:focus-within {
+  border-color: var(--accent-a28);
+}
+
+.advantages__icon {
+  box-shadow: 0 14px 30px var(--accent-a28);
+}
+
+/* Services */
+.services::before {
+  background: var(--accent-a08);
+}
+
+.service-card:hover,
+.service-card:focus-within {
+  border-color: var(--accent-a28);
+}
+
+.service-card__badge {
+  box-shadow: 0 12px 26px var(--accent-a32);
+}
+
+/* About */
+.about::before {
+  background: var(--accent-a08);
+}
+
+.about-feature:hover,
+.about-feature:focus-within {
+  border-color: var(--accent-a22);
+}
+
+.about-feature__icon {
+  box-shadow: 0 12px 26px var(--accent-a24);
+}
+
+/* Gallery */
+.gallery::before {
+  background: var(--accent-a16);
+}
+
+.gallery::after {
+  background: radial-gradient(circle, var(--accent-a12), transparent 68%);
+}
+
+.gallery__header .section-label {
+  border-color: var(--accent-a50);
+  background: var(--accent-a18);
+}
+
+.gallery-card__zoom {
+  background: var(--accent-a82);
+}
+
+/* Reviews */
+.reviews::before {
+  background: var(--accent-a08);
+}
+
+.reviews::after {
+  border-color: var(--accent-a12);
+  background: radial-gradient(circle, var(--accent-a08), transparent 68%);
+}
+
+.review-card::before {
+  color: var(--accent-a12);
+}
+
+.reviews__arrow {
+  border-color: var(--accent-a20);
+}
+
+.reviews__arrow:hover,
+.reviews__arrow:focus-visible {
+  box-shadow: 0 16px 32px var(--accent-a24);
+}
+
+.reviews__dot {
+  background: var(--accent-a28);
+}
+
+.review-dialog__close {
+  background: var(--accent-a10);
+}
+
+.review-form__field input:focus,
+.review-form__field textarea:focus {
+  box-shadow: 0 0 0 3px var(--accent-a15);
+}
+
+/* FAQ */
+.faq::before {
+  background: var(--accent-a08);
+}
+
+.faq__item.is-open,
+.faq__item:focus-within {
+  border-color: var(--accent-a24);
+}
+
+.faq__question:focus-visible {
+  outline-color: var(--accent-a24);
+}
+
+.faq__icon {
+  background: var(--accent-a10);
+}
+
+/* Contacts */
+.contacts::before {
+  background: var(--accent-a18);
+}
+
+.contacts::after {
+  background: radial-gradient(circle, var(--accent-a10), transparent 70%);
+}
+
+.contacts__label {
+  border-color: var(--accent-a55);
+  background: var(--accent-a16);
+}
+
+.contact-card:hover,
+.contact-card:focus-within {
+  border-color: var(--accent-a38);
+}
+
+.contact-card__icon {
+  box-shadow: 0 12px 26px var(--accent-a24);
+}
+
+.contact-card--address[aria-expanded="true"] {
+  border-color: var(--accent-a55);
+}
+
+.contacts__social-link {
+  border-color: var(--accent-a18);
+}
+
+/* Footer */
+.footer::before {
+  background: var(--accent-a14);
+}
+
+/* Modal (запись) */
+.modal__close:hover,
+.modal__close:focus-visible {
+  border-color: var(--accent-a32);
+}
+
+.modal__label {
+  border-color: var(--accent-a28);
+  background: var(--accent-a08);
+}
+
+.modal .booking-form input:focus,
+.modal .booking-form select:focus {
+  box-shadow: 0 0 0 3px var(--accent-a15);
+}
+
+/* CTA */
+.cta--dark::before {
+  background: var(--accent-a16);
+}
+
+.cta--dark::after {
+  background: radial-gradient(circle, var(--accent-a14), transparent 68%);
+}
+
+/* Inner pages */
+.inner-hero {
+  background:
+    radial-gradient(circle at 80% 12%, var(--accent-a28), transparent 34%),
+    linear-gradient(135deg, #232323 0%, var(--color-dark) 62%, #2a241f 100%);
+}
+
+.inner-hero::after {
+  background: var(--accent-a14);
+}
+
+.inner-hero__label {
+  border-color: var(--accent-a55);
+  background: var(--accent-a16);
+}
+
+.service-detail-card:hover,
+.service-detail-card:focus-within {
+  border-color: var(--accent-a28);
+}
+
+.service-detail-card__badge {
+  background: var(--accent-a12);
+}
+
+.gallery--page::before {
+  background: var(--accent-a12);
+}
+
+.gallery--page::after {
+  background: radial-gradient(circle, var(--accent-a10), transparent 68%);
+}
+
+.gallery--page .gallery__header .section-label {
+  border-color: var(--accent-a50);
+  background: var(--accent-a14);
+}
+
+/* Scroll-top */
+.scroll-top-btn:hover,
+.scroll-top-btn:focus-visible {
+  box-shadow: 0 18px 42px var(--color-accent-shadow);
+}

@@ -650,6 +650,12 @@ a.footer__contact-item:focus-visible {
 
   [data-footer-accordion-toggle] {
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  [data-footer-accordion-toggle]:focus:not(:focus-visible) {
+    outline: none;
   }
 
   [data-footer-accordion] .footer__col-arrow {

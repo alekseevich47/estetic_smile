@@ -63,6 +63,8 @@
 
       accordion.dataset.initialized = "true";
 
+      const group = accordion.closest(".nav__mobile-list, .footer__middle");
+
       const syncHeight = () => {
         if (accordion.classList.contains("is-open")) {
           accordion.style.setProperty("--footer-accordion-height", `${body.scrollHeight}px`);
@@ -70,6 +72,16 @@
       };
 
       toggle.addEventListener("click", () => {
+        const willOpen = !accordion.classList.contains("is-open");
+
+        if (willOpen && group) {
+          group.querySelectorAll("[data-footer-accordion].is-open").forEach((other) => {
+            if (other !== accordion) {
+              other.classList.remove("is-open");
+            }
+          });
+        }
+
         accordion.classList.toggle("is-open");
         syncHeight();
       });

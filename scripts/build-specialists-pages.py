@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Generate specialists pages from doctors template."""
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCTORS_TEMPLATE = ROOT / "doctors" / "index.html"
+PAGE_TEMPLATE = ROOT / "about" / "index.html"
+
+ABOUT_DESCRIPTION = '<meta name="description" content="О стоматологической клинике Estetic Smile в Тайге: команда, подход к лечению, опыт и ценности.">'
+ABOUT_TITLE = "<title>О клинике Estetic Smile</title>"
 
 BTN_SVG = """<svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -38,6 +43,32 @@ DOCTORS = [
                 <p class="doctor-card__note">Постоянное развитие и стремление к профессиональному росту помогают оказывать пациентам высококвалифицированную помощь и добиваться стабильных клинических результатов.</p>""",
     },
     {
+        "slug": "zaitseva",
+        "name": "Зайцева Елена Николаевна",
+        "badge": "Стоматолог-терапевт-хирург",
+        "roles": "стоматолог-терапевт-хирург",
+        "img_alt": "Зайцева Елена Николаевна — стоматолог-терапевт-хирург Estetic Smile",
+        "bio": """
+                <p>Закончила Кемеровскую Государственную Медицинскую Академию в 1995&nbsp;г. по специальности «стоматология». В 1996&nbsp;г. закончила интернатуру в Красноярской Медицинской академии по специальности «стоматолог – терапевт».</p>
+                <p>Специализируется на <strong>диагностике, профилактике и лечении заболеваний твёрдых тканей зубов и тканей пародонта</strong>. Владеет современными методиками лечения кариеса и его осложнений, <strong>эндодонтического лечения корневых каналов</strong> с применением оптического увеличения и современных протоколов обработки.</p>
+                <p>Основным направлением профессиональной деятельности является <strong>эстетическая и функциональная реставрация зубов</strong> с использованием высококачественных композитных материалов. Выполняет прямые художественные реставрации фронтальной и жевательной групп зубов, восстановление анатомической формы, цвета и естественной эстетики зубного ряда с учётом индивидуальных особенностей пациента.</p>
+                <p>Проводит <strong>комплексную профилактику стоматологических заболеваний</strong>, включая профессиональную гигиену полости рта, реминерализующую терапию, фторирование, обучение индивидуальной гигиене и разработку персонализированных программ профилактики. Особое внимание уделяет сохранению собственных тканей зуба, <strong>минимально инвазивным методикам лечения</strong> и достижению долгосрочного клинического результата.</p>
+                <p class="doctor-card__note">Участник многочисленных конференций и семинаров.</p>""",
+    },
+    {
+        "slug": "zabolotnaya",
+        "name": "Заболотная Кристина Евгеньевна",
+        "badge": "Врач-стоматолог-терапевт",
+        "roles": "врач-стоматолог общей практики",
+        "img_alt": "Заболотная Кристина Евгеньевна — врач-стоматолог-терапевт Estetic Smile",
+        "bio": """
+                <p>Закончила Кемеровский Государственный Медицинский Институт в 2023&nbsp;г. по специальности «Стоматология».</p>
+                <p>Врач-стоматолог-терапевт с углублённой специализацией в области <strong>современной реставрационной стоматологии, эстетической реабилитации и профилактики стоматологических заболеваний</strong>. Проводит комплексную диагностику, лечение и восстановление зубов с применением современных клинических протоколов, цифровых технологий и принципов минимально инвазивной стоматологии.</p>
+                <p>Специализируется на <strong>лечении кариеса и его осложнений, эндодонтическом лечении корневых каналов</strong> различной степени сложности, а также на эстетической и функциональной реставрации зубов с использованием высокоэстетичных композиционных материалов последнего поколения. Выполняет художественные реставрации с детальным воспроизведением естественной анатомии, морфологии, оптических свойств и индивидуальных характеристик зубов, обеспечивая гармоничную интеграцию реставраций в зубной ряд.</p>
+                <p>Владеет современными методиками <strong>адгезивной стоматологии</strong>, позволяющими максимально сохранять здоровые ткани зуба и добиваться прогнозируемых долгосрочных результатов. При планировании лечения учитывает не только локальные клинические задачи, но и функциональные особенности зубочелюстной системы, окклюзионные взаимоотношения и эстетические параметры улыбки.</p>
+                <p class="doctor-card__note">Участник многочисленных конференций и семинаров.</p>""",
+    },
+    {
         "slug": "ledovskaya",
         "name": "Ледовская Ольга Валентиновна",
         "badge": "Врач-стоматолог-терапевт",
@@ -64,6 +95,22 @@ def patch_nav(html: str, depth: str) -> str:
     return html
 
 
+def patch_specialists_current(html: str, depth: str) -> str:
+    """Move aria-current from «О нас» to «Специалисты» (template is about/)."""
+    prefix = depth
+    specialists_href = f"{prefix}specialists/"
+    about_href = f"{prefix}about/"
+    html = html.replace(
+        f'<li><a href="{specialists_href}">Специалисты</a></li>',
+        f'<li><a href="{specialists_href}" aria-current="page">Специалисты</a></li>',
+    )
+    html = html.replace(
+        f'<li><a href="{about_href}" aria-current="page">О нас</a></li>',
+        f'<li><a href="{about_href}">О нас</a></li>',
+    )
+    return html
+
+
 def preview_card(doctor: dict) -> str:
     return f"""
           <a class="specialist-preview-card" href="{doctor['slug']}/">
@@ -84,11 +131,11 @@ def preview_card(doctor: dict) -> str:
 
 
 def specialists_main() -> str:
-    template = DOCTORS_TEMPLATE.read_text(encoding="utf-8")
+    template = PAGE_TEMPLATE.read_text(encoding="utf-8")
     start = template.index("<main>")
     end = template.index("</main>") + len("</main>")
-    head = patch_nav(template[:start], "../")
-    foot = patch_nav(template[end:], "../")
+    head = patch_specialists_current(patch_nav(template[:start], "../"), "../")
+    foot = patch_specialists_current(patch_nav(template[end:], "../"), "../")
 
     cards = "\n".join(preview_card(d) for d in DOCTORS)
 
@@ -142,9 +189,9 @@ def specialists_main() -> str:
   </main>"""
 
     head = head.replace(
-        '<meta name="description" content="Врачи стоматологической клиники Estetic Smile в Тайге: специалисты и их опыт.">',
+        ABOUT_DESCRIPTION,
         '<meta name="description" content="Специалисты стоматологической клиники Estetic Smile в Тайге: врачи и ассистенты.">',
-    ).replace("<title>Врачи — Estetic Smile</title>", "<title>Специалисты — Estetic Smile</title>")
+    ).replace(ABOUT_TITLE, "<title>Специалисты — Estetic Smile</title>")
 
     foot = foot.replace(
         '<script defer src="../js/maps.js"></script>',
@@ -155,13 +202,13 @@ def specialists_main() -> str:
 
 
 def doctor_detail(doctor: dict) -> str:
-    template = DOCTORS_TEMPLATE.read_text(encoding="utf-8")
+    template = PAGE_TEMPLATE.read_text(encoding="utf-8")
     start = template.index("<main>")
     end = template.index("</main>") + len("</main>")
     head = template[:start].replace("../", "../../")
     foot = template[end:].replace("../", "../../")
-    head = patch_nav(head, "../../")
-    foot = patch_nav(foot, "../../")
+    head = patch_specialists_current(patch_nav(head, "../../"), "../../")
+    foot = patch_specialists_current(patch_nav(foot, "../../"), "../../")
 
     main = f"""<main>
     <section class="inner-hero inner-hero--profile" aria-labelledby="page-title">
@@ -206,9 +253,9 @@ def doctor_detail(doctor: dict) -> str:
   </main>"""
 
     head = head.replace(
-        '<meta name="description" content="Врачи стоматологической клиники Estetic Smile в Тайге: специалисты и их опыт.">',
+        ABOUT_DESCRIPTION,
         f'<meta name="description" content="{doctor["name"]} — врач клиники Estetic Smile в Тайге.">',
-    ).replace("<title>Врачи — Estetic Smile</title>", f"<title>{doctor['name']} — Estetic Smile</title>")
+    ).replace(ABOUT_TITLE, f"<title>{doctor['name']} — Estetic Smile</title>")
 
     return head + main + foot
 
@@ -268,6 +315,8 @@ def main() -> None:
     print("wrote redirects for doctors/ and assistants/")
 
     update_all_html_nav()
+
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-header-a11y.py")], check=True)
 
 
 if __name__ == "__main__":

@@ -540,6 +540,10 @@
   scroll-margin-top: 96px;
 }
 
+.specialists-section.page-section {
+  padding-top: 32px;
+}
+
 .specialists-section--alt {
   background: var(--color-bg-light);
 }
@@ -615,7 +619,7 @@
   justify-content: center;
   gap: 10px;
   width: 100%;
-  min-height: 46px;
+  min-height: 0;
   margin-top: 0;
   padding: 0 18px;
   border-radius: var(--border-radius-pill);
@@ -629,7 +633,7 @@
   max-height: 0;
   overflow: hidden;
   pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin-top 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin-top 0.35s ease, min-height 0.35s ease;
 }
 
 .specialist-preview-card:hover .specialist-preview-card__info,
@@ -641,6 +645,7 @@
 .specialist-preview-card:focus-visible .specialist-preview-card__cta {
   opacity: 1;
   transform: translateY(0);
+  min-height: 46px;
   max-height: 56px;
   margin-top: 14px;
 }
@@ -671,6 +676,10 @@
     scroll-margin-top: 88px;
   }
 
+  .specialists-section.page-section {
+    padding-top: 24px;
+  }
+
   .doctor-detail {
     padding-top: 40px;
   }
@@ -692,6 +701,7 @@
     .specialist-preview-card__cta {
       opacity: 1;
       transform: translateY(0);
+      min-height: 46px;
       max-height: 56px;
       margin-top: 12px;
     }

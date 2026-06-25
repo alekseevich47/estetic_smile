@@ -111,6 +111,7 @@
               </div>
             </div>
           </li>
+          <li><a href="../specialists/" aria-current="page">Специалисты</a></li>
           <li><a href="../gallery/">Наши работы</a></li>
           <li><a href="../promo/">Акции</a></li>
           <li><a href="../about/">О нас</a></li>
@@ -156,8 +157,8 @@
                 <span class="nav__group-arrow" aria-hidden="true"></span>
               </button>
               <ul class="nav__group-body" data-footer-accordion-body>
-                <li><a href="#doctors">Врачи</a></li>
-                <li><a href="#assistants">Ассистенты</a></li>
+                <li><a href="../specialists/#doctors">Врачи</a></li>
+                <li><a href="../specialists/#assistants">Ассистенты</a></li>
               </ul>
             </li>
 
@@ -207,6 +208,13 @@
                 <img class="footer__social-icon__img footer__social-icon__img--hover" src="../images/icons/max_color.png" alt="" loading="lazy" aria-hidden="true">
               </a>
             </div>
+            <div class="nav__divider" aria-hidden="true"></div>
+            <a class="nav__a11y-link" href="#">
+              <span class="nav__a11y-icon" aria-hidden="true">
+                <span class="a11y-glasses-icon" aria-hidden="true"></span>
+              </span>
+              <span>Версия для слабовидящих</span>
+            </a>
           </div>
         </div>
 
@@ -222,7 +230,13 @@
       </nav>
 
       <div class="header__actions">
+        <a class="header__a11y-link header__a11y-link--mobile-bar" href="#" aria-label="Версия для слабовидящих" title="Версия для слабовидящих">
+          <span class="a11y-glasses-icon" aria-hidden="true"></span>
+        </a>
         <div class="header__socials" aria-label="Социальные сети">
+          <a class="header__a11y-link" href="#" aria-label="Версия для слабовидящих" title="Версия для слабовидящих">
+            <span class="a11y-glasses-icon" aria-hidden="true"></span>
+          </a>
           <a class="header__social-link header__social-link--vk" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
             <img src="../images/icons/vk_bw.png" alt="" class="social-icon social-icon--default" width="20" height="20">
             <img src="../images/icons/vk_color.png" alt="" class="social-icon social-icon--hover" width="20" height="20">
@@ -329,6 +343,48 @@
             </div>
           </a>
 
+          <a class="specialist-preview-card" href="zaitseva/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/zaitseva.jpg" alt="Зайцева Елена Николаевна" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">стоматолог-терапевт-хирург</p>
+                <h3 class="specialist-preview-card__name">Зайцева Елена Николаевна</h3>
+              </div>
+              <span class="specialist-preview-card__cta">
+                Записаться на приём
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="specialist-preview-card" href="zabolotnaya/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/zabolotnaya.jpg" alt="Заболотная Кристина Евгеньевна" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">врач-стоматолог общей практики</p>
+                <h3 class="specialist-preview-card__name">Заболотная Кристина Евгеньевна</h3>
+              </div>
+              <span class="specialist-preview-card__cta">
+                Записаться на приём
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
           <a class="specialist-preview-card" href="ledovskaya/">
             <div class="specialist-preview-card__media">
               <img src="../images/doctors/ledovskaya.jpg" alt="Ледовская Ольга Валентиновна" width="480" height="640" loading="lazy">
@@ -381,7 +437,6 @@
     </div>
 
     <div class="footer__middle container">
-
       <div class="footer__col footer__col--services" data-footer-accordion>
         <h3 class="footer__col-title" data-footer-accordion-toggle>
           Наши услуги
@@ -420,8 +475,8 @@
           <span class="footer__col-arrow" aria-hidden="true"></span>
         </h3>
         <ul class="footer__col-list" data-footer-accordion-body>
-          <li><a href="#doctors">Врачи</a></li>
-          <li><a href="#assistants">Ассистенты</a></li>
+          <li><a href="../specialists/#doctors">Врачи</a></li>
+          <li><a href="../specialists/#assistants">Ассистенты</a></li>
         </ul>
       </div>
 
@@ -482,7 +537,6 @@
           </a>
         </div>
       </div>
-
     </div>
 
     <div class="footer__legal-mobile">
@@ -525,6 +579,8 @@
   </div>
 
   <script defer src="../js/header.js"></script>
+  <script defer src="../js/gallery.js"></script>
+  <script defer src="../js/slider.js"></script>
   <script defer src="../js/accordion.js"></script>
   <script defer src="../js/modal.js"></script>
   <script defer src="../js/form.js"></script>

@@ -1,4 +1,12 @@
 (function () {
+  function docsUrl(slug) {
+    const path = window.location.pathname.replace(/\\/g, "/");
+    const clean = path.replace(/\/index\.html$/, "/").replace(/\/$/, "") || "/";
+    const parts = clean.split("/").filter(Boolean);
+    const prefix = parts.length ? `${"../".repeat(parts.length)}` : "";
+    return `${prefix}documents/#${slug}`;
+  }
+
   function initModal() {
     const modal = mountBookingModal();
 
@@ -182,6 +190,13 @@
     }
 
     slot.appendChild(createBookingForm());
+
+    const form = slot.querySelector("[data-booking-form]");
+    form?.querySelectorAll(".booking-form__consent-link").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+    });
   }
 
   function createBookingForm() {
@@ -215,7 +230,7 @@
 
         <label class="booking-form__consent" for="booking-consent">
           <input id="booking-consent" name="consent" type="checkbox" required>
-          <span>Согласен на обработку персональных данных и с политикой конфиденциальности</span>
+          <span>Даю <a class="booking-form__consent-link" href="${docsUrl("personal-data-consent")}" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> и ознакомлен(а) с <a class="booking-form__consent-link" href="${docsUrl("privacy-policy")}" target="_blank" rel="noopener noreferrer">политикой обработки персональных данных</a></span>
         </label>
         <span class="booking-form__error" data-error-for="booking-consent"></span>
 

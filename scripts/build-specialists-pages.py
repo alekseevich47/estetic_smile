@@ -132,21 +132,28 @@ def patch_specialists_current(html: str, depth: str) -> str:
     return html
 
 
-def preview_card(doctor: dict) -> str:
-    return f"""
-          <a class="specialist-preview-card" href="{doctor['slug']}/">
-            <div class="specialist-preview-card__media">
-              <img src="../images/doctors/{doctor['slug']}.jpg" alt="{doctor['name']}" width="480" height="640" loading="lazy">
-            </div>
-            <div class="specialist-preview-card__overlay">
-              <div class="specialist-preview-card__info">
-                <p class="specialist-preview-card__roles">{doctor['roles']}</p>
-                <h3 class="specialist-preview-card__name">{doctor['name']}</h3>
-              </div>
+PREVIEW_CTA = f"""
               <span class="specialist-preview-card__cta">
                 Записаться на приём
                 {BTN_SVG}
-              </span>
+              </span>"""
+
+
+def preview_card(person: dict, *, show_cta: bool = True) -> str:
+    card_class = "specialist-preview-card"
+    if not show_cta:
+        card_class += " specialist-preview-card--no-cta"
+    cta_block = PREVIEW_CTA if show_cta else ""
+    return f"""
+          <a class="{card_class}" href="{person['slug']}/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/{person['slug']}.jpg" alt="{person['name']}" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">{person['roles']}</p>
+                <h3 class="specialist-preview-card__name">{person['name']}</h3>
+              </div>{cta_block}
             </div>
           </a>"""
 
@@ -159,7 +166,7 @@ def specialists_main() -> str:
     foot = patch_specialists_current(patch_nav(template[end:], "../"), "../")
 
     doctor_cards = "\n".join(preview_card(d) for d in DOCTORS)
-    assistant_cards = "\n".join(preview_card(a) for a in ASSISTANTS)
+    assistant_cards = "\n".join(preview_card(a, show_cta=False) for a in ASSISTANTS)
 
     main = f"""<main>
     <section class="inner-hero" aria-labelledby="page-title">
@@ -237,6 +244,13 @@ def specialist_detail(person: dict, section: str) -> str:
     foot = patch_specialists_current(patch_nav(foot, "../../"), "../../")
 
     role_label = "врач" if section == "doctors" else "ассистент"
+    cta_block = ""
+    if section == "doctors":
+        cta_block = f"""
+            <a class="btn btn-primary doctor-card__cta" href="#" data-open-booking>
+              Записаться на приём
+              {BTN_SVG}
+            </a>"""
     main = f"""<main>
     <section class="inner-hero inner-hero--profile" aria-labelledby="page-title">
       <div class="container">
@@ -267,12 +281,7 @@ def specialist_detail(person: dict, section: str) -> str:
 
             <div class="doctor-card__bio">
 {person['bio']}
-            </div>
-
-            <a class="btn btn-primary doctor-card__cta" href="#" data-open-booking>
-              Записаться на приём
-              {BTN_SVG}
-            </a>
+            </div>{cta_block}
           </div>
         </article>
       </div>

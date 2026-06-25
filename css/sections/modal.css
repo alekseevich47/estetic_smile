@@ -173,6 +173,17 @@ body.modal-open {
   accent-color: var(--color-accent);
 }
 
+.modal .booking-form__consent-link {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.modal .booking-form__consent-link:hover,
+.modal .booking-form__consent-link:focus-visible {
+  color: var(--color-dark);
+}
+
 .modal .booking-form__error {
   min-height: 18px;
   color: #D94A4A;

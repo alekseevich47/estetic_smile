@@ -223,12 +223,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 45%;
+    height: 30%;
     padding: 8px 24px 14px;
     overflow: hidden;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
-    backdrop-filter: blur(5px);
-    transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.45s ease, background 0.45s ease;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.28) 50%, transparent 100%);
+    backdrop-filter: blur(3px);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 40%, transparent 100%);
+    mask-image: linear-gradient(to top, #000 0%, #000 40%, transparent 100%);
+    transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.45s ease, background 0.45s ease, -webkit-mask-image 0.45s ease, mask-image 0.45s ease;
   }
 
   .mega__card:hover .mega__card-curtain {
@@ -236,6 +238,8 @@
     overflow: visible;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 70%, transparent 100%);
     backdrop-filter: blur(14px);
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .mega__card-title {

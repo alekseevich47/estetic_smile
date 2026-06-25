@@ -69,7 +69,10 @@ estetic_smile/
 ├── licenses/license.pdf          # Лицензия на медицинскую деятельность (скачивание)
 ├── licenses/0001.jpg             # Страница 1 лицензии (превью + lightbox)
 ├── licenses/0002.jpg             # Страница 2 лицензии (превью + lightbox)
-├── documents/index.html          # → /documents/ (заглушка)
+├── documents/index.html          # → /documents/ (вкладки + 3 юрдокумента; по умолчанию #user-agreement)
+├── documents/user-agreement/index.html       # → редирект на /documents/#user-agreement
+├── documents/privacy-policy/index.html         # → редирект на /documents/#privacy-policy
+├── documents/personal-data-consent/index.html  # → редирект на /documents/#personal-data-consent
 ├── requisites/index.html         # → /requisites/ (реквизиты ООО «Эстетик Смайл»)
 ├── specialists/index.html        # → /specialists/ (врачи + ассистенты: превью-карточки, якоря #doctors / #assistants)
 ├── specialists/archakova/index.html  # → /specialists/archakova/
@@ -84,6 +87,7 @@ estetic_smile/
 ├── prices/index.html             # → /prices/ (заглушка)
 ├── scripts/
 │   ├── build-specialists-pages.py # Генерация /specialists/ и /specialists/<slug>/ из about/index.html + patch-header-a11y
+│   ├── build-legal-pages.py      # Генерация /documents/ (вкладки + 3 панели), редиректы /documents/<slug>/, патч футера
 │   └── patch-header-a11y.py      # Заглушка «Версия для слабовидящих» в header (desktop + mobile)
 ├── pages/
 │   └── steps.html               # [архив] Секция этапов лечения
@@ -108,7 +112,7 @@ estetic_smile/
 │       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (полная переработка: 5 колонок desktop, 1 колонка mobile)
-│       └── pages.css            # .inner-hero, .inner-hero--profile, .breadcrumbs, .page-cta, .service-detail-card, .license-card, .requisites-card, .doctor-card, .specialist-preview-card, .specialists-nav (inner pages)
+│       └── pages.css            # .inner-hero, .breadcrumbs, .documents-tabs, .legal-document, .license-card, .requisites-card, .doctor-card, .specialist-preview-card, .specialists-nav
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
@@ -117,11 +121,12 @@ estetic_smile/
 │   ├── accordion.js             # FAQ + footer mobile аккордеон (max-height, rotate стрелки)
 │   ├── form.js                  # Маска телефона, валидация, fetch/submit, спиннер
 │   ├── modal.js                 # Модальное окно с формой записи (по кнопкам «Записаться»)
+│   ├── documents.js             # Вкладки /documents/: переключение панелей, hash (#user-agreement и др.)
 │   ├── review-form.js           # Модалка отзыва: dialog с эмодзи-рейтингом, валидация, отправка
 │   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
 │   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
 │   ├── loader.js                # Страничный лоадер (module)
-│   ├── maps.js                  # Выпадающий список карт (Яндекс/2GIS/Google) для #address-card, #footer-address-card и #nav-address-card
+│   ├── maps.js                  # Выпадающий список карт (Яндекс / 2ГИС) для #address-card, #footer-address-card, #nav-address-card
 │   └── specialists.js           # Якорная навигация /specialists/: #doctors / #assistants, sticky-табы
 └── images/
     ├── logo.png, logo_new.png, hero.jpg, hero-2.jpg, hero-3.jpg, hero-4.jpg
@@ -346,12 +351,12 @@ body.modal-open → overflow: hidden
 .footer__top        — логотип (текстовый «Estetic Smile», шрифт Patefon Light) + кнопка CTA «Записаться» (flex, space-between, border-bottom)
 .footer__middle     — 5 колонок (desktop) / 1 колонка (mobile):
   1. Наши услуги — 9 ссылок (dropdown-пункты меню «Услуги»), на mobile — аккордеон (max-height toggle)
-  2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Реквизиты, Пользовательское соглашение (desktop-only); на mobile — аккордеон
+  2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Реквизиты, Пользовательское соглашение → /documents/#user-agreement (desktop-only); на mobile — аккордеон
   3. Специалисты — Врачи, Ассистенты; на mobile — аккордеон
   mobile-аккордеоны (≤768px): exclusive внутри .footer__middle — при открытии нового плавно закрывается предыдущий
   4. Столбик — Наши работы, Цены, Акции, Контакты (отдельные h3.footer__col-title) + Версия для слабовидящих (desktop-only, в ul.footer__col-list)
   5. Как с нами связаться — телефон (tel:), адрес (кнопка с выпадающим списком карт), часы работы (два span + br), иконки VK + MAX
-.footer__legal-mobile (≤768px) — © 2026 ООО «Эстетик Смайл», Пользовательское соглашение, Разработка сайта, Версия для слабовидящих; разделены линией сверху
+.footer__legal-mobile (≤768px) — © 2026 ООО «Эстетик Смайл», ссылка на Пользовательское соглашение, Разработка сайта, Версия для слабовидящих; разделены линией сверху
 .footer__bottom (>768px)       — © 2026 ООО «Эстетик Смайл» + Разработка сайта (flex space-between); на главной — центрирование через grid; разделены линией сверху
 
 Иконки соцсетей (из images/icons/):
@@ -387,6 +392,21 @@ inner-hero: h1 «Лицензии и сертификаты»
 Mobile ≤768px: одна колонка
 ```
 
+### Страница документов (/documents/, pages.css + documents.js)
+```
+inner-hero: h1 «Документы» (без отдельного h1 на каждый документ)
+.documents-tabs-section — на всю ширину viewport, без .container
+.documents-tabs — grid 3 колонки (1 на mobile), role=tablist; кнопки .documents-tabs__tab:
+  «Пользовательское соглашение» | «Политика» | «Согласие»
+  data-doc-tab: user-agreement / privacy-policy / personal-data-consent
+  .is-active — ореховый фон; переключение без перезагрузки (documents.js)
+.documents-panels — 3 панели .documents-panel[data-doc-panel] + .legal-document; по умолчанию видна user-agreement
+Hash-навигация: /documents/#privacy-policy и т.д.; старые URL /documents/<slug>/ → редирект на ../#<slug>
+Внутренние ссылки в тексте (#privacy-policy и др.) переключают вкладки
+Форма записи (modal.js): docsUrl() → documents/#<slug> с учётом глубины URL
+Генерация: scripts/build-legal-pages.py
+```
+
 ### Страница реквизитов (/requisites/, pages.css)
 ```
 inner-hero: h1 «Реквизиты»
@@ -406,7 +426,7 @@ Mobile ≤768px: dt/dd в одну колонку
 .doctor-card__roles — специальности (muted)
 .doctor-card__bio — абзацы биографии; strong — ключевые фразы (тёмный текст)
 .doctor-card__note — курсив, muted (конференции и т.п.)
-.doctor-card__cta — btn-primary data-open-booking
+.doctor-card__cta — btn-primary data-open-booking (только у врачей; у ассистентов кнопки нет)
 Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
 ```
 
@@ -416,9 +436,10 @@ Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
 .specialist-preview-card — ссылка <a>, aspect-ratio 3/4, фото + градиентный оверлей
 .specialist-preview-card__roles — полупрозрачный белый текст специальности
 .specialist-preview-card__name — ФИО, белый текст
-Hover/focus: .specialist-preview-card__info поднимается вверх, появляется .specialist-preview-card__cta
+Hover/focus (только врачи): .specialist-preview-card__info поднимается вверх, появляется .specialist-preview-card__cta
   («Записаться на приём» + .btn-tablet-icon с анимацией bar-blink)
-Touch (hover: none): CTA видна всегда
+Ассистенты: .specialist-preview-card--no-cta — без CTA и без hover-сдвига info
+Touch (hover: none): CTA видна всегда у врачей
 Клик по карточке → /specialists/<slug>/
 .specialists-nav — табы «Врачи» / «Ассистенты» в потоке страницы (между hero и секциями, без sticky/fixed при скролле); footer/mobile: specialists/#doctors, specialists/#assistants
 .specialists-section — scroll-margin-top под фиксированную шапку
@@ -436,6 +457,7 @@ Touch (hover: none): CTA видна всегда
 | `accordion.js`  | `initAccordion()` — FAQ toggle max-height + `initFooterAccordion()` — mobile аккордеоны (footer + nav): is-open + --footer-accordion-height; exclusive внутри `.footer__middle` / `.nav__mobile-list` |
 | `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
 | `modal.js`      | `initModal()` — модальное окно с формой записи (открытие/закрытие) |
+| `documents.js`  | `initDocuments()` — вкладки /documents/: панели, hash, клавиатура |
 | `review-form.js`| `initReviewForm()` — модалка отзыва на <dialog>, эмодзи-рейтинг, валидация |
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
@@ -474,7 +496,15 @@ Touch (hover: none): CTA видна всегда
 | Город               | г. Тайга                                    |
 | Акцентный цвет      | `#c4af82` (орех)                           |
 | Телефон             | `+7 (923) 492-14-44`                        |
+| E-mail              | `estetiksmile@mail.ru`                      |
 | Адрес               | ул. Лермонтова, 10                          |
+| Хостинг             | SpaceWeb (sweb.ru), серверы в РФ            |
+| Заявки с сайта      | на почту estetiksmile@mail.ru (БД не используется) |
+| Срок хранения заявок с сайта | 3 месяца                         |
+| Срок хранения медкарт       | 5 лет                            |
+| Ответственный за ПДн | генеральный директор Арчакова Е.С.          |
+| Аналитика           | не используется (без Яндекс.Метрики)        |
+| Карты на сайте      | iframe Яндекс.Карты; выпадающий список: Яндекс / 2ГИС (без Google) |
 | Часы работы         | Пн–Сб 09:30–19:00, Вс — выходной            |
 | Услуг (категорий)   | 4 (терапия, ортопедия, хирургия, профилактика) |
 | Этапов лечения      | 4 (консультация → диагностика → лечение → результат) |

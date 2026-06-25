@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.initAnimations();
   }
 
+  if (typeof window.initDocuments === "function") {
+    window.initDocuments();
+  }
+
   if (typeof window.initCookie === "function") {
     window.initCookie();
   }

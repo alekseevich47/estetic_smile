@@ -87,11 +87,27 @@
 
 .promo__deadline::before {
   content: "";
+  flex-shrink: 0;
+  align-self: center;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: var(--color-white);
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.16);
+  animation: promo-deadline-pulse 2s ease-in-out infinite;
+}
+
+@keyframes promo-deadline-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.16);
+  }
+
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.06);
+  }
 }
 
 .promo__actions {
@@ -127,8 +143,13 @@
 
 @media (max-width: 480px) {
   .promo__deadline {
-    align-items: flex-start;
     border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo__deadline::before {
+    animation: none;
   }
 }
 

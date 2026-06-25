@@ -67,7 +67,7 @@ estetic_smile/
 ├── prevention/index.html        # → /prevention/
 ├── licenses/index.html           # → /licenses/ (заглушка)
 ├── documents/index.html          # → /documents/ (заглушка)
-├── doctors/index.html            # → /doctors/ (заглушка)
+├── doctors/index.html            # → /doctors/ (карточки врачей: .doctor-card)
 ├── assistants/index.html         # → /assistants/ (заглушка)
 ├── prices/index.html             # → /prices/ (заглушка)
 ├── pages/
@@ -93,7 +93,7 @@ estetic_smile/
 │       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (полная переработка: 5 колонок desktop, 1 колонка mobile)
-│       └── pages.css            # .inner-hero, .page-cta, .service-detail-card (inner pages)
+│       └── pages.css            # .inner-hero, .page-cta, .service-detail-card, .doctor-card (inner pages)
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
@@ -122,6 +122,7 @@ estetic_smile/
     │                            # (переиспользованы для 4 категорий услуг)
     ├── steps/                   # step-1.jpg … step-4.jpg
     ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png
+    ├── doctors/                 # archakova.jpg (главный врач), ledovskaya.jpg, zabolotnaya.jpg, zhuikov.jpg
     └── gallery/                 # before-1.jpg … before-5.jpg, after-1.jpg … after-5.jpg
 ```
 
@@ -344,6 +345,20 @@ body.modal-open → overflow: hidden
 .scroll-top-btn.is-visible /* opacity: 1, pointer-events: auto — показывается при scrollY > 300 */
 ```
 
+### Карточка врача (страница /doctors/, pages.css)
+```
+.doctors-grid — grid, gap 32px (готово к нескольким карточкам)
+.doctor-card — grid 42/58: фото + контент; border-radius 15px, box-shadow, hover translateY(-4px)
+.doctor-card__media img — object-fit: cover, object-position: center top
+.doctor-card__badge — pill «Главный врач» (ореховый фон)
+.doctor-card__name — h3, имя врача
+.doctor-card__roles — специальности (muted)
+.doctor-card__bio — абзацы биографии; strong — ключевые фразы (тёмный текст)
+.doctor-card__note — курсив, muted (конференции и т.п.)
+.doctor-card__cta — btn-primary data-open-booking
+Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
+```
+
 ---
 
 ## JS-модули (ключевые API)
@@ -400,6 +415,7 @@ body.modal-open → overflow: hidden
 | Фото галереи        | 12 (6 пар до/после)                        |
 | Отзывов             | 5 + форма оставления нового                 |
 | Вопросов FAQ        | 7                                           |
+| Врачей (страница)   | 3 (Арчакова Е.С., Жуйков А.А., Ледовская О.В.) |
 
 ---
 

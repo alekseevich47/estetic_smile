@@ -43,5 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof window.initCookie === "function") {
     window.initCookie();
   }
+
+  if (typeof window.initSpecialists === "function") {
+    window.initSpecialists();
+  }
 });
 

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Наши работы работ стоматологической клиники Estetic Smile в Тайге: фото улыбок до и после лечения.">
+  <meta name="description" content="Специалисты стоматологической клиники Estetic Smile в Тайге: врачи и ассистенты.">
   <meta name="theme-color" content="#2C2C2C">
 
-  <title>Наши работы работ Estetic Smile</title>
+  <title>Специалисты — Estetic Smile</title>
 
   <link rel="icon" href="../images/icon.png" type="image/png" sizes="48x48">
   <link rel="preload" href="../fonts/Patefon-Light.woff2" as="font" type="font/woff2" crossorigin>
@@ -111,7 +111,7 @@
               </div>
             </div>
           </li>
-          <li><a href="../gallery/" aria-current="page">Наши работы</a></li>
+          <li><a href="../gallery/">Наши работы</a></li>
           <li><a href="../promo/">Акции</a></li>
           <li><a href="../about/">О нас</a></li>
           <li><a href="../contacts/">Контакты</a></li>
@@ -156,12 +156,12 @@
                 <span class="nav__group-arrow" aria-hidden="true"></span>
               </button>
               <ul class="nav__group-body" data-footer-accordion-body>
-                <li><a href="../specialists/#doctors">Врачи</a></li>
-                <li><a href="../specialists/#assistants">Ассистенты</a></li>
+                <li><a href="#doctors">Врачи</a></li>
+                <li><a href="#assistants">Ассистенты</a></li>
               </ul>
             </li>
 
-            <li class="nav__mobile-item"><a href="../gallery/" aria-current="page">Наши работы</a></li>
+            <li class="nav__mobile-item"><a href="../gallery/">Наши работы</a></li>
             <li class="nav__mobile-item"><a href="../prices/">Цены</a></li>
             <li class="nav__mobile-item"><a href="../promo/">Акции</a></li>
             <li class="nav__mobile-item"><a href="../contacts/">Контакты</a></li>
@@ -258,23 +258,106 @@
         <nav class="breadcrumbs" aria-label="Хлебные крошки">
           <ol class="breadcrumbs__list">
             <li><a href="../">Главная</a></li>
-            <li aria-current="page">Наши работы</li>
+            <li aria-current="page">Специалисты</li>
           </ol>
         </nav>
 
         <div class="inner-hero__content">
-          <h1 id="page-title">Наши работы работ</h1>
-          <p>Здесь будут собраны примеры лечения и эстетических восстановлений Estetic Smile.</p>
+          <h1 id="page-title">Специалисты</h1>
+          <p>Врачи и ассистенты клиники Estetic Smile.</p>
         </div>
       </div>
     </section>
 
-    <section class="page-section" aria-labelledby="gallery-title">
+    <nav class="specialists-nav" aria-label="Разделы специалистов">
+      <div class="container">
+        <ul class="specialists-nav__list">
+          <li><a class="specialists-nav__link is-active" href="#doctors" aria-current="true">Врачи</a></li>
+          <li><a class="specialists-nav__link" href="#assistants">Ассистенты</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section id="doctors" class="page-section specialists-section" aria-labelledby="doctors-team-title">
       <div class="container">
         <div class="page-section__header">
-          <p class="section-label">Наши работы</p>
-          <h2 id="gallery-title">Работы скоро появятся</h2>
-          <p>Фотографии наших работ появятся здесь в ближайшее время. Следите за обновлениями!</p>
+          <h2 id="doctors-team-title">Врачи</h2>
+          <p>Квалифицированные врачи с многолетним опытом и вниманием к деталям.</p>
+        </div>
+
+        <div class="specialists-preview-grid">
+
+          <a class="specialist-preview-card" href="archakova/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/archakova.jpg" alt="Арчакова Елена Сергеевна" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">врач-стоматолог-ортопед, терапевт, хирург</p>
+                <h3 class="specialist-preview-card__name">Арчакова Елена Сергеевна</h3>
+              </div>
+              <span class="specialist-preview-card__cta">
+                Записаться на приём
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="specialist-preview-card" href="zhuikov/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/zhuikov.jpg" alt="Жуйков Александр Андреевич" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">хирургическая стоматология, имплантология</p>
+                <h3 class="specialist-preview-card__name">Жуйков Александр Андреевич</h3>
+              </div>
+              <span class="specialist-preview-card__cta">
+                Записаться на приём
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="specialist-preview-card" href="ledovskaya/">
+            <div class="specialist-preview-card__media">
+              <img src="../images/doctors/ledovskaya.jpg" alt="Ледовская Ольга Валентиновна" width="480" height="640" loading="lazy">
+            </div>
+            <div class="specialist-preview-card__overlay">
+              <div class="specialist-preview-card__info">
+                <p class="specialist-preview-card__roles">врач-стоматолог общей практики</p>
+                <h3 class="specialist-preview-card__name">Ледовская Ольга Валентиновна</h3>
+              </div>
+              <span class="specialist-preview-card__cta">
+                Записаться на приём
+                <svg class="btn-tablet-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect class="btn-tablet-icon__case" x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--1" x="8" y="8" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--2" x="8" y="11.2" width="8" height="1.6" rx="0.8" fill="currentColor"/>
+                  <rect class="btn-tablet-icon__bar btn-tablet-icon__bar--3" x="8" y="14.4" width="6" height="1.6" rx="0.8" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="assistants" class="page-section specialists-section specialists-section--alt" aria-labelledby="assistants-team-title">
+      <div class="container">
+        <div class="page-section__header">
+          <h2 id="assistants-team-title">Ассистенты</h2>
+          <p class="specialists-empty">Информация об ассистентах появится в ближайшее время.</p>
         </div>
       </div>
     </section>
@@ -298,6 +381,7 @@
     </div>
 
     <div class="footer__middle container">
+
       <div class="footer__col footer__col--services" data-footer-accordion>
         <h3 class="footer__col-title" data-footer-accordion-toggle>
           Наши услуги
@@ -336,14 +420,14 @@
           <span class="footer__col-arrow" aria-hidden="true"></span>
         </h3>
         <ul class="footer__col-list" data-footer-accordion-body>
-          <li><a href="../specialists/#doctors">Врачи</a></li>
-          <li><a href="../specialists/#assistants">Ассистенты</a></li>
+          <li><a href="#doctors">Врачи</a></li>
+          <li><a href="#assistants">Ассистенты</a></li>
         </ul>
       </div>
 
       <div class="footer__col footer__col--specialists">
         <h3 class="footer__col-title">
-          <a href="../gallery/" aria-current="page">Наши работы</a>
+          <a href="../gallery/">Наши работы</a>
         </h3>
         <h3 class="footer__col-title">
           <a href="../prices/">Цены</a>
@@ -398,6 +482,7 @@
           </a>
         </div>
       </div>
+
     </div>
 
     <div class="footer__legal-mobile">
@@ -440,14 +525,13 @@
   </div>
 
   <script defer src="../js/header.js"></script>
-  <script defer src="../js/gallery.js"></script>
-  <script defer src="../js/slider.js"></script>
   <script defer src="../js/accordion.js"></script>
   <script defer src="../js/modal.js"></script>
   <script defer src="../js/form.js"></script>
   <script defer src="../js/animations.js"></script>
   <script defer src="../js/cookie.js"></script>
   <script defer src="../js/maps.js"></script>
+  <script defer src="../js/specialists.js"></script>
   <script defer src="../js/main.js"></script>
   <div id="maps-overlay" class="maps-overlay" aria-hidden="true"></div>
 </body>

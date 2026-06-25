@@ -67,8 +67,12 @@ estetic_smile/
 ├── prevention/index.html        # → /prevention/
 ├── licenses/index.html           # → /licenses/ (заглушка)
 ├── documents/index.html          # → /documents/ (заглушка)
-├── doctors/index.html            # → /doctors/ (карточки врачей: .doctor-card)
-├── assistants/index.html         # → /assistants/ (заглушка)
+├── specialists/index.html        # → /specialists/ (врачи + ассистенты: превью-карточки, якоря #doctors / #assistants)
+├── specialists/archakova/index.html  # → /specialists/archakova/
+├── specialists/zhuikov/index.html    # → /specialists/zhuikov/
+├── specialists/ledovskaya/index.html # → /specialists/ledovskaya/
+├── doctors/index.html            # → редирект на /specialists/#doctors
+├── assistants/index.html         # → редирект на /specialists/#assistants
 ├── prices/index.html             # → /prices/ (заглушка)
 ├── pages/
 │   └── steps.html               # [архив] Секция этапов лечения
@@ -93,7 +97,7 @@ estetic_smile/
 │       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (полная переработка: 5 колонок desktop, 1 колонка mobile)
-│       └── pages.css            # .inner-hero, .page-cta, .service-detail-card, .doctor-card (inner pages)
+│       └── pages.css            # .inner-hero, .inner-hero--profile, .breadcrumbs, .page-cta, .service-detail-card, .doctor-card, .specialist-preview-card, .specialists-nav (inner pages)
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
@@ -106,7 +110,8 @@ estetic_smile/
 │   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
 │   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
 │   ├── loader.js                # Страничный лоадер (module)
-│   └── maps.js                  # Выпадающий список карт (Яндекс/2GIS/Google) для #address-card, #footer-address-card и #nav-address-card
+│   ├── maps.js                  # Выпадающий список карт (Яндекс/2GIS/Google) для #address-card, #footer-address-card и #nav-address-card
+│   └── specialists.js           # Якорная навигация /specialists/: #doctors / #assistants, sticky-табы
 └── images/
     ├── logo.png, logo_new.png, hero.jpg, hero-2.jpg, hero-3.jpg, hero-4.jpg
     ├── about.jpg, promo.jpg, form-collage.jpg
@@ -345,18 +350,41 @@ body.modal-open → overflow: hidden
 .scroll-top-btn.is-visible /* opacity: 1, pointer-events: auto — показывается при scrollY > 300 */
 ```
 
-### Карточка врача (страница /doctors/, pages.css)
+### Хлебные крошки (inner pages, pages.css)
 ```
-.doctors-grid — grid, gap 32px (готово к нескольким карточкам)
+.breadcrumbs — в .inner-hero на всех внутренних страницах (mobile + desktop)
+.breadcrumbs__list — flex, разделитель «/» через ::after
+Страница специалиста: Главная → Специалисты → ФИО
+/specialists/: Главная → Специалисты
+.inner-hero--profile — страницы /specialists/<slug>/: увеличенный padding-top/bottom; в h1 только ФИО (без специальности)
+```
+
+### Карточка врача (страница /specialists/<slug>/, pages.css)
+```
+.doctor-detail — padding-top 56px (40px mobile); секция с .doctor-card
 .doctor-card — grid 42/58: фото + контент; border-radius 15px, box-shadow, hover translateY(-4px)
 .doctor-card__media img — object-fit: cover, object-position: center top
 .doctor-card__badge — pill «Главный врач» (ореховый фон)
-.doctor-card__name — h3, имя врача
+.doctor-card__name — h2/h3, имя врача
 .doctor-card__roles — специальности (muted)
 .doctor-card__bio — абзацы биографии; strong — ключевые фразы (тёмный текст)
 .doctor-card__note — курсив, muted (конференции и т.п.)
 .doctor-card__cta — btn-primary data-open-booking
 Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
+```
+
+### Превью-карточка специалиста (страница /specialists/, pages.css)
+```
+.specialists-preview-grid — grid 3 колонки (2 на tablet, 1 на mobile)
+.specialist-preview-card — ссылка <a>, aspect-ratio 3/4, фото + градиентный оверлей
+.specialist-preview-card__roles — полупрозрачный белый текст специальности
+.specialist-preview-card__name — ФИО, белый текст
+Hover/focus: .specialist-preview-card__info поднимается вверх, появляется .specialist-preview-card__cta
+  («Записаться на приём» + .btn-tablet-icon с анимацией bar-blink)
+Touch (hover: none): CTA видна всегда
+Клик по карточке → /specialists/<slug>/
+.specialists-nav — табы «Врачи» / «Ассистенты» в потоке страницы (между hero и секциями, без sticky/fixed при скролле); footer/mobile: specialists/#doctors, specialists/#assistants
+.specialists-section — scroll-margin-top под фиксированную шапку
 ```
 
 ---
@@ -374,6 +402,7 @@ Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
 | `review-form.js`| `initReviewForm()` — модалка отзыва на <dialog>, эмодзи-рейтинг, валидация |
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
+| `specialists.js`| `initSpecialists()` — якоря #doctors/#assistants, активный таб, scroll с offset под шапку |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
 
 ---
@@ -415,7 +444,7 @@ Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
 | Фото галереи        | 12 (6 пар до/после)                        |
 | Отзывов             | 5 + форма оставления нового                 |
 | Вопросов FAQ        | 7                                           |
-| Врачей (страница)   | 3 (Арчакова Е.С., Жуйков А.А., Ледовская О.В.) |
+| Врачей              | 3 (Арчакова Е.С., Жуйков А.А., Ледовская О.В.) — /specialists/#doctors + /specialists/<slug>/ |
 
 ---
 
@@ -457,6 +486,13 @@ Mobile ≤768px: одна колонка, фото aspect-ratio 4/5
 Виниры                → ortopediy/
 Отбеливание           → prevention/
 Гигиена               → prevention/
+```
+
+### Footer / mobile — колонка «Специалисты»
+```
+Врачи                 → specialists/#doctors
+Ассистенты            → specialists/#assistants
+/doctors/, /assistants/ — редирект на соответствующие якоря
 ```
 
 ### Кнопки «Записаться»

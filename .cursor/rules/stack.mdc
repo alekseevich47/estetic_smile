@@ -65,14 +65,20 @@ estetic_smile/
 ├── ortopediy/index.html         # → /ortopediy/
 ├── surgery/index.html           # → /surgery/
 ├── prevention/index.html        # → /prevention/
-├── licenses/index.html           # → /licenses/ (заглушка)
+├── licenses/index.html           # → /licenses/ (лицензии: intro + .license-card с превью 0001/0002.jpg + lightbox)
+├── licenses/license.pdf          # Лицензия на медицинскую деятельность (скачивание)
+├── licenses/0001.jpg             # Страница 1 лицензии (превью + lightbox)
+├── licenses/0002.jpg             # Страница 2 лицензии (превью + lightbox)
 ├── documents/index.html          # → /documents/ (заглушка)
+├── requisites/index.html         # → /requisites/ (реквизиты ООО «Эстетик Смайл»)
 ├── specialists/index.html        # → /specialists/ (врачи + ассистенты: превью-карточки, якоря #doctors / #assistants)
 ├── specialists/archakova/index.html  # → /specialists/archakova/
 ├── specialists/zhuikov/index.html    # → /specialists/zhuikov/
 ├── specialists/ledovskaya/index.html # → /specialists/ledovskaya/
 ├── specialists/zaitseva/index.html   # → /specialists/zaitseva/
 ├── specialists/zabolotnaya/index.html # → /specialists/zabolotnaya/
+├── specialists/emelianova/index.html  # → /specialists/emelianova/
+├── specialists/boiarshina/index.html  # → /specialists/boiarshina/
 ├── doctors/index.html            # → редирект на /specialists/#doctors
 ├── assistants/index.html         # → редирект на /specialists/#assistants
 ├── prices/index.html             # → /prices/ (заглушка)
@@ -102,11 +108,11 @@ estetic_smile/
 │       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (полная переработка: 5 колонок desktop, 1 колонка mobile)
-│       └── pages.css            # .inner-hero, .inner-hero--profile, .breadcrumbs, .page-cta, .service-detail-card, .doctor-card, .specialist-preview-card, .specialists-nav (inner pages)
+│       └── pages.css            # .inner-hero, .inner-hero--profile, .breadcrumbs, .page-cta, .service-detail-card, .license-card, .requisites-card, .doctor-card, .specialist-preview-card, .specialists-nav (inner pages)
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
-│   ├── gallery.js               # Lightbox (overlay, стрелки, счётчик, ESC, swipe)
+│   ├── gallery.js               # Lightbox: [data-lightbox-gallery] → #lightbox (стрелки, счётчик, ESC, swipe)
 │   ├── slider.js                # Карусель отзывов (translateX, dots, autoplay, swipe)
 │   ├── accordion.js             # FAQ + footer mobile аккордеон (max-height, rotate стрелки)
 │   ├── form.js                  # Маска телефона, валидация, fetch/submit, спиннер
@@ -132,7 +138,7 @@ estetic_smile/
     │                            # (переиспользованы для 4 категорий услуг)
     ├── steps/                   # step-1.jpg … step-4.jpg
     ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png
-    ├── doctors/                 # archakova.jpg (главный врач), ledovskaya.jpg, zabolotnaya.jpg, zaitseva.jpg, zhuikov.jpg
+    ├── doctors/                 # archakova.jpg (главный врач), ledovskaya.jpg, zabolotnaya.jpg, zaitseva.jpg, zhuikov.jpg, emelianova.jpg, boiarshina.jpg
     └── gallery/                 # before-1.jpg … before-5.jpg, after-1.jpg … after-5.jpg
 ```
 
@@ -223,7 +229,7 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 
 ### Мега-дропдаун «Наши услуги» (desktop ≥993px)
 ```
-Присутствует на ВСЕХ страницах сайта (главная + 13 внутренних).
+Присутствует на ВСЕХ страницах сайта (главная + 14 внутренних).
 Старый вариант (<ul class="header__dropdown"> + кнопка «Услуги») упразднён.
 
 .header__menu-item--dropdown — родительский li с position: relative
@@ -285,7 +291,7 @@ body.menu-open → overflow: hidden
       — 3 группы-аккордеона .nav__group[data-footer-accordion] (тоггл .nav__group-toggle
         [data-footer-accordion-toggle] + тело .nav__group-body[data-footer-accordion-body]):
           «Наши услуги» — 9 услуг (как в footer),
-          «Компания» — О нас, Лицензии, Отзывы (неактив.), Документы,
+          «Компания» — О нас, Лицензии, Отзывы (неактив.), Документы, Реквизиты,
           «Специалисты» — Врачи, Ассистенты;
         раскрытие через initFooterAccordion (is-open + --footer-accordion-height, max-height transition);
         exclusive внутри .nav__mobile-list: при открытии нового — плавно закрывается предыдущий;
@@ -299,7 +305,7 @@ body.menu-open → overflow: hidden
        z-index .maps-dropdown=1100 / .maps-overlay=1090 (выше панели меню z-index 1002);
        #maps-dropdown + #maps-overlay + maps.js подключены на всех страницах (в т.ч. внутренних)
      · под иконками VK/MAX в .nav__contact: .nav__divider + .nav__a11y-link (иконка .a11y-glasses-icon без кругового обрамления + текст «Версия для слабовидящих», цвет currentColor, заглушка href="#")
-     · все страницы (index.html + 13 внутренних xxx/index.html) используют единую мобильную разметку с `.nav__mobile` (аккордеоны + блок контактов)
+     · все страницы (index.html + 14 внутренних xxx/index.html) используют единую мобильную разметку с `.nav__mobile` (аккордеоны + блок контактов)
 
 Актуальные CSS-параметры мобильной панели (после TASKS_menu_new133):
   · .nav__group-toggle и .nav__mobile-item > a — font-size: 15px (было 19px), min-height: 38px (было 48px)
@@ -340,7 +346,7 @@ body.modal-open → overflow: hidden
 .footer__top        — логотип (текстовый «Estetic Smile», шрифт Patefon Light) + кнопка CTA «Записаться» (flex, space-between, border-bottom)
 .footer__middle     — 5 колонок (desktop) / 1 колонка (mobile):
   1. Наши услуги — 9 ссылок (dropdown-пункты меню «Услуги»), на mobile — аккордеон (max-height toggle)
-  2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Пользовательское соглашение (desktop-only); на mobile — аккордеон
+  2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Реквизиты, Пользовательское соглашение (desktop-only); на mobile — аккордеон
   3. Специалисты — Врачи, Ассистенты; на mobile — аккордеон
   mobile-аккордеоны (≤768px): exclusive внутри .footer__middle — при открытии нового плавно закрывается предыдущий
   4. Столбик — Наши работы, Цены, Акции, Контакты (отдельные h3.footer__col-title) + Версия для слабовидящих (desktop-only, в ul.footer__col-list)
@@ -367,6 +373,27 @@ body.modal-open → overflow: hidden
 Страница специалиста: Главная → Специалисты → ФИО
 /specialists/: Главная → Специалисты
 .inner-hero--profile — страницы /specialists/<slug>/: увеличенный padding-top/bottom; в h1 только ФИО (без специальности)
+```
+
+### Страница лицензий (/licenses/, pages.css + gallery.css)
+```
+inner-hero: h1 «Лицензии и сертификаты»
+.page-section: intro + .license-card
+.license-card — grid: .license-card__previews (2× .license-preview-card) + контент
+.license-preview-card — кнопка с img 0001.jpg / 0002.jpg, hover + zoom-иконка
+#license-gallery[data-lightbox-gallery] — клик → общий #lightbox (gallery.js)
+.license-card__download — ссылка «Загрузить лицензию в формате .pdf» (href=license.pdf download)
+Ссылка на реестр: roszdravnadzor.gov.ru/services/licenses
+Mobile ≤768px: одна колонка
+```
+
+### Страница реквизитов (/requisites/, pages.css)
+```
+inner-hero: h1 «Реквизиты»
+.page-section: intro + .requisites-card
+.requisites-card — карточка с .requisites-card__intro (название + директор) + dl.requisites-list
+.requisites-list__row — grid dt/dd: юр. адрес, адрес клиники, ОКВЭД, ИНН/КПП/ОГРН, р/с, банк, БИК, к/с, телефон (tel:)
+Mobile ≤768px: dt/dd в одну колонку
 ```
 
 ### Карточка врача (страница /specialists/<slug>/, pages.css)
@@ -404,7 +431,7 @@ Touch (hover: none): CTA видна всегда
 | Файл            | Экспортирует / делает                                             |
 |-----------------|-------------------------------------------------------------------|
 | `header.js`     | `initHeader()` — scroll listener, burger toggle, slide-in panel (translateX), nav__close, overlay, мега-дропдаун (hover open/close с таймером) |
-| `gallery.js`    | `initGallery()` — клик по фото → lightbox, стрелки, ESC, swipe  |
+| `gallery.js`    | `initGallery()` — `[data-lightbox-gallery]` → `#lightbox`, стрелки, ESC, swipe (главная + /licenses/) |
 | `slider.js`     | `initSlider()` — карусель отзывов, dots, autoplay                |
 | `accordion.js`  | `initAccordion()` — FAQ toggle max-height + `initFooterAccordion()` — mobile аккордеоны (footer + nav): is-open + --footer-accordion-height; exclusive внутри `.footer__middle` / `.nav__mobile-list` |
 | `form.js`       | `initForm()` — маска, валидация, fetch/submit, спиннер           |
@@ -455,6 +482,15 @@ Touch (hover: none): CTA видна всегда
 | Отзывов             | 5 + форма оставления нового                 |
 | Вопросов FAQ        | 7                                           |
 | Врачей              | 5 (Арчакова Е.С., Жуйков А.А., Ледовская О.В., Зайцева Е.Н., Заболотная К.Е.) — /specialists/#doctors + /specialists/<slug>/ |
+| Ассистентов         | 2 (Емельянова П.А., Бояршина М.А.) — /specialists/#assistants + /specialists/<slug>/ |
+| Юр. лицо            | ООО «Эстетик Смайл», ген. директор Арчакова Елена Сергеевна — /requisites/ |
+| Юр. адрес           | 650060, Кемеровская область — Кузбасс, г. Кемерово, пр-кт Химиков, д. 34, кв. 202 |
+| Адрес клиники       | 652401, Кемеровская область — Кузбасс, г. Тайга, ул. Лермонтова, д. 10, пом. 2 |
+| ИНН / КПП / ОГРН    | 4205407926 / 420501001 / 1224200008658      |
+| ОКВЭД               | 86.23                                       |
+| Р/с                 | 40702810323060005845                        |
+| Банк                | Филиал «Новосибирский» АО «Альфа-банк»      |
+| БИК / к/с           | 045004774 / 30101810600000000774             |
 
 ---
 

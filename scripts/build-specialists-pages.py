@@ -82,6 +82,27 @@ DOCTORS = [
     },
 ]
 
+ASSISTANTS = [
+    {
+        "slug": "emelianova",
+        "name": "Емельянова Полина Алексеевна",
+        "badge": "Медицинская сестра",
+        "roles": "медицинская сестра, ассистент врача-стоматолога",
+        "img_alt": "Емельянова Полина Алексеевна — медицинская сестра Estetic Smile",
+        "bio": """
+                <p>Медицинская сестра, ассистент врача-стоматолога. Окончила Томский базовый медицинский колледж в 2022&nbsp;г. по специальности «Сестринское дело».</p>""",
+    },
+    {
+        "slug": "boiarshina",
+        "name": "Бояршина Мария Александровна",
+        "badge": "Медицинская сестра",
+        "roles": "медицинская сестра, ассистент врача-стоматолога",
+        "img_alt": "Бояршина Мария Александровна — медицинская сестра Estetic Smile",
+        "bio": """
+                <p>Медицинская сестра, ассистент врача-стоматолога в клинике Estetic Smile.</p>""",
+    },
+]
+
 
 def patch_nav(html: str, depth: str) -> str:
     """depth: '' for root-level paths like ../, '../../' for nested."""
@@ -137,7 +158,8 @@ def specialists_main() -> str:
     head = patch_specialists_current(patch_nav(template[:start], "../"), "../")
     foot = patch_specialists_current(patch_nav(template[end:], "../"), "../")
 
-    cards = "\n".join(preview_card(d) for d in DOCTORS)
+    doctor_cards = "\n".join(preview_card(d) for d in DOCTORS)
+    assistant_cards = "\n".join(preview_card(a) for a in ASSISTANTS)
 
     main = f"""<main>
     <section class="inner-hero" aria-labelledby="page-title">
@@ -173,7 +195,7 @@ def specialists_main() -> str:
         </div>
 
         <div class="specialists-preview-grid">
-{cards}
+{doctor_cards}
         </div>
       </div>
     </section>
@@ -182,7 +204,11 @@ def specialists_main() -> str:
       <div class="container">
         <div class="page-section__header">
           <h2 id="assistants-team-title">Ассистенты</h2>
-          <p class="specialists-empty">Информация об ассистентах появится в ближайшее время.</p>
+          <p>Медицинские сестры, помогающие врачам на приёме.</p>
+        </div>
+
+        <div class="specialists-preview-grid">
+{assistant_cards}
         </div>
       </div>
     </section>
@@ -201,7 +227,7 @@ def specialists_main() -> str:
     return head + main + foot
 
 
-def doctor_detail(doctor: dict) -> str:
+def specialist_detail(person: dict, section: str) -> str:
     template = PAGE_TEMPLATE.read_text(encoding="utf-8")
     start = template.index("<main>")
     end = template.index("</main>") + len("</main>")
@@ -210,19 +236,20 @@ def doctor_detail(doctor: dict) -> str:
     head = patch_specialists_current(patch_nav(head, "../../"), "../../")
     foot = patch_specialists_current(patch_nav(foot, "../../"), "../../")
 
+    role_label = "врач" if section == "doctors" else "ассистент"
     main = f"""<main>
     <section class="inner-hero inner-hero--profile" aria-labelledby="page-title">
       <div class="container">
         <nav class="breadcrumbs" aria-label="Хлебные крошки">
           <ol class="breadcrumbs__list">
             <li><a href="../../">Главная</a></li>
-            <li><a href="../#doctors">Специалисты</a></li>
-            <li aria-current="page">{doctor['name']}</li>
+            <li><a href="../#{section}">Специалисты</a></li>
+            <li aria-current="page">{person['name']}</li>
           </ol>
         </nav>
 
         <div class="inner-hero__content">
-          <h1 id="page-title">{doctor['name']}</h1>
+          <h1 id="page-title">{person['name']}</h1>
         </div>
       </div>
     </section>
@@ -231,15 +258,15 @@ def doctor_detail(doctor: dict) -> str:
       <div class="container">
         <article class="doctor-card">
           <div class="doctor-card__media">
-            <img src="../../images/doctors/{doctor['slug']}.jpg" alt="{doctor['img_alt']}" width="480" height="600" loading="lazy">
+            <img src="../../images/doctors/{person['slug']}.jpg" alt="{person['img_alt']}" width="480" height="600" loading="lazy">
           </div>
           <div class="doctor-card__content">
-            <span class="doctor-card__badge">{doctor['badge']}</span>
-            <h2 id="doctor-profile-title" class="doctor-card__name">{doctor['name']}</h2>
-            <p class="doctor-card__roles">{doctor['roles']}</p>
+            <span class="doctor-card__badge">{person['badge']}</span>
+            <h2 id="doctor-profile-title" class="doctor-card__name">{person['name']}</h2>
+            <p class="doctor-card__roles">{person['roles']}</p>
 
             <div class="doctor-card__bio">
-{doctor['bio']}
+{person['bio']}
             </div>
 
             <a class="btn btn-primary doctor-card__cta" href="#" data-open-booking>
@@ -254,8 +281,8 @@ def doctor_detail(doctor: dict) -> str:
 
     head = head.replace(
         ABOUT_DESCRIPTION,
-        f'<meta name="description" content="{doctor["name"]} — врач клиники Estetic Smile в Тайге.">',
-    ).replace(ABOUT_TITLE, f"<title>{doctor['name']} — Estetic Smile</title>")
+        f'<meta name="description" content="{person["name"]} — {role_label} клиники Estetic Smile в Тайге.">',
+    ).replace(ABOUT_TITLE, f"<title>{person['name']} — Estetic Smile</title>")
 
     return head + main + foot
 
@@ -307,8 +334,14 @@ def main() -> None:
     for doctor in DOCTORS:
         out = specialists_dir / doctor["slug"] / "index.html"
         out.parent.mkdir(exist_ok=True)
-        out.write_text(doctor_detail(doctor), encoding="utf-8")
+        out.write_text(specialist_detail(doctor, "doctors"), encoding="utf-8")
         print(f"wrote specialists/{doctor['slug']}/index.html")
+
+    for assistant in ASSISTANTS:
+        out = specialists_dir / assistant["slug"] / "index.html"
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(specialist_detail(assistant, "assistants"), encoding="utf-8")
+        print(f"wrote specialists/{assistant['slug']}/index.html")
 
     (ROOT / "doctors" / "index.html").write_text(redirect_page("../specialists/#doctors"), encoding="utf-8")
     (ROOT / "assistants" / "index.html").write_text(redirect_page("../specialists/#assistants"), encoding="utf-8")

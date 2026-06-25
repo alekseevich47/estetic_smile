@@ -1,34 +1,24 @@
 (function () {
   function initGallery() {
-    const gallery = document.getElementById("gallery");
     const lightbox = document.getElementById("lightbox");
 
-    if (!gallery || !lightbox || gallery.dataset.initialized === "true") {
+    if (!lightbox || lightbox.dataset.initialized === "true") {
       return;
     }
 
-    const triggers = Array.from(gallery.querySelectorAll(".gallery-card"));
     const image = lightbox.querySelector(".lightbox__image");
     const closeButton = lightbox.querySelector(".lightbox__close");
     const prevButton = lightbox.querySelector(".lightbox__prev");
     const nextButton = lightbox.querySelector(".lightbox__next");
     const counter = lightbox.querySelector(".lightbox__counter");
 
-    if (!triggers.length || !image || !closeButton || !prevButton || !nextButton || !counter) {
+    if (!image || !closeButton || !prevButton || !nextButton || !counter) {
       return;
     }
 
-    gallery.dataset.initialized = "true";
+    lightbox.dataset.initialized = "true";
 
-    const items = triggers.map((trigger) => {
-      const itemImage = trigger.querySelector("img");
-
-      return {
-        src: itemImage ? itemImage.getAttribute("src") : "",
-        alt: itemImage ? itemImage.getAttribute("alt") : "",
-      };
-    });
-
+    let activeItems = [];
     let currentIndex = 0;
     let touchStartX = 0;
     let touchStartY = 0;
@@ -95,19 +85,20 @@
     };
 
     const updateLightbox = () => {
-      const currentItem = items[currentIndex];
+      const currentItem = activeItems[currentIndex];
 
       image.src = currentItem.src;
       image.alt = currentItem.alt;
-      counter.textContent = `${currentIndex + 1} / ${items.length}`;
+      counter.textContent = `${currentIndex + 1} / ${activeItems.length}`;
     };
 
     const showItem = (index) => {
-      currentIndex = (index + items.length) % items.length;
+      currentIndex = (index + activeItems.length) % activeItems.length;
       updateLightbox();
     };
 
-    const openLightbox = (index) => {
+    const openLightbox = (items, index) => {
+      activeItems = items;
       lastFocusedElement = document.activeElement;
       showItem(index);
       lightbox.classList.add("is-open");
@@ -126,6 +117,7 @@
       document.body.classList.remove("lightbox-open");
       image.removeAttribute("src");
       image.alt = "";
+      activeItems = [];
       setPageInert(false);
 
       if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
@@ -136,12 +128,37 @@
     const showPrev = () => showItem(currentIndex - 1);
     const showNext = () => showItem(currentIndex + 1);
 
-    triggers.forEach((trigger, index) => {
-      trigger.addEventListener("click", () => {
-        const parsedIndex = Number(trigger.dataset.galleryIndex);
-        openLightbox(Number.isFinite(parsedIndex) ? parsedIndex : index);
+    const bindGallery = (gallery) => {
+      if (gallery.dataset.lightboxInitialized === "true") {
+        return;
+      }
+
+      const triggers = Array.from(gallery.querySelectorAll("[data-gallery-index]"));
+
+      if (!triggers.length) {
+        return;
+      }
+
+      gallery.dataset.lightboxInitialized = "true";
+
+      const items = triggers.map((trigger) => {
+        const itemImage = trigger.querySelector("img");
+
+        return {
+          src: itemImage ? itemImage.getAttribute("src") : "",
+          alt: itemImage ? itemImage.getAttribute("alt") : "",
+        };
       });
-    });
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", () => {
+          const parsedIndex = Number(trigger.dataset.galleryIndex);
+          openLightbox(items, Number.isFinite(parsedIndex) ? parsedIndex : index);
+        });
+      });
+    };
+
+    document.querySelectorAll("[data-lightbox-gallery]").forEach(bindGallery);
 
     closeButton.addEventListener("click", closeLightbox);
     prevButton.addEventListener("click", showPrev);
@@ -211,4 +228,3 @@
 
   window.initGallery = initGallery;
 })();
-

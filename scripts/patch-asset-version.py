@@ -27,6 +27,10 @@ MASK_URL_RE = re.compile(
     rf'((?:-webkit-)?mask:\s*url\((["\']?))((?:\.\./)*images/[^\'")]+?)(?:\?v=[^\'")]*)?(["\']?\))',
     re.IGNORECASE,
 )
+IMPORT_LOCAL_RE = re.compile(
+    r'(@import\s+(?:url\()?)(["\'])((?!https?://|//)[^"\']+?\.css)(?:\?v=[^"\']*)?(["\'])(\))?(;)',
+    re.IGNORECASE,
+)
 
 def read_version() -> str:
     if not VERSION_FILE.exists():
@@ -55,9 +59,17 @@ def patch_text(text: str, version: str) -> str:
             return match.group(0)
         return f"{match.group(1)}{path}?v={version}{match.group(4)}"
 
+    def replace_import(match: re.Match[str]) -> str:
+        path = match.group(3)
+        return (
+            f"{match.group(1)}{match.group(2)}{path}?v={version}"
+            f"{match.group(4)}{match.group(5) or ''}{match.group(6)}"
+        )
+
     text = ATTR_RE.sub(replace_attr, text)
     text = URL_RE.sub(replace_url, text)
-    return MASK_URL_RE.sub(replace_url, text)
+    text = MASK_URL_RE.sub(replace_url, text)
+    return IMPORT_LOCAL_RE.sub(replace_import, text)
 
 
 def patch_file(path: Path, version: str) -> bool:

@@ -91,12 +91,12 @@ estetic_smile/
 │   ├── build-specialists-pages.py # Генерация /specialists/ и /specialists/<slug>/ из about/index.html + patch-header-a11y
 │   ├── build-legal-pages.py      # Генерация /documents/ (вкладки + 3 панели), редиректы /documents/<slug>/, патч футера
 │   ├── patch-header-a11y.py      # Заглушка «Версия для слабовидящих» в header (desktop + mobile)
-│   └── patch-asset-version.py    # Проставляет ?v=SITE_VERSION в css/js/fonts/images во всех *.html и css/
+│   └── patch-asset-version.py    # ?v= у css/js/fonts/images в *.html; @import и url() в css/**/*.css
 ├── pages/
 │   └── steps.html               # [архив] Секция этапов лечения
 ├── css/
 │   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
-│   ├── layout.css               # Хаб: .container + @import всех sections/ + home-theme.css
+│   ├── layout.css               # Хаб: @import sections/*.css?v=… + home-theme.css?v=… (версии — patch-asset-version.py)
 │   ├── home-theme.css           # Глобальная тема акцента (#c4af82): :root, --accent-a*, rgba-override
 │   ├── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
 │   ├── loader.css               # Страничный лоадер
@@ -503,9 +503,9 @@ Touch (hover: none): CTA видна всегда у врачей
 
 | Файл | Назначение |
 |------|------------|
-| `version.txt` | Текущая версия ассетов (напр. `2026062602`). Менять при каждом деплое с правками css/js/fonts/images |
+| `version.txt` | Текущая версия ассетов (сейчас `2026062603`). Менять при деплое с правками css/js/fonts/images |
 | `.htaccess` | Apache на SpaceWeb: `.html` → `no-cache`; версионированные `.css`/`.js`/шрифты/картинки → `max-age=31536000, immutable`; `.pdf` → 7 дней |
-| `scripts/patch-asset-version.py` | Добавляет/обновляет `?v=` у `css/`, `js/`, `fonts/`, `images/` во всех `*.html` и `css/**/*.css` |
+| `scripts/patch-asset-version.py` | `?v=` в `*.html` (css/js/fonts/images) и в `css/**/*.css` (`@import`, `url()`, `mask`) |
 
 **Порядок перед выкладкой на хостинг:**
 1. Правки css/js/fonts/images/html.
@@ -517,10 +517,14 @@ Touch (hover: none): CTA видна всегда у врачей
 
 **Пример ссылок в HTML:**
 ```html
-<link rel="stylesheet" href="../css/layout.css?v=2026062602">
-<script defer src="../js/main.js?v=2026062602"></script>
-<img src="../images/doctors/archakova.jpg?v=2026062602" alt="...">
-src: url("../fonts/Patefon-Light.woff2?v=2026062602") format("woff2");
+<link rel="stylesheet" href="../css/layout.css?v=2026062603">
+<script defer src="../js/main.js?v=2026062603"></script>
+<img src="../images/doctors/archakova.jpg?v=2026062603" alt="...">
+```
+
+```css
+/* layout.css — цепочка @import тоже версионируется */
+@import "sections/header.css?v=2026062603";
 ```
 
 **Разработка локально:** DevTools → Network → «Disable cache» (пока панель открыта) или `Ctrl+Shift+R`.

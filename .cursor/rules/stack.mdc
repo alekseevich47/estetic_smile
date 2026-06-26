@@ -142,7 +142,7 @@ estetic_smile/
     ├── services/                # caries.jpg, prosthetics.jpg, whitening.jpg, implant.jpg
     │                            # (переиспользованы для 4 категорий услуг)
     ├── steps/                   # step-1.jpg … step-4.jpg
-    ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png
+    ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png, yandex.png, 2gis.png, glasses.png
     ├── doctors/                 # archakova.jpg (главный врач), ledovskaya.jpg, zabolotnaya.jpg, zaitseva.jpg, zhuikov.jpg, emelianova.jpg, boiarshina.jpg
     └── gallery/                 # before-1.jpg … before-5.jpg, after-1.jpg … after-5.jpg
 ```
@@ -363,6 +363,11 @@ body.modal-open → overflow: hidden
   VK  — image-swap: vk_bw.png → vk_color.png (#0077FF) при hover (плавный переход opacity)
   MAX — image-swap: max_bw.png → max_color.png (градиент #471AFF → #9500FF) при hover (плавный переход opacity)
   Каждая иконка: два <img> (default + hover), hover-версия абсолютно спозиционирована с opacity:0, при hover меняются местами
+
+Выпадающий список карт #maps-dropdown (иконки из images/icons/):
+  yandex.png — Яндекс Карты (32×32 в .maps-dropdown__item)
+  2gis.png   — 2GIS
+  Пути: images/icons/ на главной; ../images/icons/ на внутренних; ../../images/icons/ на /specialists/<slug>/
 ```
 
 ### Кнопка «наверх»

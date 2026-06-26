@@ -507,6 +507,10 @@ def main() -> int:
             continue
         patch_site_html(path)
 
+    import subprocess
+
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-asset-version.py")], check=True)
+
     return 0
 
 

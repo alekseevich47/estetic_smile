@@ -55,6 +55,8 @@ footer     → #2C2C2C
 ```
 estetic_smile/
 ├── index.html                   # Главная страница
+├── version.txt                  # SITE_VERSION для ?v= у css/js/fonts (см. «Кэширование и деплой»)
+├── .htaccess                    # Cache-Control на SpaceWeb (HTML no-cache, ассеты — долгий кэш)
 ├── Tasks/
 │   └── TASKS_super.md           # План реструктуризации
 ├── about/index.html             # → /about/
@@ -88,7 +90,8 @@ estetic_smile/
 ├── scripts/
 │   ├── build-specialists-pages.py # Генерация /specialists/ и /specialists/<slug>/ из about/index.html + patch-header-a11y
 │   ├── build-legal-pages.py      # Генерация /documents/ (вкладки + 3 панели), редиректы /documents/<slug>/, патч футера
-│   └── patch-header-a11y.py      # Заглушка «Версия для слабовидящих» в header (desktop + mobile)
+│   ├── patch-header-a11y.py      # Заглушка «Версия для слабовидящих» в header (desktop + mobile)
+│   └── patch-asset-version.py    # Проставляет ?v=SITE_VERSION в css/js/fonts во всех *.html
 ├── pages/
 │   └── steps.html               # [архив] Секция этапов лечения
 ├── css/
@@ -148,7 +151,8 @@ estetic_smile/
 ```
 
 **Правило путей для страниц в `xxx/index.html`:**
-- CSS/JS: `../css/...`, `../js/...`
+- CSS/JS: `../css/...`, `../js/...` — с `?v=SITE_VERSION` (проставляет `patch-asset-version.py`)
+- Шрифты: `../fonts/...` — тоже с `?v=SITE_VERSION` в `href`, `preload` и `@font-face url()`
 - Изображения: `../images/...`
 - Ссылки на другие страницы: `../therapy/`, `../about/`, `../gallery/`
 - Ссылка на главную: `../`
@@ -490,6 +494,37 @@ Touch (hover: none): CTA видна всегда у врачей
 - `loading="lazy"` на все `<img>` ниже fold
 - Alt-тексты у всех изображений
 - Семантика: `<header>`, `<main>`, `<section aria-label="...">`, `<footer>`, `<nav>`
+
+---
+
+## Кэширование и деплой
+
+Пользователям **не нужно** чистить кэш: HTML всегда перепроверяется, CSS/JS/fonts — с `?v=SITE_VERSION` в URL.
+
+| Файл | Назначение |
+|------|------------|
+| `version.txt` | Текущая версия ассетов (напр. `2026062601`). Менять при каждом деплое с правками css/js/fonts |
+| `.htaccess` | Apache на SpaceWeb: `.html` → `no-cache`; `.css`/`.js`/шрифты → `max-age=31536000, immutable`; картинки → 7 дней |
+| `scripts/patch-asset-version.py` | Добавляет/обновляет `?v=` у `css/`, `js/`, `fonts/` во всех `*.html` |
+
+**Порядок перед выкладкой на хостинг:**
+1. Правки css/js/fonts/html.
+2. Увеличить значение в `version.txt` (дата + суффикс или git-хэш).
+3. `python scripts/patch-asset-version.py` — обновит ссылки во всех страницах.
+4. Залить на SpaceWeb вместе с `.htaccess`.
+
+Скрипт вызывается автоматически в конце `build-specialists-pages.py` и `build-legal-pages.py`.
+
+**Пример ссылок в HTML:**
+```html
+<link rel="stylesheet" href="../css/layout.css?v=2026062601">
+<script defer src="../js/main.js?v=2026062601"></script>
+src: url("../fonts/Patefon-Light.woff2?v=2026062601") format("woff2");
+```
+
+**Разработка локально:** DevTools → Network → «Disable cache» (пока панель открыта) или `Ctrl+Shift+R`.
+
+**Правило для новых страниц:** после добавления `<link>`/`<script>` на локальные css/js — запустить `patch-asset-version.py` (или не снимать `?v=` вручную).
 
 ---
 

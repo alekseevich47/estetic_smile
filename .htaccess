@@ -1,0 +1,16 @@
+# Estetic Smile — cache strategy (SpaceWeb / Apache)
+# HTML: revalidate on each visit. CSS/JS/fonts: long cache via ?v= in URLs.
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  <FilesMatch "\.(css|js|woff2|woff)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|pdf)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>

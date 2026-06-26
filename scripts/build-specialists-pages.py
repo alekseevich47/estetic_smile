@@ -359,6 +359,7 @@ def main() -> None:
     update_all_html_nav()
 
     subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-header-a11y.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-asset-version.py")], check=True)
 
 
 if __name__ == "__main__":

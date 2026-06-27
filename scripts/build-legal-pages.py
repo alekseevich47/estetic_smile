@@ -509,6 +509,7 @@ def main() -> int:
 
     import subprocess
 
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-glass-toggle.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "patch-asset-version.py")], check=True)
 
     return 0

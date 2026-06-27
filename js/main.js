@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.initHeader();
   }
 
+  if (typeof window.initGlassToggle === "function") {
+    window.initGlassToggle();
+  }
+
   if (typeof window.initModal === "function") {
     window.initModal();
   }

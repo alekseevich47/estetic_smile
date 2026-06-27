@@ -62,6 +62,7 @@
 }
 
 .nav__logo,
+.nav__glass-toggle,
 .nav__close,
 .nav__cta,
 .nav__mobile {
@@ -482,8 +483,8 @@
   width: 20px;
   height: 20px;
   background-color: var(--color-white);
-  -webkit-mask: url('../../images/icons/glasses.png?v=2026062715') center / contain no-repeat;
-  mask: url('../../images/icons/glasses.png?v=2026062715') center / contain no-repeat;
+  -webkit-mask: url('../../images/icons/glasses.png?v=2026062717') center / contain no-repeat;
+  mask: url('../../images/icons/glasses.png?v=2026062717') center / contain no-repeat;
   transition: background-color var(--transition);
 }
 
@@ -663,10 +664,20 @@ body.menu-open #nav-overlay {
     transform: translateX(0);
   }
 
+  .nav__glass-toggle,
+  .nav__close {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav__glass-toggle:focus:not(:focus-visible),
+  .nav__close:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .nav__glass-toggle,
   .nav__close {
     position: absolute;
     top: 16px;
-    right: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -676,11 +687,45 @@ body.menu-open #nav-overlay {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.06);
     color: var(--color-white);
-    font-size: 30px;
     line-height: 1;
     transition: color var(--transition), border-color var(--transition), background-color var(--transition);
   }
 
+  .nav__glass-toggle {
+    left: 16px;
+    z-index: 2;
+  }
+
+  .nav__glass-toggle[hidden] {
+    display: none !important;
+  }
+
+  .nav__glass-toggle-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav__glass-toggle-icon svg {
+    display: block;
+  }
+
+  .nav__glass-toggle:not(.is-glass-off) .nav__glass-toggle-icon--on,
+  .nav__glass-toggle.is-glass-off .nav__glass-toggle-icon--off {
+    display: inline-flex;
+  }
+
+  .nav__glass-toggle.is-glass-off {
+    color: var(--color-accent);
+  }
+
+  .nav__close {
+    right: 16px;
+    font-size: 30px;
+  }
+
+  .nav__glass-toggle:hover,
+  .nav__glass-toggle:focus-visible,
   .nav__close:hover,
   .nav__close:focus-visible {
     border-color: rgba(255, 255, 255, 0.36);

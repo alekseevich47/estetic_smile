@@ -442,8 +442,8 @@
   width: 20px;
   height: 20px;
   background-color: var(--color-white);
-  -webkit-mask: url('../../images/icons/glasses.png?v=2026062604') center / contain no-repeat;
-  mask: url('../../images/icons/glasses.png?v=2026062604') center / contain no-repeat;
+  -webkit-mask: url('../../images/icons/glasses.png?v=2026062702') center / contain no-repeat;
+  mask: url('../../images/icons/glasses.png?v=2026062702') center / contain no-repeat;
   transition: background-color var(--transition);
 }
 

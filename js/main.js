@@ -51,5 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof window.initSpecialists === "function") {
     window.initSpecialists();
   }
+
+  if (typeof window.initPrices === "function") {
+    window.initPrices();
+  }
 });
 

@@ -86,10 +86,13 @@ estetic_smile/
 ├── specialists/boiarshina/index.html  # → /specialists/boiarshina/
 ├── doctors/index.html            # → редирект на /specialists/#doctors
 ├── assistants/index.html         # → редирект на /specialists/#assistants
-├── prices/index.html             # → /prices/ (заглушка)
+├── prices/index.html             # → /prices/ (прайс: select категории + поиск + HTML-таблица из price.xlsx)
+├── prices/price.xlsx             # Источник прайса (6 листов → 6 категорий)
+├── prices/price.pdf              # PDF для скачивания
 ├── scripts/
 │   ├── build-specialists-pages.py # Генерация /specialists/ и /specialists/<slug>/ из about/index.html + patch-header-a11y
 │   ├── build-legal-pages.py      # Генерация /documents/ (вкладки + 3 панели), редиректы /documents/<slug>/, патч футера
+│   ├── build-prices-page.py      # price.xlsx → HTML-таблица в prices/index.html (между PRICES_TABLE_*); patch-asset-version в конце
 │   ├── patch-header-a11y.py      # Заглушка «Версия для слабовидящих» в header (desktop + mobile)
 │   └── patch-asset-version.py    # ?v= у css/js/fonts/images в *.html; @import и url() в css/**/*.css
 ├── pages/
@@ -115,7 +118,7 @@ estetic_smile/
 │       ├── reviews.css          # #reviews, карусель, модалка отзыва (dialog + эмодзи)
 │       ├── faq.css              # #faq, аккордеон
 │       ├── contacts.css         # #contacts, footer (полная переработка: 5 колонок desktop, 1 колонка mobile)
-│       └── pages.css            # .inner-hero, .breadcrumbs, .documents-tabs, .legal-document, .license-card, .requisites-card, .doctor-card, .specialist-preview-card, .specialists-nav
+│       └── pages.css            # .inner-hero, .breadcrumbs, .documents-tabs, .legal-document, .license-card, .requisites-card, .prices-*, .doctor-card, .specialist-preview-card, .specialists-nav
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
@@ -130,6 +133,7 @@ estetic_smile/
 │   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
 │   ├── loader.js                # Страничный лоадер (module)
 │   ├── maps.js                  # Выпадающий список карт (Яндекс / 2ГИС) для #address-card, #footer-address-card, #nav-address-card
+│   ├── prices.js                # /prices/: кастомный select категории (плавное открытие/закрытие) + поиск по data-search
 │   └── specialists.js           # Якорная навигация /specialists/: #doctors / #assistants, sticky-табы
 └── images/
     ├── logo.png, logo_new.png, hero.jpg, hero-2.jpg, hero-3.jpg, hero-4.jpg
@@ -425,6 +429,25 @@ inner-hero: h1 «Реквизиты»
 Mobile ≤768px: dt/dd в одну колонку
 ```
 
+### Страница цен (/prices/, pages.css + prices.js)
+```
+inner-hero: h1 «Цены»
+.page-section.prices-section: intro + .prices-card[data-prices]
+.prices-toolbar — grid: .prices-select[data-prices-select] + input[type=search][data-prices-search]
+  Категории — кастомный combobox (не нативный <select>):
+    .prices-select__trigger[data-prices-category-trigger] — кнопка с текущим значением
+    .prices-select__list[data-prices-category-list] — role=listbox; плавное появление/скрытие (.is-open: opacity + translateY, 0.2s)
+    input[type=hidden][data-prices-category] — значение для фильтра; change → applyFilters
+    Закрытие: клик вне, Escape, выбор пункта
+  Категории (порядок в combobox и листы xlsx, 1:1): anesthesia → Анестезия, therapy → Терапия, orthopedics → Ортопедия, hygiene → Гигиена, radiology → Рентгенология, surgery → Хирургия
+  Поиск: по data-search (номер, код, название, внутренние кодировки в скобках, название категории); при вводе — все категории, колонка «Категория» видна (.prices-table--searching)
+.prices-table[data-prices-table] — # | Код | Услуга | Стоимость; строки tr[data-category][data-search]
+.prices-empty[data-prices-empty] — «Ничего не найдено»
+.prices-download — ссылка price.pdf download
+Генерация: scripts/build-prices-page.py из prices/price.xlsx (6 листов → 6 категорий; маркеры <!-- PRICES_TABLE_START/END --> в index.html)
+Обновление прайса: правка price.xlsx → python scripts/build-prices-page.py → bump version.txt → patch-asset-version.py
+```
+
 ### Карточка врача (страница /specialists/<slug>/, pages.css)
 ```
 .doctor-detail — padding-top 56px (40px mobile); секция с .doctor-card
@@ -471,6 +494,7 @@ Touch (hover: none): CTA видна всегда у врачей
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
 | `specialists.js`| `initSpecialists()` — якоря #doctors/#assistants, активный таб, scroll с offset под шапку |
+| `prices.js`     | `initPrices()` — /prices/: кастомный select категории (плавная анимация списка); поиск input → все категории по data-search |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
 
 ---
@@ -503,7 +527,7 @@ Touch (hover: none): CTA видна всегда у врачей
 
 | Файл | Назначение |
 |------|------------|
-| `version.txt` | Текущая версия ассетов (сейчас `2026062603`). Менять при деплое с правками css/js/fonts/images |
+| `version.txt` | Текущая версия ассетов (сейчас `2026062701`). Менять при деплое с правками css/js/fonts/images |
 | `.htaccess` | Apache на SpaceWeb: `.html` → `no-cache`; версионированные `.css`/`.js`/шрифты/картинки → `max-age=31536000, immutable`; `.pdf` → 7 дней |
 | `scripts/patch-asset-version.py` | `?v=` в `*.html` (css/js/fonts/images) и в `css/**/*.css` (`@import`, `url()`, `mask`) |
 
@@ -513,18 +537,18 @@ Touch (hover: none): CTA видна всегда у врачей
 3. `python scripts/patch-asset-version.py` — обновит ссылки во всех страницах и CSS.
 4. Залить на SpaceWeb вместе с `.htaccess`.
 
-Скрипт вызывается автоматически в конце `build-specialists-pages.py` и `build-legal-pages.py`.
+Скрипт вызывается автоматически в конце `build-specialists-pages.py`, `build-legal-pages.py` и `build-prices-page.py`.
 
 **Пример ссылок в HTML:**
 ```html
-<link rel="stylesheet" href="../css/layout.css?v=2026062603">
-<script defer src="../js/main.js?v=2026062603"></script>
-<img src="../images/doctors/archakova.jpg?v=2026062603" alt="...">
+<link rel="stylesheet" href="../css/layout.css?v=2026062701">
+<script defer src="../js/main.js?v=2026062701"></script>
+<img src="../images/doctors/archakova.jpg?v=2026062701" alt="...">
 ```
 
 ```css
 /* layout.css — цепочка @import тоже версионируется */
-@import "sections/header.css?v=2026062603";
+@import "sections/header.css?v=2026062701";
 ```
 
 **Разработка локально:** DevTools → Network → «Disable cache» (пока панель открыта) или `Ctrl+Shift+R`.

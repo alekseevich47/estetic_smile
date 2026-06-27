@@ -1,5 +1,5 @@
 /* Inner pages */
-.header__menu a[aria-current="page"] {
+.header__menu > li > a[aria-current="page"] {
   border-color: var(--color-white);
   background: var(--color-white);
   color: var(--color-dark);

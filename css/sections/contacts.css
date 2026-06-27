@@ -632,15 +632,11 @@ a.footer__contact-item:focus-visible {
 
   .footer__middle {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 14px;
     padding: 32px 0;
   }
 
-  .footer--home .footer__middle {
-    gap: 14px;
-  }
-
-  .footer--home .footer__col--contact {
+  .footer__col--contact {
     margin-top: 14px;
   }
 

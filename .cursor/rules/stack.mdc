@@ -101,6 +101,7 @@ estetic_smile/
 │   ├── style.css                # :root переменные, сброс, базовые компоненты (кнопки, карточки, формы)
 │   ├── layout.css               # Хаб: @import sections/*.css?v=… + home-theme.css?v=… (версии — patch-asset-version.py)
 │   ├── home-theme.css           # Глобальная тема акцента (#c4af82): :root, --accent-a*, rgba-override
+│   ├── header-glass-home.css    # Liquid glass шапки + мега-дропдаун (при html.glass-header-enabled)
 │   ├── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
 │   ├── loader.css               # Страничный лоадер
 │   └── sections/                # Стили секций (подключаются через layout.css)
@@ -121,6 +122,7 @@ estetic_smile/
 │       └── pages.css            # .inner-hero, .breadcrumbs, .documents-tabs, .legal-document, .license-card, .requisites-card, .prices-*, .doctor-card, .specialist-preview-card, .specialists-nav
 ├── js/
 │   ├── main.js                  # Точка входа: импорт/инициализация всех модулей
+│   ├── glass-detect.js          # Детект поддержки → html.glass-header-enabled (в <head>, до CSS)
 │   ├── header.js                # Sticky header (.scrolled), бургер-меню, мега-дропдаун «Наши услуги» (hover)
 │   ├── gallery.js               # Lightbox: [data-lightbox-gallery] → #lightbox (стрелки, счётчик, ESC, swipe)
 │   ├── slider.js                # Карусель отзывов (translateX, dots, autoplay, swipe)
@@ -224,6 +226,8 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
                          ЕДИНЫЙ стиль на ВСЕХ страницах (главная + внутренние) — эталон.
                          Модификатор --home упразднён; head_new.svg как фон шапки больше не используется.
                          На мобильном (≤992px): height: auto, border-radius: 20px, background: var(--color-dark), padding: 10px
+.site-header--glass    — класс на <header> всех страниц; стекло активно при html.glass-header-enabled
+                         (js/glass-detect.js в <head> + css/header-glass-home.css отдельным <link>)
 .header__container     — НЕ содержит .container; padding: 0 20px 0 0
 .header__logo          — текст «Estetic Smile», шрифт "Patefon Light", ≈22px, белый, padding-left: 24px
                          Одинаково на всех страницах. Путь шрифта: fonts/Patefon-Light.woff2 (root) или ../fonts/ (inner)
@@ -239,6 +243,51 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 .header__actions       — margin-left: auto (без transform: translateX, чтобы не схлопывалось на узких экранах)
 .btn-tablet-icon       — SVG-иконка внутри кнопок «Записаться» (nav__cta + header__cta) на всех страницах
 ```
+
+### Liquid glass header (`css/header-glass-home.css` + `js/glass-detect.js`)
+
+Активация: `glass-detect.js` в `<head>` добавляет `html.glass-header-enabled`, если:
+- desktop ≥993px — всегда;
+- iPhone/iPad — всегда;
+- Android — backdrop-filter + deviceMemory ≥4 (при 4 ГБ ещё hardwareConcurrency ≥4);
+- отключено при `prefers-reduced-motion: reduce`.
+
+Без класса — обычная плашка `#25282D` из `header.css`.
+
+#### Desktop ≥993px — плашка `.site-header--glass::before`
+
+| Параметр | Покой | `.scrolled` |
+|----------|-------|-------------|
+| `background-color` | `rgba(51, 52, 57, 0.2)` | `rgba(51, 52, 57, 0.3)` |
+| `backdrop-filter` | `blur(8px) saturate(100%)` | то же |
+| `-webkit-backdrop-filter` | `blur(26px) saturate(175%)` | то же |
+| `background-image` | `linear-gradient(125deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 40%, transparent 55%, rgba(0,0,0,0.04) 100%)` | то же |
+| `box-shadow` | `0 10px 36px rgba(0,0,0,0.16)`, `inset 0 1px 0 rgba(255,255,255,0.28)`, `inset 0 -1px 0 rgba(0,0,0,0.06)` | `0 12px 40px rgba(0,0,0,0.2)`, inset ярче |
+| `border-color` (header) | `rgba(255,255,255,0.22)` | `rgba(255,255,255,0.3)` |
+| `transition` | `background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease` | — |
+
+`::after` — блик сверху: `linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 50%, transparent)`, opacity `0.2`, left/right `12%`.
+
+Элементы меню (glass): пункты `rgba(255,255,255,0.08)` + `blur(10px)`; hover `rgba(255,255,255,0.2)`; CTA `rgba(196,175,130,0.82)` + `blur(8px)`, hover → белый фон.
+
+Мега-дропдаун (glass): `background: rgba(70,72,79,0.358)`, `blur(32px) saturate(175%)`, border `rgba(255,255,255,0.2)`.
+
+#### Mobile ≤992px — плашка `.site-header--glass::before`
+
+| Параметр | Покой | `.scrolled` |
+|----------|-------|-------------|
+| `background-color` | `rgba(51, 52, 57, 0.13)` | `rgba(51, 52, 57, 0.25)` |
+| `backdrop-filter` | `blur(26px) saturate(175%)` | то же |
+| `-webkit-backdrop-filter` | `blur(26px) saturate(175%)` | то же |
+| `background-image` | тот же gradient 125deg | то же |
+| `box-shadow` | `0 10px 32px rgba(0,0,0,0.14)`, inset как desktop | `0 12px 36px rgba(0,0,0,0.18)` |
+| `border-color` | `rgba(255,255,255,0.22)` | `rgba(255,255,255,0.3)` |
+
+`::after` блик: left/right `8%`, opacity `0.75`.
+
+Кнопки в плашке (a11y, CTA, burger): `rgba(255,255,255,0.12)` + `blur(10px)`; CTA орех `rgba(196,175,130,0.78)`.
+
+Боковая панель `.header__nav::before`: `rgba(52,54,60,0.48)`, `blur(32px) saturate(175%)`, gradient `180deg`; overlay `#nav-overlay` — `rgba(0,0,0,0.22)` + `blur(8px)`.
 
 ### Мега-дропдаун «Наши услуги» (desktop ≥993px)
 ```
@@ -273,7 +322,12 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 
 .mega__consult (правый вертикальный, grid-row: 1 / 3):
   · background: #F5F5F5, border-radius: 15px, flex column
-  · заголовок + текст (с кликабельным tel:) + чёрная кнопка «Оставить заявку» (data-open-booking), min-height: 52px, centered
+  · glass-режим: rgba(245,245,245,0.72) + blur(16px), border rgba(255,255,255,0.5)
+  · заголовок + текст с tel: ссылкой
+  · .mega__consult-text a — плашка под номером: padding 6×14px, border-radius 10px,
+    фон rgba(196,175,130,0.15), текст #c4af82; hover/focus (0.35s): фон #c4af82, текст белый
+  · .mega__consult-btn — ореховый фон #c4af82, белый текст, min-height 52px, width 100%;
+    hover #a89468; glass: rgba(196,175,130,0.92) + blur(8px)
 
 Desktop hover-логика (JS):
   · mouseenter на toggle → is-open (открыть)
@@ -357,11 +411,11 @@ body.modal-open → overflow: hidden
 .footer             — основной контейнер, тёмный фон #2C2C2C, скруглённые верхние углы
 .footer--home       — модификатор для главной: центрирует .footer__bottom через grid (1fr auto 1fr)
 .footer__top        — логотип (текстовый «Estetic Smile», шрифт Patefon Light) + кнопка CTA «Записаться» (flex, space-between, border-bottom)
-.footer__middle     — 5 колонок (desktop) / 1 колонка (mobile):
+.footer__middle     — 5 колонок (desktop gap 32px) / 1 колонка (mobile ≤768px: gap 14px, padding 32px 0):
   1. Наши услуги — 9 ссылок (dropdown-пункты меню «Услуги»), на mobile — аккордеон (max-height toggle)
   2. Компания — О нас, Лицензии, Отзывы (некликабельно), Документы, Реквизиты, Пользовательское соглашение → /documents/#user-agreement (desktop-only); на mobile — аккордеон
   3. Специалисты — Врачи, Ассистенты; на mobile — аккордеон
-  mobile-аккордеоны (≤768px): exclusive внутри .footer__middle — при открытии нового плавно закрывается предыдущий
+  mobile-аккордеоны (≤768px): exclusive внутри .footer__middle — при открытии нового плавно закрывается предыдущий; .footer__col--contact — margin-top: 14px
   4. Столбик — Наши работы, Цены, Акции, Контакты (отдельные h3.footer__col-title) + Версия для слабовидящих (desktop-only, в ul.footer__col-list)
   5. Как с нами связаться — телефон (tel:), адрес (кнопка с выпадающим списком карт), часы работы (два span + br), иконки VK + MAX
 .footer__legal-mobile (≤768px) — © 2026 ООО «Эстетик Смайл», ссылка на Пользовательское соглашение, Разработка сайта, Версия для слабовидящих; разделены линией сверху
@@ -527,7 +581,7 @@ Touch (hover: none): CTA видна всегда у врачей
 
 | Файл | Назначение |
 |------|------------|
-| `version.txt` | Текущая версия ассетов (сейчас `2026062701`). Менять при деплое с правками css/js/fonts/images |
+| `version.txt` | Текущая версия ассетов (сейчас `2026062704`). Менять при деплое с правками css/js/fonts/images |
 | `.htaccess` | Apache на SpaceWeb: `.html` → `no-cache`; версионированные `.css`/`.js`/шрифты/картинки → `max-age=31536000, immutable`; `.pdf` → 7 дней |
 | `scripts/patch-asset-version.py` | `?v=` в `*.html` (css/js/fonts/images) и в `css/**/*.css` (`@import`, `url()`, `mask`) |
 

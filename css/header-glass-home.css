@@ -22,7 +22,7 @@
     z-index: 0;
     border-radius: inherit;
     pointer-events: none;
-    background-color: rgba(51, 52, 57, 0.13);
+    background-color: rgba(51, 52, 57, 0.2);
     backdrop-filter: blur(8px) saturate(100%);
     -webkit-backdrop-filter: blur(26px) saturate(175%);
     box-shadow:
@@ -64,7 +64,7 @@
   }
 
   html.glass-header-enabled .site-header--glass.scrolled::before {
-    background-color: rgba(51, 52, 57, 0.25);
+    background-color: rgba(51, 52, 57, 0.3);
     box-shadow:
       0 12px 40px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.32),
@@ -75,7 +75,7 @@
     border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .site-header--glass .header__menu a,
+  .site-header--glass .header__menu > li > a,
   html.glass-header-enabled .site-header--glass .header__dropdown-toggle {
     border-color: rgba(255, 255, 255, 0.22);
     background: rgba(255, 255, 255, 0.08);
@@ -84,8 +84,8 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
   }
 
-  .site-header--glass .header__menu a:hover,
-  .site-header--glass .header__menu a:focus-visible,
+  .site-header--glass .header__menu > li > a:hover,
+  .site-header--glass .header__menu > li > a:focus-visible,
   .site-header--glass .header__dropdown-toggle:hover,
   .site-header--glass .header__dropdown-toggle:focus-visible,
   html.glass-header-enabled .site-header--glass .header__menu-item--dropdown.is-open .header__dropdown-toggle {
@@ -151,6 +151,38 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  html.glass-header-enabled .site-header--glass .mega__consult-btn {
+    border: 1px solid rgba(196, 175, 130, 0.85);
+    background: rgba(196, 175, 130, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 4px 16px rgba(196, 175, 130, 0.24);
+  }
+
+  html.glass-header-enabled .site-header--glass .mega__consult-btn:hover,
+  html.glass-header-enabled .site-header--glass .mega__consult-btn:focus-visible {
+    border-color: rgba(168, 148, 104, 0.9);
+    background: var(--color-accent-hover);
+    color: var(--color-white);
+  }
+
+  html.glass-header-enabled .site-header--glass .mega__consult .mega__consult-text a {
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  html.glass-header-enabled .site-header--glass .mega__consult .mega__consult-text a:hover,
+  html.glass-header-enabled .site-header--glass .mega__consult .mega__consult-text a:focus-visible {
+    border: none;
+    background: var(--color-accent);
+    color: var(--color-white);
+    box-shadow: none;
   }
 }
 

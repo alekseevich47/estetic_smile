@@ -74,7 +74,7 @@
   gap: 8px;
 }
 
-.header__menu a,
+.header__menu > li > a,
 .header__dropdown-toggle {
   display: inline-flex;
   align-items: center;
@@ -90,8 +90,8 @@
   transition: color var(--transition), border-color var(--transition), background-color var(--transition);
 }
 
-.header__menu a:hover,
-.header__menu a:focus-visible,
+.header__menu > li > a:hover,
+.header__menu > li > a:focus-visible,
 .header__dropdown-toggle:hover,
 .header__dropdown-toggle:focus-visible,
 .header__menu-item--dropdown.is-open .header__dropdown-toggle {
@@ -323,14 +323,25 @@
     color: var(--color-text-gray);
   }
 
-  .mega__consult-text a {
+  .mega__consult .mega__consult-text a {
+    display: inline-block;
+    min-height: auto;
+    padding: 6px 14px;
+    margin: 0 2px;
+    border: none;
+    border-radius: 10px;
     color: var(--color-accent);
     font-weight: 600;
     text-decoration: none;
+    background: rgba(196, 175, 130, 0.15);
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
 
-  .mega__consult-text a:hover {
-    text-decoration: underline;
+  .mega__consult .mega__consult-text a:hover,
+  .mega__consult .mega__consult-text a:focus-visible {
+    background: var(--color-accent);
+    color: var(--color-white);
+    text-decoration: none;
   }
 
   .mega__consult-btn {
@@ -342,6 +353,16 @@
     margin-top: 20px;
     font-size: 15px;
     text-align: center;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  .mega__consult-btn:hover,
+  .mega__consult-btn:focus-visible {
+    background: var(--color-accent-hover);
+    color: var(--color-white);
   }
 }
 
@@ -442,8 +463,8 @@
   width: 20px;
   height: 20px;
   background-color: var(--color-white);
-  -webkit-mask: url('../../images/icons/glasses.png?v=2026062702') center / contain no-repeat;
-  mask: url('../../images/icons/glasses.png?v=2026062702') center / contain no-repeat;
+  -webkit-mask: url('../../images/icons/glasses.png?v=2026062705') center / contain no-repeat;
+  mask: url('../../images/icons/glasses.png?v=2026062705') center / contain no-repeat;
   transition: background-color var(--transition);
 }
 
@@ -547,7 +568,7 @@ body.menu-open #nav-overlay {
 }
 
 @media (max-width: 1100px) {
-  .header__menu a,
+  .header__menu > li > a,
   .header__dropdown-toggle {
     padding: 0 8px;
     font-size: 12px;

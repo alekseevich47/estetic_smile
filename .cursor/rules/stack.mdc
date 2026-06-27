@@ -242,6 +242,12 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
                          (SVG-иконки заменены на <img> с image-swap, как в футере)
 .header__actions       — margin-left: auto (без transform: translateX, чтобы не схлопывалось на узких экранах)
 .btn-tablet-icon       — SVG-иконка внутри кнопок «Записаться» (nav__cta + header__cta) на всех страницах
+.header__menu          — desktop ≥993px: flex, gap 8px; на ≤992px display: none (меню в .nav__mobile)
+.header__menu > li > a[aria-current="page"],
+.header__dropdown-toggle[aria-current="page"] — активный пункт desktop-меню: фон/обводка #c4af82 (--color-accent), белый текст;
+                         hover/focus/is-open → --color-accent-hover (#a89468); glass: rgba(196,175,130,0.82)
+                         aria-current="page" на ссылках разделов (Специалисты, О нас, …) и на toggle «Наши услуги»
+                         на страницах therapy/ortopediy/surgery/prevention
 ```
 
 ### Liquid glass header (`css/header-glass-home.css` + `js/glass-detect.js`)
@@ -268,7 +274,7 @@ h3  /* 24–28px desktop / 18–22px mobile, font-weight: 700 */
 
 `::after` — блик сверху: `linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 50%, transparent)`, opacity `0.2`, left/right `12%`.
 
-Элементы меню (glass): пункты `rgba(255,255,255,0.08)` + `blur(10px)`; hover `rgba(255,255,255,0.2)`; CTA `rgba(196,175,130,0.82)` + `blur(8px)`, hover → белый фон.
+Элементы меню (glass): пункты `rgba(255,255,255,0.08)` + `blur(10px)`; hover `rgba(255,255,255,0.2)`; активный `[aria-current="page"]` → `rgba(196,175,130,0.82)`, hover → `--color-accent-hover`; CTA `rgba(196,175,130,0.82)` + `blur(8px)`, hover → белый фон.
 
 Мега-дропдаун (glass): `background: rgba(70,72,79,0.358)`, `blur(32px) saturate(175%)`, border `rgba(255,255,255,0.2)`.
 
@@ -432,10 +438,20 @@ body.modal-open → overflow: hidden
   Пути: images/icons/ на главной; ../images/icons/ на внутренних; ../../images/icons/ на /specialists/<slug>/
 ```
 
-### Кнопка «наверх»
-```css
-.scroll-top-btn /* position: fixed, bottom/right, circle 44px, opacity: 0 по умолчанию */
-.scroll-top-btn.is-visible /* opacity: 1, pointer-events: auto — показывается при scrollY > 300 */
+### Кнопка «наверх» (cta.css)
+```
+.scroll-top-btn — position: fixed, right/bottom 24px (16px mobile), z-index 900
+ Круг 48×48, liquid glass как .site-header--glass::before (desktop + mobile):
+ · ::before — rgba(51,52,57,0.2) + blur(8px)/-webkit-blur(26px) saturate(175%), gradient 125deg, inset-блики
+ · border rgba(255,255,255,0.22); ::after — верхний блик; стрелка SVG — белая (currentColor)
+ opacity: 0, translateY(12px) → .is-visible: opacity 1, translateY(0) при scrollY > 300
+ Появление: scroll-top-arrow-enter 0.65s ease-out — rotate 180° (вниз) → 360° (вверх), по часовой
+ · .is-visible > svg { transform: rotate(0deg) } — покой после анимации и после hover
+ Hover (hover: hover): ::before светло-ореховый glass rgba(196,175,130,0.14) + blur; border rgba(196,175,130,0.32)
+ · svg — scroll-top-arrow-spin 0.9s cubic-bezier(0.08,1,0.22,1) полный оборот с плавным замедлением в конце
+ Touch (hover: none): по клику is-pressed + is-arrow-spinning (та же анимация/орех); после завершения скролла — сброс в меню-glass (cookie.js)
+ prefers-reduced-motion: без анимаций стрелки и translateY
+ body.cookie-notice-visible (≤768px): bottom 128px
 ```
 
 ### Хлебные крошки (inner pages, pages.css)
@@ -493,9 +509,9 @@ inner-hero: h1 «Цены»
     .prices-select__list[data-prices-category-list] — role=listbox; плавное появление/скрытие (.is-open: opacity + translateY, 0.2s)
     input[type=hidden][data-prices-category] — значение для фильтра; change → applyFilters
     Закрытие: клик вне, Escape, выбор пункта
-  Категории (порядок в combobox и листы xlsx, 1:1): anesthesia → Анестезия, therapy → Терапия, orthopedics → Ортопедия, hygiene → Гигиена, radiology → Рентгенология, surgery → Хирургия
-  Поиск: по data-search (номер, код, название, внутренние кодировки в скобках, название категории); при вводе — все категории, колонка «Категория» видна (.prices-table--searching)
-.prices-table[data-prices-table] — # | Код | Услуга | Стоимость; строки tr[data-category][data-search]
+  Категории (порядок в combobox): all → Все (по умолчанию, все услуги + колонка «Категория»), затем листы xlsx 1:1: anesthesia → Анестезия, therapy → Терапия, orthopedics → Ортопедия, hygiene → Гигиена, radiology → Рентгенология, surgery → Хирургия
+  Поиск: по data-search (номер, код, название, внутренние кодировки в скобках, название категории); при вводе — все категории, колонка «Категория» видна (.prices-table--show-category)
+.prices-table[data-prices-table] — Категория (скрыта, кроме «Все»/поиска) | # | Код | Услуга | Стоимость; строки tr[data-category][data-search]
 .prices-empty[data-prices-empty] — «Ничего не найдено»
 .prices-download — ссылка price.pdf download
 Генерация: scripts/build-prices-page.py из prices/price.xlsx (6 листов → 6 категорий; маркеры <!-- PRICES_TABLE_START/END --> в index.html)
@@ -548,7 +564,7 @@ Touch (hover: none): CTA видна всегда у врачей
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
 | `specialists.js`| `initSpecialists()` — якоря #doctors/#assistants, активный таб, scroll с offset под шапку |
-| `prices.js`     | `initPrices()` — /prices/: кастомный select категории (плавная анимация списка); поиск input → все категории по data-search |
+| `prices.js`     | `initPrices()` — /prices/: кастомный select категории (плавная анимация списка); «Все» — все услуги + колонка категории; поиск input → все категории по data-search |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |
 
 ---
@@ -581,7 +597,7 @@ Touch (hover: none): CTA видна всегда у врачей
 
 | Файл | Назначение |
 |------|------------|
-| `version.txt` | Текущая версия ассетов (сейчас `2026062704`). Менять при деплое с правками css/js/fonts/images |
+| `version.txt` | Текущая версия ассетов (сейчас `2026062706`). Менять при деплое с правками css/js/fonts/images |
 | `.htaccess` | Apache на SpaceWeb: `.html` → `no-cache`; версионированные `.css`/`.js`/шрифты/картинки → `max-age=31536000, immutable`; `.pdf` → 7 дней |
 | `scripts/patch-asset-version.py` | `?v=` в `*.html` (css/js/fonts/images) и в `css/**/*.css` (`@import`, `url()`, `mask`) |
 

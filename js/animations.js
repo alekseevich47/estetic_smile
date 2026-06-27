@@ -53,7 +53,9 @@
       return;
     }
 
-    const revealItems = Array.from(document.querySelectorAll(REVEAL_SELECTOR));
+    const revealItems = Array.from(document.querySelectorAll(REVEAL_SELECTOR)).filter(
+      (item) => !item.classList.contains("page-section") && !item.classList.contains("inner-hero")
+    );
 
     if (!revealItems.length) {
       return;

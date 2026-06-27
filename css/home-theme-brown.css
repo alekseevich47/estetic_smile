@@ -209,8 +209,4 @@ body.page-home .modal .booking-form select:focus {
   box-shadow: 0 0 0 3px var(--accent-a15);
 }
 
-/* Scroll-top */
-body.page-home .scroll-top-btn:hover,
-body.page-home .scroll-top-btn:focus-visible {
-  box-shadow: 0 18px 42px var(--color-accent-shadow);
-}
+/* Scroll-top — glass + анимации в cta.css */

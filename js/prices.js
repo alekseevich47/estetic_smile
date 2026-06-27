@@ -158,15 +158,17 @@
       const query = normalize(searchInput.value);
       const category = categorySelect.value;
       const isSearching = query.length > 0;
+      const showAllCategories = category === "all";
 
-      table.classList.toggle("prices-table--searching", isSearching);
+      table.classList.toggle("prices-table--show-category", isSearching || showAllCategories);
 
       let visibleCount = 0;
 
       rows.forEach((row) => {
         const haystack = row.getAttribute("data-search") || "";
         const matchesSearch = !isSearching || haystack.includes(query);
-        const matchesCategory = isSearching || row.getAttribute("data-category") === category;
+        const matchesCategory =
+          showAllCategories || isSearching || row.getAttribute("data-category") === category;
         const isVisible = matchesSearch && matchesCategory;
 
         row.hidden = !isVisible;

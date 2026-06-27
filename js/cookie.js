@@ -51,17 +51,71 @@
   function initScrollTopButton() {
     const scrollTopButton = document.getElementById("scroll-top-btn");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchUi = window.matchMedia("(hover: none)").matches;
+    const SPIN_MS = 900;
 
     if (!scrollTopButton) {
       return;
     }
+
+    const clearTouchPressState = () => {
+      scrollTopButton.classList.remove("is-pressed", "is-arrow-spinning");
+      scrollTopButton.blur();
+    };
+
+    const playArrowSpin = () => {
+      scrollTopButton.classList.remove("is-arrow-spinning");
+      void scrollTopButton.offsetWidth;
+      scrollTopButton.classList.add("is-arrow-spinning");
+    };
+
+    const waitForScrollEnd = (callback, maxMs = 2200) => {
+      let lastY = window.scrollY;
+      let idleFrames = 0;
+      const startedAt = Date.now();
+
+      const tick = () => {
+        if (window.scrollY === lastY) {
+          idleFrames += 1;
+        } else {
+          idleFrames = 0;
+          lastY = window.scrollY;
+        }
+
+        if (idleFrames >= 4 || Date.now() - startedAt >= maxMs) {
+          callback();
+          return;
+        }
+
+        requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    };
 
     const setScrollTopButtonState = () => {
       scrollTopButton.classList.toggle("is-visible", window.scrollY > SCROLL_THRESHOLD);
     };
 
     scrollTopButton.addEventListener("click", () => {
+      if (isTouchUi && !prefersReducedMotion) {
+        playArrowSpin();
+        scrollTopButton.classList.add("is-pressed");
+      }
+
+      scrollTopButton.blur();
       window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+
+      if (!isTouchUi) {
+        return;
+      }
+
+      if (prefersReducedMotion) {
+        clearTouchPressState();
+        return;
+      }
+
+      waitForScrollEnd(clearTouchPressState);
     });
 
     setScrollTopButtonState();

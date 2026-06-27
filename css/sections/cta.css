@@ -71,22 +71,80 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 50%;
-  background: rgba(44, 44, 44, 0.84);
+  background: transparent;
   color: var(--color-white);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px);
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition:
     opacity var(--transition),
     transform var(--transition),
-    background-color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.scroll-top-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: rgba(51, 52, 57, 0.2);
+  backdrop-filter: blur(8px) saturate(100%);
+  -webkit-backdrop-filter: blur(26px) saturate(175%);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+  background-image: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background-image 0.4s ease;
+}
+
+.scroll-top-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14%;
+  right: 14%;
+  height: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent
+  );
+  opacity: 0.2;
+  transition: opacity 0.4s ease;
+}
+
+.scroll-top-btn > svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  transform: rotate(180deg);
 }
 
 .scroll-top-btn.is-visible {
@@ -95,11 +153,98 @@
   transform: translateY(0);
 }
 
-.scroll-top-btn:hover,
-.scroll-top-btn:focus-visible {
-  border-color: rgba(255, 255, 255, 0.34);
-  background: var(--color-accent);
-  box-shadow: 0 18px 42px var(--color-accent-shadow);
+.scroll-top-btn.is-visible > svg {
+  transform: rotate(0deg);
+  animation: scroll-top-arrow-enter 0.65s ease-out forwards;
+}
+
+@keyframes scroll-top-arrow-enter {
+  from {
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scroll-top-arrow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover: hover) {
+  .scroll-top-btn.is-visible:hover > svg {
+    animation: scroll-top-arrow-spin 0.9s cubic-bezier(0.08, 1, 0.22, 1);
+  }
+
+  .scroll-top-btn:hover,
+  .scroll-top-btn:focus-visible {
+    border-color: rgba(196, 175, 130, 0.32);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.18),
+      0 8px 28px var(--color-accent-shadow);
+  }
+
+  .scroll-top-btn:hover::before,
+  .scroll-top-btn:focus-visible::before {
+    background-color: rgba(196, 175, 130, 0.14);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(175%);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -1px 0 rgba(196, 175, 130, 0.08);
+    background-image: linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(217, 202, 176, 0.1) 38%,
+      transparent 55%,
+      rgba(196, 175, 130, 0.05) 100%
+    );
+  }
+
+  .scroll-top-btn:hover::after,
+  .scroll-top-btn:focus-visible::after {
+    opacity: 0.32;
+  }
+}
+
+.scroll-top-btn.is-visible.is-arrow-spinning > svg {
+  animation: scroll-top-arrow-spin 0.9s cubic-bezier(0.08, 1, 0.22, 1);
+}
+
+.scroll-top-btn.is-visible.is-pressed {
+  border-color: rgba(196, 175, 130, 0.32);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.18),
+    0 8px 28px var(--color-accent-shadow);
+}
+
+.scroll-top-btn.is-visible.is-pressed::before {
+  background-color: rgba(196, 175, 130, 0.14);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(175%);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -1px 0 rgba(196, 175, 130, 0.08);
+  background-image: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(217, 202, 176, 0.1) 38%,
+    transparent 55%,
+    rgba(196, 175, 130, 0.05) 100%
+  );
+}
+
+.scroll-top-btn.is-visible.is-pressed::after {
+  opacity: 0.32;
 }
 
 @media (max-width: 768px) {
@@ -124,5 +269,14 @@
   .scroll-top-btn.is-visible {
     transition: none;
     transform: none;
+  }
+
+  .scroll-top-btn > svg {
+    animation: none;
+    transform: rotate(180deg);
+  }
+
+  .scroll-top-btn.is-visible > svg {
+    transform: rotate(0deg);
   }
 }

@@ -100,6 +100,25 @@
   color: var(--color-dark);
 }
 
+@media (min-width: 993px) {
+  .header__menu > li > a[aria-current="page"],
+  .header__menu .header__dropdown-toggle[aria-current="page"] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .header__menu > li > a[aria-current="page"]:hover,
+  .header__menu > li > a[aria-current="page"]:focus-visible,
+  .header__menu .header__dropdown-toggle[aria-current="page"]:hover,
+  .header__menu .header__dropdown-toggle[aria-current="page"]:focus-visible,
+  .header__menu-item--dropdown.is-open .header__dropdown-toggle[aria-current="page"] {
+    border-color: var(--color-accent-hover);
+    background: var(--color-accent-hover);
+    color: var(--color-white);
+  }
+}
+
 .header__menu-item--dropdown {
   position: relative;
 }
@@ -463,8 +482,8 @@
   width: 20px;
   height: 20px;
   background-color: var(--color-white);
-  -webkit-mask: url('../../images/icons/glasses.png?v=2026062705') center / contain no-repeat;
-  mask: url('../../images/icons/glasses.png?v=2026062705') center / contain no-repeat;
+  -webkit-mask: url('../../images/icons/glasses.png?v=2026062715') center / contain no-repeat;
+  mask: url('../../images/icons/glasses.png?v=2026062715') center / contain no-repeat;
   transition: background-color var(--transition);
 }
 

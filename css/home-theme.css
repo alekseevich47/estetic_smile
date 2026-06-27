@@ -257,8 +257,4 @@
   background: var(--accent-a14);
 }
 
-/* Scroll-top */
-.scroll-top-btn:hover,
-.scroll-top-btn:focus-visible {
-  box-shadow: 0 18px 42px var(--color-accent-shadow);
-}
+/* Scroll-top — glass + анимации в cta.css */

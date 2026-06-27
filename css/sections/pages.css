@@ -1,10 +1,4 @@
 /* Inner pages */
-.header__menu > li > a[aria-current="page"] {
-  border-color: var(--color-white);
-  background: var(--color-white);
-  color: var(--color-dark);
-}
-
 .inner-hero {
   position: relative;
   padding: 38px 0 78px;
@@ -1242,8 +1236,8 @@
   font-weight: 600;
 }
 
-.prices-table--searching .prices-table__col-category,
-.prices-table--searching .prices-table__category {
+.prices-table--show-category .prices-table__col-category,
+.prices-table--show-category .prices-table__category {
   display: table-cell;
 }
 

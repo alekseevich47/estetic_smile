@@ -103,7 +103,7 @@ estetic_smile/
 │   ├── home-theme.css           # Глобальная тема акцента (#c4af82): :root, --accent-a*, rgba-override
 │   ├── header-glass-home.css    # Liquid glass шапки + мега-дропдаун (при html.glass-header-enabled)
 │   ├── animations.css           # Scroll-triggered fade+slide, stagger, hover-transitions
-│   ├── loader.css               # Страничный лоадер
+│   ├── loader.css               # Страничный лоадер (#page-loader): текст + полоска прогресса
 │   └── sections/                # Стили секций (подключаются через layout.css)
 │       ├── header.css           # .site-header, nav, burger, slide-in panel, mega-dropdown, .scrolled
 │       ├── hero.css             # .hero, split-screen
@@ -133,7 +133,7 @@ estetic_smile/
 │   ├── review-form.js           # Модалка отзыва: dialog с эмодзи-рейтингом, валидация, отправка
 │   ├── animations.js            # IntersectionObserver (fade+stagger), анимированные счётчики
 │   ├── cookie.js                # Cookie-notice + floating CTA btn + scroll-top (>300px)
-│   ├── loader.js                # Страничный лоадер (module)
+│   ├── loader.js                # Страничный лоадер: fade-in текста/полоски, анимация прогресса, скрытие
 │   ├── maps.js                  # Выпадающий список карт (Яндекс / 2ГИС) для #address-card, #footer-address-card, #nav-address-card
 │   ├── prices.js                # /prices/: кастомный select категории (плавное открытие/закрытие) + поиск по data-search
 │   └── specialists.js           # Якорная навигация /specialists/: #doctors / #assistants, sticky-табы
@@ -151,7 +151,7 @@ estetic_smile/
     ├── services/                # caries.jpg, prosthetics.jpg, whitening.jpg, implant.jpg
     │                            # (переиспользованы для 4 категорий услуг)
     ├── steps/                   # step-1.jpg … step-4.jpg
-    ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png, yandex.png, 2gis.png, glasses.png
+    ├── icons/                   # vk_bw.png, vk_color.png, max_bw.png, max_color.png, whatsapp_bw.png, yandex.png, 2gis.png, glasses.png, loader.png
     ├── doctors/                 # archakova.jpg (главный врач), ledovskaya.jpg, zabolotnaya.jpg, zaitseva.jpg, zhuikov.jpg, emelianova.jpg, boiarshina.jpg
     └── gallery/                 # before-1.jpg … before-5.jpg, after-1.jpg … after-5.jpg
 ```
@@ -454,6 +454,27 @@ body.modal-open → overflow: hidden
  body.cookie-notice-visible (≤768px): bottom 128px
 ```
 
+### Страничный лоадер (loader.css + loader.js, только index.html)
+```
+#page-loader — position: fixed, inset: 0, z-index: 9999, фон #2C2C2C
+ · .hidden — opacity 0, visibility hidden, pointer-events none (transition 0.5s)
+.page-loader__content — flex column, align center, gap clamp(1.25rem, 4vw, 2rem)
+.page-loader__text — «Estetic Smile», Patefon Light, #eee, clamp(2.75rem, 14vw, 7rem)
+ · fade-in 1.8s ease
+.page-loader__bar — под текстом, width min(180px, 42.5vw); fade-in 1.8s ease, delay 0.15s
+ · role=progressbar, aria-valuenow 0→100 (loader.js)
+.page-loader__bar-wrap — relative; padding-top под иконку 32px + gap 6px; .is-complete
+.page-loader__bar-track — height 8px, border-radius pill, прозрачный фон, border rgba(255,255,255,0.35)
+.page-loader__bar-fill — absolute, width var(--loader-progress), белый #fff, border-radius pill
+.page-loader__bar-icon — над полоской, images/icons/loader.png 32×32; filter brightness(0) invert(1)
+ · left по --loader-progress (clamp внутри трека); transform translateX(-50%)
+ · .is-complete: left 100% — иконка на правом краю над полоской
+loader.js — rAF-цикл: прогресс до 90% по экспоненте (τ=4s), ждёт window.load, затем 100% + .is-complete
+ · скрытие после load: min 600ms на экране + 400ms пауза на 100%; pageshow (bfcache) — перезапуск
+ · prefers-reduced-motion: быстрый финиш
+Подключение: <link loader.css> в <head>, <script type=module loader.js> перед </body> (только главная)
+```
+
 ### Хлебные крошки (inner pages, pages.css)
 ```
 .breadcrumbs — в .inner-hero на всех внутренних страницах (mobile + desktop)
@@ -563,6 +584,7 @@ Touch (hover: none): CTA видна всегда у врачей
 | `review-form.js`| `initReviewForm()` — модалка отзыва на <dialog>, эмодзи-рейтинг, валидация |
 | `animations.js` | `initAnimations()` — IntersectionObserver fade-in, stagger, счётчики |
 | `cookie.js`     | `initCookie()` — cookie banner, floating btn visibility, scroll-top-btn visibility (>300px)  |
+| `loader.js`     | `initLoader()` — #page-loader: rAF-прогресс до load, 100% + скрытие после window.load (только главная) |
 | `specialists.js`| `initSpecialists()` — якоря #doctors/#assistants, активный таб, scroll с offset под шапку |
 | `prices.js`     | `initPrices()` — /prices/: кастомный select категории (плавная анимация списка); «Все» — все услуги + колонка категории; поиск input → все категории по data-search |
 | `main.js`       | вызывает все `init*()` при `DOMContentLoaded`                    |

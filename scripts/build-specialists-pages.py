@@ -132,6 +132,20 @@ def patch_specialists_current(html: str, depth: str) -> str:
     return html
 
 
+DOCTORS_WEBP = frozenset({"zhuikov", "zaitseva", "zabolotnaya"})
+
+
+def doctor_photo(slug: str, alt: str, *, prefix: str, width: int, height: int) -> str:
+    jpg = f"{prefix}{slug}.jpg"
+    if slug in DOCTORS_WEBP:
+        webp = f"{prefix}{slug}.webp"
+        return f"""<picture>
+              <source srcset="{webp}" type="image/webp">
+              <img src="{jpg}" alt="{alt}" width="{width}" height="{height}" loading="lazy">
+            </picture>"""
+    return f'<img src="{jpg}" alt="{alt}" width="{width}" height="{height}" loading="lazy">'
+
+
 PREVIEW_CTA = f"""
               <span class="specialist-preview-card__cta">
                 Записаться на приём
@@ -147,7 +161,7 @@ def preview_card(person: dict, *, show_cta: bool = True) -> str:
     return f"""
           <a class="{card_class}" href="{person['slug']}/">
             <div class="specialist-preview-card__media">
-              <img src="../images/doctors/{person['slug']}.jpg" alt="{person['name']}" width="480" height="640" loading="lazy">
+              {doctor_photo(person['slug'], person['name'], prefix="../images/doctors/", width=480, height=640)}
             </div>
             <div class="specialist-preview-card__overlay">
               <div class="specialist-preview-card__info">
@@ -272,7 +286,7 @@ def specialist_detail(person: dict, section: str) -> str:
       <div class="container">
         <article class="doctor-card">
           <div class="doctor-card__media">
-            <img src="../../images/doctors/{person['slug']}.jpg" alt="{person['img_alt']}" width="480" height="600" loading="lazy">
+            {doctor_photo(person['slug'], person['img_alt'], prefix="../../images/doctors/", width=480, height=600)}
           </div>
           <div class="doctor-card__content">
             <span class="doctor-card__badge">{person['badge']}</span>

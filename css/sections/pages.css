@@ -574,6 +574,13 @@
   overflow: hidden;
 }
 
+.doctor-card__media picture,
+.specialist-preview-card__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .doctor-card__media img {
   width: 100%;
   height: 100%;

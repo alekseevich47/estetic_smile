@@ -19,6 +19,10 @@ ATTR_RE = re.compile(
     rf'((?:href|src|content)=(["\']))({LOCAL_ASSET_PATH})(?:\?v=[^"\']*)?(["\'])',
     re.IGNORECASE,
 )
+SRCSET_RE = re.compile(
+    rf'(srcset=(["\']))({LOCAL_ASSET_PATH})(?:\?v=[^"\']*)?(["\'])',
+    re.IGNORECASE,
+)
 URL_RE = re.compile(
     rf'(url\((["\']?))((?:\.\./)*(?:fonts|images)/[^\'")]+?)(?:\?v=[^\'")]*)?(["\']?\))',
     re.IGNORECASE,
@@ -67,6 +71,7 @@ def patch_text(text: str, version: str) -> str:
         )
 
     text = ATTR_RE.sub(replace_attr, text)
+    text = SRCSET_RE.sub(replace_attr, text)
     text = URL_RE.sub(replace_url, text)
     text = MASK_URL_RE.sub(replace_url, text)
     return IMPORT_LOCAL_RE.sub(replace_import, text)

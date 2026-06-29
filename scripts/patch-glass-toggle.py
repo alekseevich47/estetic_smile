@@ -8,20 +8,14 @@ ROOT = Path(__file__).resolve().parents[1]
 CLOSE_BTN = '        <button class="nav__close" type="button" aria-label="Закрыть меню">&times;</button>'
 
 GLASS_TOGGLE_BTN = """        <button class="nav__glass-toggle" type="button" data-glass-toggle aria-pressed="true" aria-label="Отключить эффект стекла" hidden>
-          <span class="nav__glass-toggle-icon nav__glass-toggle-icon--on" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3.5" y="5.5" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M5.5 12.5L8.5 9.5L11 11.5L14.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-              <path d="M3.5 8H16.5" stroke="currentColor" stroke-width="1" opacity="0.35"/>
-            </svg>
-          </span>
-          <span class="nav__glass-toggle-icon nav__glass-toggle-icon--off" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.25 2.75L5.75 10.25H9.75L8.75 17.25L14.25 9.75H10.25L11.25 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </span>
+          <span class="nav__glass-toggle-icon" aria-hidden="true"></span>
         </button>
 """
+
+GLASS_TOGGLE_RE = re.compile(
+    r"        <button class=\"nav__glass-toggle\"[^>]*>.*?</button>\n",
+    re.DOTALL,
+)
 
 HEADER_SCRIPT_RE = re.compile(
     r'(<script defer src="((?:\.\./)*)js/header\.js(?:\?v=[^"]+)?"></script>)'
@@ -31,7 +25,9 @@ SKIP_PARTS = {"doctors", "assistants", "user-agreement", "privacy-policy", "pers
 
 
 def patch_glass_toggle(html: str) -> str:
-    if "data-glass-toggle" not in html and CLOSE_BTN in html:
+    if "data-glass-toggle" in html:
+        html = GLASS_TOGGLE_RE.sub(GLASS_TOGGLE_BTN, html, count=1)
+    elif CLOSE_BTN in html:
         html = html.replace(CLOSE_BTN, GLASS_TOGGLE_BTN + "\n" + CLOSE_BTN, 1)
 
     if "glass-toggle.js" not in html:

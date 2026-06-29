@@ -486,7 +486,6 @@
     z-index: 1;
   }
 
-  html.glass-header-enabled .site-header--glass .nav__glass-toggle,
   html.glass-header-enabled .site-header--glass .nav__close {
     border-color: rgba(255, 255, 255, 0.24);
     background: rgba(255, 255, 255, 0.1);
@@ -495,12 +494,38 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
 
-  .site-header--glass .nav__glass-toggle:hover,
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle:not(.is-glass-off) {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle.is-glass-off {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+
   .site-header--glass .nav__close:hover,
-  html.glass-header-enabled .site-header--glass .nav__glass-toggle:focus-visible,
   html.glass-header-enabled .site-header--glass .nav__close:focus-visible {
     border-color: rgba(255, 255, 255, 0.38);
     background: rgba(255, 255, 255, 0.2);
+  }
+
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle:not(.is-glass-off):hover,
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle:not(.is-glass-off):focus-visible {
+    border-color: var(--color-accent-hover);
+    background: var(--color-accent-hover);
+  }
+
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle.is-glass-off:hover,
+  html.glass-header-enabled .site-header--glass .nav__glass-toggle.is-glass-off:focus-visible {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: transparent;
   }
 
   html.glass-header-enabled .site-header--glass .nav__cta {
